@@ -30,7 +30,7 @@ char Library::showMenu()
 
 void Library::showBooksList()
 {
-
+    booksCoordinator->showBooksList();
 }
 
 void Library::addNewBook()
@@ -45,6 +45,6 @@ void Library::searchByAuthor()
 
 bool Library::searchForBook(){}
 
-void Library::showCustomers(){}
+void Library::showMembers(){}
 
 void Library::booksMenu(){}

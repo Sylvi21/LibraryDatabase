@@ -6,6 +6,8 @@
 #include <conio.h>
 #include "BooksStruct.h"
 
+using namespace std;
+
 class BooksCoordinator
 {
     private:
@@ -17,9 +19,13 @@ class BooksCoordinator
         BooksCoordinator(BooksDB *booksDB, Node* Books);
         virtual ~BooksCoordinator();
         void showBooksList();
+        void showBookDetails(Book book);
         void addNewBook();
         Book getSingleBook(int bookId);
         void searchByAuthor();
+        void searchByISBN();
+        void searchByGenre();
+        void searchByStatus();
         Book setBookData();
         void addAtTheBeginning(Book book);
         bool removeBook();

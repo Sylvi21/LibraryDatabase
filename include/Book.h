@@ -2,31 +2,38 @@
 #define BOOK_H
 #include <string>
 
+using namespace std;
+
 class Book
 {
     private:
-        int id;
-        std::string authorsName;
-        std::string authorsSurname;
-        std::string title;
-        std::string yearPublished;
-        std::string genre;
-        bool wypozyczona/dostepna/zaginiona;
+        int bookID;
+        string authorsName;
+        string authorsSurname;
+        string title;
+        string yearPublished;
+        string genre;
+        string status;
+        string ISBN;
     public:
         Book();
         virtual ~Book();
         int getID();
-        void setID(int id);
-        std::string getAuthorsName();
-        void setAuthorsName(std::string authorsName);
-        std::string getAuthorsSurname();
-        void setAuthorsSurname(std::string authorsSurname);
-        std::string getTitle();
-        void setTitle(std::string title);
-        std::string getYearPublished();
-        void setYearPublished(std::string yearPublished);
-        std::string getGenre();
-        void setGenre(std::string genre);
+        void setID(int bookID);
+        string getAuthorsName();
+        void setAuthorsName(string authorsName);
+        string getAuthorsSurname();
+        void setAuthorsSurname(string authorsSurname);
+        string getTitle();
+        void setTitle(string title);
+        string getYearPublished();
+        void setYearPublished(string yearPublished);
+        string getISBN();
+        void setISBN(string ISBN);
+        string getGenre();
+        void setGenre(string genre);
+        string getStatus();
+        void setStatus(string status);
 };
 
 #endif // BOOK_H

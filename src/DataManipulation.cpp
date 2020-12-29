@@ -25,3 +25,35 @@ char DataManipulation::loadCharacter()
     }
     return singleCharacter;
 }
+
+int DataManipulation::stringToInt(std::string stringNumber)
+{
+    int intNumber;
+    std::istringstream ss(stringNumber);
+    ss >> intNumber;
+    return intNumber;
+}
+
+int DataManipulation::extractNumber(std::string dataLine, int caseNumber)
+{
+    std::string stringNumber="";
+    int intNumber=0;
+
+    int i=1; int j=0;
+    while(i <= caseNumber)
+    {
+        if (dataLine[j] == '|')
+        {
+            i++; j++;
+        }
+        else if (dataLine[j] != '|' && caseNumber == i )
+        {
+                stringNumber+=dataLine[j];
+                j++;
+        }
+        else
+                j++;
+    }
+    intNumber = stringToInt(stringNumber);
+    return intNumber;
+}

@@ -4,6 +4,7 @@ BooksCoordinator::BooksCoordinator(BooksDB *booksDB, Node* Books)
 {
     this->booksDB = booksDB;
     this->Books = Books;
+    this->Books = booksDB->loadBooksFromFile();
 }
 
 BooksCoordinator::~BooksCoordinator()
@@ -11,30 +12,64 @@ BooksCoordinator::~BooksCoordinator()
     //dtor
 }
 
+void BooksCoordinator::showBookDetails(Book book){
+    cout<<book.getID()<<" "<<
+    book.getAuthorsName()<<" "<<
+    book.getTitle()<<" "<<
+    book.getYearPublished()<<" "<<
+    book.getISBN()<<" "<<
+    book.getGenre()<<" "<<
+    book.getStatus()<<endl;
+}
+
+void BooksCoordinator::showBooksList(){
+    system("cls");
+    cout<<"-----KSIAZKI-----\n\n";
+    if (Books == NULL)
+        cout<<"Baza danych jest pusta. Dodaj ksiazki."<<"\n";
+    else
+    {
+        while(Books != NULL){
+            showBookDetails(Books->book);
+            Books = Books->next;
+        }
+    }
+    cout<<"\nKliknij dowolny klawisz, aby powrocic"<<"\n";
+    getch();
+}
+
 Book BooksCoordinator::setBookData(){
     Book book;
-    std::string authorName, authorSurname, title, yearPublished, genre;
+    string authorName, authorSurname, title, yearPublished, genre, status;
     book.setID(booksDB->getLastBookID()+1);
 
-    std::cout << "Wpisz imie autora: \n";
+    cout << "Podaj imie autora: \n";
     authorName = DataManipulation::loadLine();
     book.setAuthorsName(authorName);
 
-    std::cout << "Wpisz nazwisko autora: \n";
+    cout << "Podaj nazwisko autora: \n";
     authorSurname = DataManipulation::loadLine();
     book.setAuthorsSurname(authorSurname);
 
-    std::cout << "Wpisz tytul: \n";
+    cout << "Podaj tytul: \n";
     title = DataManipulation::loadLine();
     book.setTitle(title);
 
-    std::cout << "Wpisz rok wydania: \n";
+    cout << "Podaj rok wydania: \n";
     yearPublished = DataManipulation::loadLine();
     book.setYearPublished(yearPublished);
 
-    std::cout << "Wpisz gatunek: \n";
+    cout << "Podaj numer ISBN: \n";
     genre = DataManipulation::loadLine();
     book.setGenre(genre);
+
+    cout << "Podaj gatunek: \n";
+    genre = DataManipulation::loadLine();
+    book.setGenre(genre);
+
+    cout << "Podaj status: \n";
+    status = DataManipulation::loadLine();
+    book.setStatus(status);
 
     return book;
 }
@@ -43,19 +78,19 @@ void BooksCoordinator::addNewBook()
 {
     Book book;
     system("cls");
-    std::cout << "DODAJ NOWY KONTAKT\n\n";
+    cout << "DODAJ NOWY KONTAKT\n\n";
 
     book = setBookData();
 
     if (booksDB->addBookToDB(book))
     {
         addSingleBook(book);
-        std::cout << "Pomyslnie dodano pozycje! \n";
+        cout << "Pomyslnie dodano pozycje! \n";
     }
     else
-        std::cout << "Nie udalo sie dodac pozycji! \n";
+        cout << "Nie udalo sie dodac pozycji! \n";
 
-    std::cout << "Kliknij dowolny klawisz, aby powrocic" << "\n";
+    cout << "Kliknij dowolny klawisz, aby powrocic" << "\n";
     getch();
 }
 

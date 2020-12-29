@@ -3,6 +3,7 @@
 
 struct Node {
     Book book;
+    Node *prev;
     Node *next;
 };
 

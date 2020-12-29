@@ -11,8 +11,9 @@ class Library
     private:
         Node *Books;
         Node *Customers;
-        CustomersCoordinator;
+        //MembersCoordinator *membersCoordinator;
         BooksCoordinator *booksCoordinator;
+        //TransactionsCoordinator *transactions;
     public:
         Library(BooksCoordinator *booksCoordinator, Node *Books);
         virtual ~Library();
@@ -22,7 +23,7 @@ class Library
         void addNewBook();
         void searchByAuthor();
         bool searchForBook();
-        void showCustomers();
+        void showMembers();
         void booksMenu();
 };
 

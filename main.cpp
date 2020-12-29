@@ -38,7 +38,7 @@ int main()
             break;
         }
         case '4': {
-            library.showCustomers();
+            library.showMembers();
             break;
         }
         case '5': {

@@ -38,16 +38,18 @@
 		<Unit filename="include/BooksCoordinator.h" />
 		<Unit filename="include/BooksDB.h" />
 		<Unit filename="include/BooksStruct.h" />
-		<Unit filename="include/Borrowings.h" />
 		<Unit filename="include/DataManipulation.h" />
+		<Unit filename="include/Genre.h" />
 		<Unit filename="include/Library.h" />
+		<Unit filename="include/Status.h" />
+		<Unit filename="include/Transaction.h" />
 		<Unit filename="main.cpp" />
 		<Unit filename="src/Book.cpp" />
 		<Unit filename="src/BooksCoordinator.cpp" />
 		<Unit filename="src/BooksDB.cpp" />
-		<Unit filename="src/Borrowings.cpp" />
 		<Unit filename="src/DataManipulation.cpp" />
 		<Unit filename="src/Library.cpp" />
+		<Unit filename="src/Transaction.cpp" />
 		<Extensions>
 			<code_completion />
 			<envvars />

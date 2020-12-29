@@ -12,12 +12,12 @@ Book::~Book()
 
 int Book::getID()
 {
-    return id;
+    return bookID;
 }
 
-void Book::setID(int id)
+void Book::setID(int bookID)
 {
-    this->id = id;
+    this->bookID = bookID;
 }
 
 std::string Book::getAuthorsName()
@@ -60,6 +60,16 @@ void Book::setYearPublished(std::string yearPublished)
     this->yearPublished = yearPublished;
 }
 
+string Book::getISBN()
+{
+    return ISBN;
+}
+
+void Book::setISBN(string ISBN)
+{
+    this->ISBN = ISBN;
+}
+
 std::string Book::getGenre()
 {
     return genre;
@@ -68,4 +78,14 @@ std::string Book::getGenre()
 void Book::setGenre(std::string genre)
 {
     this->genre = genre;
+}
+
+std::string Book::getStatus()
+{
+    return status;
+}
+
+void Book::setStatus(std::string status)
+{
+    this->status = status;
 }

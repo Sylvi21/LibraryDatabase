@@ -1,7 +1,7 @@
-#ifndef BORROWINGS_H
-#define BORROWINGS_H
+#ifndef TRANSACTION_H
+#define TRANSACTION_H
 #include "Book.h"
-#include "
+
 class Transaction
 {
     private:
@@ -16,4 +16,4 @@ class Transaction
     private:
 };
 
-#endif // BORROWINGS_H
+#endif // TRANSACTION_H
