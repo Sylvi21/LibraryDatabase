@@ -31,6 +31,7 @@ bool BooksDB::addBookToDB(Book book)
     booksDB.open(getFilename(), ios::app);
     if (booksDB.good() == true)
     {
+        booksDB<<book.getID()<<"|";
         booksDB<<book.getAuthorsName()<<"|";
         booksDB<<book.getAuthorsSurname()<<"|";
         booksDB<<book.getTitle()<<"|";
@@ -107,8 +108,9 @@ Node* BooksDB::findSpot(Node* books, Book book)
 
 Node* BooksDB::loadBooksFromFile(){
     string dataLine="", lastBookDataLine="";
-    Node* books = new Node();
-    books = NULL;
+    Node* firstOfBooks = NULL;
+    Node* lastOfBooks = NULL;
+  //  books = NULL;
     Node* temp = new Node();
     temp = NULL;
     Book singleBook;
@@ -120,24 +122,30 @@ Node* BooksDB::loadBooksFromFile(){
         while (getline(booksFile, dataLine))
         {
             singleBook = getSingleBookFromFile(dataLine, lastBookID);
-            Node* node = new Node();
-            if (books == NULL) {
-                books = node;
-                node->book = singleBook;
-                node->prev = NULL;
-                node->next = NULL;
+            Node* newNode = new Node();
+            newNode->book = singleBook;
+            if (firstOfBooks == NULL) {
+                firstOfBooks = newNode;
+                lastOfBooks = newNode;
+                newNode->prev = NULL;
+                newNode->next = NULL;
             } else {
-                temp = findSpot(books, singleBook);
-                if(books == temp){
-                    books->prev = node;
-                    node->next = books;
-                    node->prev = NULL;
-                    books = node;
-                } else if (temp->next != NULL){
-                    node->next = books->next;
-                    books->next = node;
+                temp = findSpot(firstOfBooks, singleBook);
+                if(firstOfBooks == temp){
+                    newNode->next = firstOfBooks;
+                    firstOfBooks->prev = newNode;
+                    newNode->prev = NULL;
+                    firstOfBooks = newNode;
+                } else if (temp == NULL){
+                    lastOfBooks->next = newNode;
+                    newNode->prev = lastOfBooks;
+                    newNode->next = temp;
+                    lastOfBooks = newNode;
                 } else {
-                    books->next = node;
+                    newNode->prev = temp;
+                    newNode->next = temp->next;
+                    temp->next->prev = newNode;
+                    temp->next = newNode;
                 }
             }
             lastBookDataLine = dataLine;
@@ -151,5 +159,5 @@ Node* BooksDB::loadBooksFromFile(){
     temp = NULL;
     delete temp;
 
-    return books;
+    return firstOfBooks;
 }
