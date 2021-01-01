@@ -39,9 +39,7 @@
 		<Unit filename="include/BooksDB.h" />
 		<Unit filename="include/BooksStruct.h" />
 		<Unit filename="include/DataManipulation.h" />
-		<Unit filename="include/Genre.h" />
 		<Unit filename="include/Library.h" />
-		<Unit filename="include/Status.h" />
 		<Unit filename="include/Transaction.h" />
 		<Unit filename="main.cpp" />
 		<Unit filename="src/Book.cpp" />

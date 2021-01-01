@@ -15,6 +15,7 @@ BooksCoordinator::~BooksCoordinator()
 void BooksCoordinator::showBookDetails(Book book){
     cout<<book.getID()<<" "<<
     book.getAuthorsName()<<" "<<
+    book.getAuthorsSurname()<<" "<<
     book.getTitle()<<" "<<
     book.getYearPublished()<<" "<<
     book.getISBN()<<" "<<
