@@ -5,11 +5,14 @@
 #include <sstream>
 #include <string>
 
+using namespace std;
+
 class DataManipulation
 {
     public:
         static std::string loadLine();
         static char loadCharacter();
+        static int loadInteger();
         static int extractNumber(std::string dataLine, int caseNumber);
         static int stringToInt(std::string stringNumber);
 };

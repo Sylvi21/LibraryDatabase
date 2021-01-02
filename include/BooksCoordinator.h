@@ -12,24 +12,31 @@ class BooksCoordinator
 {
     private:
         BooksDB *booksDB;
-        Node* Books;
+        Node* firstOfBooks;
+        Node* lastOfBooks;
 
         void addSingleBook(Book book);
+        void searchByID(int ID);
+        void searchByName(string name);
+        void searchBySurname(string surname);
+        void searchByTitle(string title);
+        void searchByYear(int yearPublished);
+        void searchByGenre(string genre);
+        void searchByISBN(string ISBN);
+        void searchByStatus(string status);
+        void showSingleBook(Book book);
+        void showBookDetails(Book book);
     public:
-        BooksCoordinator(BooksDB *booksDB, Node* Books);
+        BooksCoordinator(BooksDB *booksDB);
         virtual ~BooksCoordinator();
         void showBooksList();
-        void showBookDetails(Book book);
         void addNewBook();
         Book getSingleBook(int bookId);
-        void searchByAuthor();
-        void searchByISBN();
-        void searchByGenre();
-        void searchByStatus();
         Book setBookData();
-        void addAtTheBeginning(Book book);
-        bool removeBook();
+        Node* findSpot(Book book);
+        void searchForBook();
         bool editBook();
+        bool removeBook();
 };
 
 #endif // BOOKSCOORDINATOR_H

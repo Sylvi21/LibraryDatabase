@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1609264981 source:g:\infromatyka - studia\semestr 3\pp\librarydatabase\main.cpp
+1609606581 source:g:\infromatyka - studia\semestr 3\pp\librarydatabase\main.cpp
 	"Library.h"
 	<iostream>
 	<windows.h>
@@ -9,48 +9,48 @@
 	"BooksCoordinator.h"
 	"Library.h"
 
-1609263231 source:g:\infromatyka - studia\semestr 3\pp\librarydatabase\src\book.cpp
+1609588488 source:g:\infromatyka - studia\semestr 3\pp\librarydatabase\src\book.cpp
 	"Book.h"
 
-1609263231 g:\infromatyka - studia\semestr 3\pp\librarydatabase\include\book.h
+1609588473 g:\infromatyka - studia\semestr 3\pp\librarydatabase\include\book.h
 	<string>
 
-1609175512 source:g:\infromatyka - studia\semestr 3\pp\librarydatabase\src\datamanipulation.cpp
+1609588165 source:g:\infromatyka - studia\semestr 3\pp\librarydatabase\src\datamanipulation.cpp
 	"DataManipulation.h"
 
-1609175349 g:\infromatyka - studia\semestr 3\pp\librarydatabase\include\datamanipulation.h
+1609588371 g:\infromatyka - studia\semestr 3\pp\librarydatabase\include\datamanipulation.h
 	<iostream>
 	<sstream>
 	<string>
 
-1609520679 source:g:\infromatyka - studia\semestr 3\pp\librarydatabase\src\booksdb.cpp
+1609612702 source:g:\infromatyka - studia\semestr 3\pp\librarydatabase\src\booksdb.cpp
 	"BooksDB.h"
 
-1609264209 g:\infromatyka - studia\semestr 3\pp\librarydatabase\include\booksdb.h
+1609589646 g:\infromatyka - studia\semestr 3\pp\librarydatabase\include\booksdb.h
 	"Book.h"
 	"DataManipulation.h"
 	<iostream>
 	<fstream>
 	"BooksStruct.h"
 
-1609264974 g:\infromatyka - studia\semestr 3\pp\librarydatabase\include\library.h
+1609606277 g:\infromatyka - studia\semestr 3\pp\librarydatabase\include\library.h
 	"BooksCoordinator.h"
 	"DataManipulation.h"
 	<iostream>
 
-1609258775 g:\infromatyka - studia\semestr 3\pp\librarydatabase\include\bookscoordinator.h
+1609606242 g:\infromatyka - studia\semestr 3\pp\librarydatabase\include\bookscoordinator.h
 	"Book.h"
 	"BooksDB.h"
 	"DataManipulation.h"
 	<conio.h>
 	"BooksStruct.h"
 
-1609264974 source:g:\infromatyka - studia\semestr 3\pp\librarydatabase\src\library.cpp
+1609606255 source:g:\infromatyka - studia\semestr 3\pp\librarydatabase\src\library.cpp
 	"Library.h"
 
 1609176300 g:\infromatyka - studia\semestr 3\pp\librarydatabase\include\booksstruct.h
 
-1609517017 source:g:\infromatyka - studia\semestr 3\pp\librarydatabase\src\bookscoordinator.cpp
+1609612960 source:g:\infromatyka - studia\semestr 3\pp\librarydatabase\src\bookscoordinator.cpp
 	"BooksCoordinator.h"
 
 1609174055 g:\infromatyka - studia\semestr 3\pp\librarydatabase\include\status.h

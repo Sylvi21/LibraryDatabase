@@ -23,6 +23,7 @@ class BooksDB
         string getFilename();
         bool addBookToDB(Book book);
         Book getSingleBookFromFile(string dataLine, int lastBookID);
+        void editBookInFile(Book book);
 };
 
 #endif // BOOKSDB_H
