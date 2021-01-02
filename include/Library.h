@@ -9,13 +9,11 @@ using namespace std;
 class Library
 {
     private:
-        Node *Books;
-        Node *Customers;
         //MembersCoordinator *membersCoordinator;
         BooksCoordinator *booksCoordinator;
         //TransactionsCoordinator *transactions;
     public:
-        Library(BooksCoordinator *booksCoordinator, Node *Books);
+        Library(BooksCoordinator *booksCoordinator);
         virtual ~Library();
 
         char showMenu();
@@ -25,6 +23,7 @@ class Library
         bool searchForBook();
         void showMembers();
         void booksMenu();
+        void editBook();
 };
 
 #endif // LIBRARY_H

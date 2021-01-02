@@ -80,7 +80,7 @@ Book BooksDB::getSingleBookFromFile(string dataLine, int lastBookID)
                singleBook.setTitle(subLine);
                 break;
             case 5:
-                singleBook.setYearPublished(subLine);
+                singleBook.setYearPublished(stoi(subLine.c_str()));
                 break;
             case 6:
                 singleBook.setGenre(subLine);
@@ -98,6 +98,17 @@ Book BooksDB::getSingleBookFromFile(string dataLine, int lastBookID)
     }
     return singleBook;
 }
+/*
+Node* BooksDB::findSpot(Node* lol, Book book)
+{
+    Node* books = lol;
+    while(books != NULL && books->book.getAuthorsSurname() < book.getAuthorsSurname()){
+        if(books->next == NULL)
+            break;
+        books=books->next;
+    }
+    return books;
+}*/
 
 Node* BooksDB::findSpot(Node* books, Book book)
 {
@@ -110,7 +121,7 @@ Node* BooksDB::loadBooksFromFile(){
     string dataLine="", lastBookDataLine="";
     Node* firstOfBooks = NULL;
     Node* lastOfBooks = NULL;
-  //  books = NULL;
+    Node* pom = NULL;
     Node* temp = new Node();
     temp = NULL;
     Book singleBook;
@@ -142,10 +153,11 @@ Node* BooksDB::loadBooksFromFile(){
                     newNode->next = temp;
                     lastOfBooks = newNode;
                 } else {
-                    newNode->prev = temp;
-                    newNode->next = temp->next;
-                    temp->next->prev = newNode;
-                    temp->next = newNode;
+                    pom=temp->prev;
+                    pom->next=newNode;
+                    newNode->prev=temp->prev;
+                    temp->prev=newNode;
+                    newNode->next=temp;
                 }
             }
             lastBookDataLine = dataLine;
@@ -158,6 +170,51 @@ Node* BooksDB::loadBooksFromFile(){
     }
     temp = NULL;
     delete temp;
+    pom = NULL;
+    delete pom;
 
     return firstOfBooks;
+}
+
+void BooksDB::editBookInFile(Book bookToEdit){
+    string line=""; string subLine="";
+    ifstream inFile("Books.txt");
+    ofstream outFile;
+    outFile.open("temp.txt");
+    if(!inFile.good())
+    {
+        outFile.close();
+        remove("temp.txt");
+        cout<<"Nie udalo sie otworzyc pliku z kontaktami.\n";
+    }
+    else
+    {
+        while (getline(inFile, line))
+        {
+            subLine="";
+            int i=0;
+            while(line[i]!='|')
+            {
+                subLine+=line[i];
+                i++;
+            }
+            if (atoi(subLine.c_str()) == bookToEdit.getID())
+            {
+                outFile<<bookToEdit.getID()<<"|";
+                outFile<<bookToEdit.getAuthorsName()<<"|";
+                outFile<<bookToEdit.getAuthorsSurname()<<"|";
+                outFile<<bookToEdit.getTitle()<<"|";
+                outFile<<bookToEdit.getYearPublished()<<"|";
+                outFile<<bookToEdit.getGenre()<<"|";
+                outFile<<bookToEdit.getISBN()<<"|";
+                outFile<<bookToEdit.getStatus()<<"|"<<endl;
+            }
+            else outFile<<line<<endl;
+        }
+        outFile.close();
+        inFile.close();
+        remove("Books.txt");
+        rename("temp.txt", "Books.txt");
+        cout<<"Kontakt edytowany pomyslnie!\n";
+    }
 }

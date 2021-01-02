@@ -11,7 +11,7 @@ class Book
         string authorsName;
         string authorsSurname;
         string title;
-        string yearPublished;
+        int yearPublished;
         string genre;
         string status;
         string ISBN;
@@ -26,8 +26,8 @@ class Book
         void setAuthorsSurname(string authorsSurname);
         string getTitle();
         void setTitle(string title);
-        string getYearPublished();
-        void setYearPublished(string yearPublished);
+        int getYearPublished();
+        void setYearPublished(int yearPublished);
         string getISBN();
         void setISBN(string ISBN);
         string getGenre();

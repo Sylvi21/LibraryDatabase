@@ -1,15 +1,14 @@
 #include "Library.h"
 
-Library::Library(BooksCoordinator *booksCoordinator, Node* Books)
+Library::Library(BooksCoordinator *booksCoordinator)
 {
     this->booksCoordinator = booksCoordinator;
-    this->Books = NULL;
 }
 
 Library::~Library()
 {
-    delete booksCoordinator;
     booksCoordinator = NULL;
+    delete booksCoordinator;
 }
 
 char Library::showMenu()
@@ -21,7 +20,7 @@ char Library::showMenu()
     cout<<"2. Dodaj ksiazke\n";
     cout<<"3. Wyszukaj ksiazke\n";
     cout<<"4. Wyswietl wypozyczajacych\n";
-    cout<<"5. Wyswietl \n";
+    cout<<"5. Edytuj pozycje\n";
     cout<<"6. Zakoncz program\n";
 
     choice = DataManipulation::loadCharacter();
@@ -38,9 +37,9 @@ void Library::addNewBook()
     booksCoordinator->addNewBook();
 }
 
-void Library::searchByAuthor()
+void Library::editBook()
 {
-
+    booksCoordinator->editBook();
 }
 
 bool Library::searchForBook(){}

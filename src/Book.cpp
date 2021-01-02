@@ -20,42 +20,42 @@ void Book::setID(int bookID)
     this->bookID = bookID;
 }
 
-std::string Book::getAuthorsName()
+string Book::getAuthorsName()
 {
     return authorsName;
 }
 
-void Book::setAuthorsName(std::string authorsName)
+void Book::setAuthorsName(string authorsName)
 {
     this->authorsName = authorsName;
 }
 
-std::string Book::getAuthorsSurname()
+string Book::getAuthorsSurname()
 {
     return authorsSurname;
 }
 
-void Book::setAuthorsSurname(std::string authorsSurname)
+void Book::setAuthorsSurname(string authorsSurname)
 {
     this->authorsSurname = authorsSurname;
 }
 
-std::string Book::getTitle()
+string Book::getTitle()
 {
     return title;
 }
 
-void Book::setTitle(std::string title)
+void Book::setTitle(string title)
 {
     this->title = title;
 }
 
-std::string Book::getYearPublished()
+int Book::getYearPublished()
 {
     return yearPublished;
 }
 
-void Book::setYearPublished(std::string yearPublished)
+void Book::setYearPublished(int yearPublished)
 {
     this->yearPublished = yearPublished;
 }
@@ -70,22 +70,22 @@ void Book::setISBN(string ISBN)
     this->ISBN = ISBN;
 }
 
-std::string Book::getGenre()
+string Book::getGenre()
 {
     return genre;
 }
 
-void Book::setGenre(std::string genre)
+void Book::setGenre(string genre)
 {
     this->genre = genre;
 }
 
-std::string Book::getStatus()
+string Book::getStatus()
 {
     return status;
 }
 
-void Book::setStatus(std::string status)
+void Book::setStatus(string status)
 {
     this->status = status;
 }

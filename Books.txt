@@ -1,3 +1,4 @@
-1|Arthur Conan|Doyle|Pies Baskerville'ow|1999|powiesc detektywistyczna|dostepna|
-2|Emily|Bronte|Wichrowe Wzgorza|2004|powiesc gotycka||dostepna|
-3|Winston|Groom|Forrest Gump|1986|powiesc|zarezerwowana|
+1|Arthur Conan|Doyle|Pies Baskerville'ow|1999|powiesc detektywistyczna|83-887-94-37-X|dostepna|
+2|Emily|Bronte|Wichrowe Wzgorza|2004|powiesc gotycka|83-921322-0-3|dostepna|
+3|Winston|Groom|Forrest Gump|1986|powiesc|978-0-552-99609-9|zarezerwowana|
+4|Joe|Alex|Smierc mowi w moim imieniu|83|powiesc detektywistyczna|1960|dostepna|

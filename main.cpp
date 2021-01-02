@@ -11,10 +11,9 @@ using namespace std;
 
 int main()
 {
-    Node* Books = NULL;
     BooksDB *booksDB = new BooksDB();
-    BooksCoordinator *booksCoordinator = new BooksCoordinator(booksDB, Books);
-    Library library(booksCoordinator, Books);
+    BooksCoordinator *booksCoordinator = new BooksCoordinator(booksDB);
+    Library library(booksCoordinator);
     char choice;
 
     while(true)
@@ -42,7 +41,7 @@ int main()
             break;
         }
         case '5': {
-            library.searchByAuthor();
+            library.editBook();
             break;
         }
         case'6': {

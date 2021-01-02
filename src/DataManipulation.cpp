@@ -26,6 +26,23 @@ char DataManipulation::loadCharacter()
     return singleCharacter;
 }
 
+int DataManipulation::loadInteger()
+{
+    string input = "";
+    int number = 0;
+
+    while (true)
+    {
+        getline(cin, input);
+
+        stringstream myStream(input);
+        if (myStream >> number)
+            break;
+        cout << "To nie jest liczba. Wpisz ponownie. " << endl;
+    }
+    return number;
+}
+
 int DataManipulation::stringToInt(std::string stringNumber)
 {
     int intNumber;
