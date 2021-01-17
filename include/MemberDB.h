@@ -2,9 +2,9 @@
 #define MEMBERDB_H
 #include "Member.h"
 #include "DataManipulation.h"
+#include "MembersStruct.h"
 #include <iostream>
 #include <fstream>
-#include "MemberStruct.h"
 
 using namespace std;
 
@@ -16,8 +16,8 @@ class MembersDB
     public:
         MembersDB();
         virtual ~MembersDB();
-        Node* loadMemberFromFile();
-        Node* findSpot(Node* members, Member member);
+        MemberNode* loadMembersFromFile();
+        MemberNode* findSpot(MemberNode* members, Member member);
         int getLastMemberID();
         int setLastMemberID(string dataLine);
         string getFilename();

@@ -1,10 +1,11 @@
 #ifndef BOOKSSTRUCT_H
 #define BOOKSSTRUCT_H
+#include "Book.h"
 
-struct Node {
+struct BookNode {
     Book book;
-    Node *prev;
-    Node *next;
+    BookNode *prev;
+    BookNode *next;
 };
 
 #endif // BOOKSSTRUCT_H

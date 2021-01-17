@@ -25,10 +25,10 @@ string Member::getMemberName()
 
 void Member::setMemberName(string memberName)
 {
-    this->memberName = authorsName;
+    this->memberName = memberName;
 }
 
-string Book::getMemberSurname()
+string Member::getMemberSurname()
 {
     return memberSurname;
 }

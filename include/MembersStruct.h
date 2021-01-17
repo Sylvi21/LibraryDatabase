@@ -1,10 +1,11 @@
 #ifndef MEMBERSSTRUCT_H
-#define MEMBERSSSTRUCT_H
+#define MEMBERSSTRUCT_H
+#include "Member.h"
 
-struct Node {
+struct MemberNode {
     Member member;
-    Node *prev;
-    Node *next;
+    MemberNode *prev;
+    MemberNode *next;
 };
 
-#endif // MEMBERSSSTRUCT_H
+#endif // MEMBERSSTRUCT_H

@@ -99,9 +99,9 @@ Book BooksDB::getSingleBookFromFile(string dataLine, int lastBookID)
     return singleBook;
 }
 /*
-Node* BooksDB::findSpot(Node* lol, Book book)
+BookNode* BooksDB::findSpot(BookNode* lol, Book book)
 {
-    Node* books = lol;
+    BookNode* books = lol;
     while(books != NULL && books->book.getAuthorsSurname() < book.getAuthorsSurname()){
         if(books->next == NULL)
             break;
@@ -110,19 +110,19 @@ Node* BooksDB::findSpot(Node* lol, Book book)
     return books;
 }*/
 
-Node* BooksDB::findSpot(Node* books, Book book)
+BookNode* BooksDB::findSpot(BookNode* books, Book book)
 {
     while(books != NULL && books->book.getAuthorsSurname() < book.getAuthorsSurname())
         books=books->next;
     return books;
 }
 
-Node* BooksDB::loadBooksFromFile(){
+BookNode* BooksDB::loadBooksFromFile(){
     string dataLine="", lastBookDataLine="";
-    Node* firstOfBooks = NULL;
-    Node* lastOfBooks = NULL;
-    Node* pom = NULL;
-    Node* temp = new Node();
+    BookNode* firstOfBooks = NULL;
+    BookNode* lastOfBooks = NULL;
+    BookNode* pom = NULL;
+    BookNode* temp = new BookNode();
     temp = NULL;
     Book singleBook;
     fstream booksFile;
@@ -133,31 +133,31 @@ Node* BooksDB::loadBooksFromFile(){
         while (getline(booksFile, dataLine))
         {
             singleBook = getSingleBookFromFile(dataLine, lastBookID);
-            Node* newNode = new Node();
-            newNode->book = singleBook;
+            BookNode* newBookNode = new BookNode();
+            newBookNode->book = singleBook;
             if (firstOfBooks == NULL) {
-                firstOfBooks = newNode;
-                lastOfBooks = newNode;
-                newNode->prev = NULL;
-                newNode->next = NULL;
+                firstOfBooks = newBookNode;
+                lastOfBooks = newBookNode;
+                newBookNode->prev = NULL;
+                newBookNode->next = NULL;
             } else {
                 temp = findSpot(firstOfBooks, singleBook);
                 if(firstOfBooks == temp){
-                    newNode->next = firstOfBooks;
-                    firstOfBooks->prev = newNode;
-                    newNode->prev = NULL;
-                    firstOfBooks = newNode;
+                    newBookNode->next = firstOfBooks;
+                    firstOfBooks->prev = newBookNode;
+                    newBookNode->prev = NULL;
+                    firstOfBooks = newBookNode;
                 } else if (temp == NULL){
-                    lastOfBooks->next = newNode;
-                    newNode->prev = lastOfBooks;
-                    newNode->next = temp;
-                    lastOfBooks = newNode;
+                    lastOfBooks->next = newBookNode;
+                    newBookNode->prev = lastOfBooks;
+                    newBookNode->next = temp;
+                    lastOfBooks = newBookNode;
                 } else {
                     pom=temp->prev;
-                    pom->next=newNode;
-                    newNode->prev=temp->prev;
-                    temp->prev=newNode;
-                    newNode->next=temp;
+                    pom->next=newBookNode;
+                    newBookNode->prev=temp->prev;
+                    temp->prev=newBookNode;
+                    newBookNode->next=temp;
                 }
             }
             lastBookDataLine = dataLine;
