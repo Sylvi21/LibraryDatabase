@@ -65,10 +65,10 @@ Member MembersDB::getSingleMemberFromFile(string dataLine, int lastMemberID)
                 singleMember.setID(stoi(subLine.c_str()));
                 break;
             case 8:
-                singleMember.setAuthorsName(subLine);
+                singleMember.setMemberName(subLine);
                 break;
             case 9:
-                singleMember.setAuthorsSurname(subLine);
+                singleMember.setMemberSurname(subLine);
                 break;
             }
             subLine="";
@@ -79,54 +79,54 @@ Member MembersDB::getSingleMemberFromFile(string dataLine, int lastMemberID)
 }
 
 
-Node* MembersDB::findSpot(Node* members, Member member)
+MemberNode* MembersDB::findSpot(MemberNode* members, Member member)
 {
     while(members != NULL && members->member.getMemberSurname() < member.getMemberSurname())
         members=members->next;
     return members;
 }
 
-Node* MembersDB::loadMembersFromFile(){
-    string dataLine="", lastBookDataLine="";
-    Node* firstOfMembers = NULL;
-    Node* lastOfMembers = NULL;
-    Node* pom = NULL;
-    Node* temp = new Node();
+MemberNode* MembersDB::loadMembersFromFile(){
+    string dataLine="", lastMemberDataLine="";
+    MemberNode* firstOfMembers = NULL;
+    MemberNode* lastOfMembers = NULL;
+    MemberNode* pom = NULL;
+    MemberNode* temp = new MemberNode();
     temp = NULL;
     Member singleMember;
     fstream membersFile;
     membersFile.open("Members.txt", ios::in);
 
-    if (memberssFile.good() == true)
+    if (membersFile.good() == true)
     {
         while (getline(membersFile, dataLine))
         {
             singleMember = getSingleMemberFromFile(dataLine, lastMemberID);
-            Node* newNode = new Node();
-            newNode->member = singleMember;
+            MemberNode* newMemberNode = new MemberNode();
+            newMemberNode->member = singleMember;
             if (firstOfMembers == NULL) {
-                firstOfMembers = newNode;
-                lastOfMembers = newNode;
-                newNode->prev = NULL;
-                newNode->next = NULL;
+                firstOfMembers = newMemberNode;
+                lastOfMembers = newMemberNode;
+                newMemberNode->prev = NULL;
+                newMemberNode->next = NULL;
             } else {
                 temp = findSpot(firstOfMembers, singleMember);
-                if(firstOfMemberss == temp){
-                    newNode->next = firstOfMembers;
-                    firstOfMembers->prev = newNode;
-                    newNode->prev = NULL;
-                    firstOfMembers = newNode;
+                if(firstOfMembers == temp){
+                    newMemberNode->next = firstOfMembers;
+                    firstOfMembers->prev = newMemberNode;
+                    newMemberNode->prev = NULL;
+                    firstOfMembers = newMemberNode;
                 } else if (temp == NULL){
-                    lastOfMembers->next = newNode;
-                    newNode->prev = lastOfMembers;
-                    newNode->next = temp;
-                    lastOfMembers = newNode;
+                    lastOfMembers->next = newMemberNode;
+                    newMemberNode->prev = lastOfMembers;
+                    newMemberNode->next = temp;
+                    lastOfMembers = newMemberNode;
                 } else {
                     pom=temp->prev;
-                    pom->next=newNode;
-                    newNode->prev=temp->prev;
-                    temp->prev=newNode;
-                    newNode->next=temp;
+                    pom->next=newMemberNode;
+                    newMemberNode->prev=temp->prev;
+                    temp->prev=newMemberNode;
+                    newMemberNode->next=temp;
                 }
             }
             lastMemberDataLine = dataLine;

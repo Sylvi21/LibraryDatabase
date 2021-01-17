@@ -15,7 +15,7 @@ class Member
         virtual ~Member();
         int getID();
         void setID(int memberID);
-        string getMembersName();
+        string getMemberName();
         void setMemberName(string memberName);
         string getMemberSurname();
         void setMemberSurname(string memberSurname);

@@ -14,12 +14,12 @@ BooksCoordinator::BooksCoordinator(BooksDB *booksDB)
 
 BooksCoordinator::~BooksCoordinator()
 {
-    Node **currentNode = &firstOfBooks;
-    while(*currentNode != NULL){
-        Node *toDelete = *currentNode;
-        *currentNode = toDelete->next;
+    BookNode **currentBookNode = &firstOfBooks;
+    while(*currentBookNode != NULL){
+        BookNode *toDelete = *currentBookNode;
+        *currentBookNode = toDelete->next;
         delete toDelete;
-        currentNode = &(*currentNode)->next;
+        currentBookNode = &(*currentBookNode)->next;
     }
     firstOfBooks = NULL;
     delete firstOfBooks;
@@ -39,20 +39,20 @@ void BooksCoordinator::showSingleBook(Book book){
 }
 
 void BooksCoordinator::showBooksList(){
-    Node* currentNode = firstOfBooks;
+    BookNode* currentBookNode = firstOfBooks;
     system("cls");
     cout<<"-----KSIAZKI-----\n\n";
-    if (currentNode == NULL)
+    if (currentBookNode == NULL)
         cout<<"Baza danych jest pusta. Dodaj ksiazki."<<"\n";
     else
     {
-        while(currentNode != NULL){
-            showSingleBook(currentNode->book);
-            currentNode = currentNode->next;
+        while(currentBookNode != NULL){
+            showSingleBook(currentBookNode->book);
+            currentBookNode = currentBookNode->next;
         }
     }
-    currentNode = NULL;
-    delete currentNode;
+    currentBookNode = NULL;
+    delete currentBookNode;
     cout<<"\nKliknij dowolny klawisz, aby powrocic"<<"\n";
     getch();
 }
@@ -127,7 +127,7 @@ void BooksCoordinator::addNewBook()
 
 void BooksCoordinator::searchForBook()
 {
-    Node* currentNode = firstOfBooks;
+    BookNode* currentBookNode = firstOfBooks;
     int searchedID;
     bool bookExists = false;
     char searchChoice;
@@ -136,7 +136,7 @@ void BooksCoordinator::searchForBook()
     system("cls");
     cout<<"WYSZUKAJ POZYCJE\n\n";
 
-    if (currentNode == NULL)
+    if (currentBookNode == NULL)
     {
         cout<<"Baza pozycji jest pusta!\n";
     } else {
@@ -186,45 +186,45 @@ void BooksCoordinator::searchForBook()
 
 void BooksCoordinator::searchByID(int ID)
 {
-    Node* currentNode = firstOfBooks;
+    BookNode* currentBookNode = firstOfBooks;
     bool found = false;
     system("cls");
     cout<<"----- KSIAZKI O ID "<<ID<<" -----\n\n";
-    while(currentNode != NULL){
-        if(currentNode->book.getID() == ID){
-            showBookDetails(currentNode->book);
+    while(currentBookNode != NULL){
+        if(currentBookNode->book.getID() == ID){
+            showBookDetails(currentBookNode->book);
             found = true;
             break;
         }
-        currentNode = currentNode->next;
+        currentBookNode = currentBookNode->next;
     }
     if(found == false){
         cout<<"Brak pozycji o ID = "<<ID<<endl<<endl;
     }
-    currentNode = NULL;
-    delete currentNode;
+    currentBookNode = NULL;
+    delete currentBookNode;
     cout<<"\nKliknij dowolny klawisz, aby powrocic"<<"\n";
     getch();
 }
 
 void BooksCoordinator::searchByName(string name)
 {
-    Node* currentNode = firstOfBooks;
+    BookNode* currentBookNode = firstOfBooks;
     bool found = false;
     system("cls");
     cout<<"----- KSIAZKI NAPISANE PRZEZ "<<name<<" -----\n\n";
-    while(currentNode != NULL){
-        if(currentNode->book.getAuthorsName() == name){
-            showBookDetails(currentNode->book);
+    while(currentBookNode != NULL){
+        if(currentBookNode->book.getAuthorsName() == name){
+            showBookDetails(currentBookNode->book);
             found = true;
         }
-        currentNode = currentNode->next;
+        currentBookNode = currentBookNode->next;
     }
     if(found == false){
         cout<<"Brak pozycji."<<endl;
     }
-    currentNode = NULL;
-    delete currentNode;
+    currentBookNode = NULL;
+    delete currentBookNode;
     cout<<"\nKliknij dowolny klawisz, aby powrocic"<<"\n";
     getch();
 
@@ -232,176 +232,176 @@ void BooksCoordinator::searchByName(string name)
 
 void BooksCoordinator::searchBySurname(string surname)
 {
-    Node* currentNode = firstOfBooks;
+    BookNode* currentBookNode = firstOfBooks;
     bool found = false;
     system("cls");
     cout<<"----- KSIAZKI NAPISANE PRZEZ "<<surname<<" -----\n\n";
-    while(currentNode != NULL){
-        if(currentNode->book.getAuthorsSurname() == surname){
-            showBookDetails(currentNode->book);
+    while(currentBookNode != NULL){
+        if(currentBookNode->book.getAuthorsSurname() == surname){
+            showBookDetails(currentBookNode->book);
             found = true;
         }
-        currentNode = currentNode->next;
+        currentBookNode = currentBookNode->next;
     }
     if(found == false){
         cout<<"Brak pozycji."<<endl;
     }
-    currentNode = NULL;
-    delete currentNode;
+    currentBookNode = NULL;
+    delete currentBookNode;
     cout<<"\nKliknij dowolny klawisz, aby powrocic"<<"\n";
     getch();
 }
 
 void BooksCoordinator::searchByTitle(string title)
 {
-    Node* currentNode = firstOfBooks;
+    BookNode* currentBookNode = firstOfBooks;
     bool found = false;
     system("cls");
     cout<<"----- KSIAZKI O TYTULE "<<title<<" -----\n\n";
-    while(currentNode != NULL){
-        if(currentNode->book.getTitle() == title){
-            showBookDetails(currentNode->book);
+    while(currentBookNode != NULL){
+        if(currentBookNode->book.getTitle() == title){
+            showBookDetails(currentBookNode->book);
             found = true;
         }
-        currentNode = currentNode->next;
+        currentBookNode = currentBookNode->next;
     }
     if(found == false){
         cout<<"Brak pozycji."<<endl;
     }
-    currentNode = NULL;
-    delete currentNode;
+    currentBookNode = NULL;
+    delete currentBookNode;
     cout<<"\nKliknij dowolny klawisz, aby powrocic"<<"\n";
     getch();
 }
 
 void BooksCoordinator::searchByYear(int yearPublished)
 {
-    Node* currentNode = firstOfBooks;
+    BookNode* currentBookNode = firstOfBooks;
     bool found = false;
     system("cls");
     cout<<"----- KSIAZKI WYDANE W "<<yearPublished<<" ROKU -----\n\n";
-    while(currentNode != NULL){
-        if(currentNode->book.getYearPublished() == yearPublished){
-            showBookDetails(currentNode->book);
+    while(currentBookNode != NULL){
+        if(currentBookNode->book.getYearPublished() == yearPublished){
+            showBookDetails(currentBookNode->book);
             found = true;
         }
-        currentNode = currentNode->next;
+        currentBookNode = currentBookNode->next;
     }
     if(found == false){
         cout<<"Brak pozycji."<<endl;
     }
-    currentNode = NULL;
-    delete currentNode;
+    currentBookNode = NULL;
+    delete currentBookNode;
     cout<<"\nKliknij dowolny klawisz, aby powrocic"<<"\n";
     getch();
 }
 
 void BooksCoordinator::searchByGenre(string genre)
 {
-    Node* currentNode = firstOfBooks;
+    BookNode* currentBookNode = firstOfBooks;
     bool found = false;
     system("cls");
     cout<<"----- KSIAZKI Z GATUNKU "<<genre<<" -----\n\n";
-    while(currentNode != NULL){
-        if(currentNode->book.getGenre() == genre){
-            showBookDetails(currentNode->book);
+    while(currentBookNode != NULL){
+        if(currentBookNode->book.getGenre() == genre){
+            showBookDetails(currentBookNode->book);
             found = true;
         }
-        currentNode = currentNode->next;
+        currentBookNode = currentBookNode->next;
     }
     if(found == false){
         cout<<"Brak pozycji."<<endl;
     }
-    currentNode = NULL;
-    delete currentNode;
+    currentBookNode = NULL;
+    delete currentBookNode;
     cout<<"\nKliknij dowolny klawisz, aby powrocic"<<"\n";
     getch();
 }
 
 void BooksCoordinator::searchByISBN(string ISBN)
 {
-    Node* currentNode = firstOfBooks;
+    BookNode* currentBookNode = firstOfBooks;
     bool found = false;
     system("cls");
     cout<<"----- KSIAZKI O NUMERZE ISBN "<<ISBN<<" -----\n\n";
-    while(currentNode != NULL){
-        if(currentNode->book.getISBN() == ISBN){
-            showBookDetails(currentNode->book);
+    while(currentBookNode != NULL){
+        if(currentBookNode->book.getISBN() == ISBN){
+            showBookDetails(currentBookNode->book);
             found = true;
             break;
         }
-        currentNode = currentNode->next;
+        currentBookNode = currentBookNode->next;
     }
     if(found == false){
         cout<<"Brak pozycji."<<endl;
     }
-    currentNode = NULL;
-    delete currentNode;
+    currentBookNode = NULL;
+    delete currentBookNode;
     cout<<"\nKliknij dowolny klawisz, aby powrocic"<<"\n";
     getch();
 }
 
 void BooksCoordinator::searchByStatus(string status)
 {
-    Node* currentNode = firstOfBooks;
+    BookNode* currentBookNode = firstOfBooks;
     bool found = false;
     system("cls");
     cout<<"----- KSIAZKI O STATUSIE "<<status<<" -----\n\n";
-    while(currentNode != NULL){
-        if(currentNode->book.getStatus() == status){
-            showBookDetails(currentNode->book);
+    while(currentBookNode != NULL){
+        if(currentBookNode->book.getStatus() == status){
+            showBookDetails(currentBookNode->book);
             found = true;
         }
-        currentNode = currentNode->next;
+        currentBookNode = currentBookNode->next;
     }
     if(found == false){
         cout<<"Brak pozycji."<<endl;
     }
-    currentNode = NULL;
-    delete currentNode;
+    currentBookNode = NULL;
+    delete currentBookNode;
     cout<<"\nKliknij dowolny klawisz, aby powrocic"<<"\n";
     getch();
 }
 
-Node* BooksCoordinator::findSpot(Book book)
+BookNode* BooksCoordinator::findSpot(Book book)
 {
-    Node* currentNode = firstOfBooks;
-    while(currentNode != NULL && currentNode->book.getAuthorsSurname() < book.getAuthorsSurname())
-        currentNode=currentNode->next;
-    return currentNode;
+    BookNode* currentBookNode = firstOfBooks;
+    while(currentBookNode != NULL && currentBookNode->book.getAuthorsSurname() < book.getAuthorsSurname())
+        currentBookNode=currentBookNode->next;
+    return currentBookNode;
 }
 
 void BooksCoordinator::addSingleBook(Book book)
 {
-    Node* pom = NULL;
-    Node* temp = new Node();
+    BookNode* pom = NULL;
+    BookNode* temp = new BookNode();
     temp = NULL;
-    Node* newNode = new Node();
-    newNode->book = book;
+    BookNode* newBookNode = new BookNode();
+    newBookNode->book = book;
 
     if (firstOfBooks == NULL) {
-        firstOfBooks = newNode;
-        lastOfBooks = newNode;
-        newNode->prev = NULL;
-        newNode->next = NULL;
+        firstOfBooks = newBookNode;
+        lastOfBooks = newBookNode;
+        newBookNode->prev = NULL;
+        newBookNode->next = NULL;
     } else {
         temp = findSpot(book);
         if(firstOfBooks == temp){
-            newNode->next = firstOfBooks;
-            firstOfBooks->prev = newNode;
-            newNode->prev = NULL;
-            firstOfBooks = newNode;
+            newBookNode->next = firstOfBooks;
+            firstOfBooks->prev = newBookNode;
+            newBookNode->prev = NULL;
+            firstOfBooks = newBookNode;
         } else if (temp == NULL){
-            lastOfBooks->next = newNode;
-            newNode->prev = lastOfBooks;
-            newNode->next = temp;
-            lastOfBooks = newNode;
+            lastOfBooks->next = newBookNode;
+            newBookNode->prev = lastOfBooks;
+            newBookNode->next = temp;
+            lastOfBooks = newBookNode;
         } else {
             pom=temp->prev;
-            pom->next=newNode;
-            newNode->prev=temp->prev;
-            temp->prev=newNode;
-            newNode->next=temp;
+            pom->next=newBookNode;
+            newBookNode->prev=temp->prev;
+            temp->prev=newBookNode;
+            newBookNode->next=temp;
         }
         temp = NULL;
         delete temp;
@@ -411,7 +411,7 @@ void BooksCoordinator::addSingleBook(Book book)
 }
 
 bool BooksCoordinator::editBook(){
-    Node* currentNode = firstOfBooks;
+    BookNode* currentBookNode = firstOfBooks;
     int searchedID;
     bool bookExists = false;
     char choice;
@@ -420,19 +420,19 @@ bool BooksCoordinator::editBook(){
     system("cls");
     cout<<"EDYTUJ KONTAKT\n\n";
 
-    if (currentNode == NULL)
+    if (currentBookNode == NULL)
     {
         cout<<"Baza pozycji jest pusta!\n";
     } else {
         cout << "Podaj ID ksiazki do edytowania: ";
         searchedID = DataManipulation::loadInteger();
 
-        while(currentNode != NULL)
+        while(currentBookNode != NULL)
         {
-            if(currentNode->book.getID() == searchedID)
+            if(currentBookNode->book.getID() == searchedID)
             {
                 bookExists = true;
-                showBookDetails(currentNode->book);
+                showBookDetails(currentBookNode->book);
 
                 cout<<"Wybierz dane do zmiany: \n\n";
                 cout<<"1. Imie\n";
@@ -449,36 +449,36 @@ bool BooksCoordinator::editBook(){
                 {
                 case '1':
                     cout<<"Podaj nowe imie/imiona: ";
-                    currentNode->book.setAuthorsName(DataManipulation::loadLine());
+                    currentBookNode->book.setAuthorsName(DataManipulation::loadLine());
                     break;
                 case '2':
                     cout<<"Podaj nowe nazwisko: ";
-                    currentNode->book.setAuthorsSurname(DataManipulation::loadLine());
+                    currentBookNode->book.setAuthorsSurname(DataManipulation::loadLine());
                     break;
                 case '3':
                     cout<<"Podaj nowy tytul: ";
-                    currentNode->book.setTitle(DataManipulation::loadLine());
+                    currentBookNode->book.setTitle(DataManipulation::loadLine());
                     break;
                 case '4':
                     cout<<"Podaj nowy rok wydania: ";
-                    currentNode->book.setYearPublished(DataManipulation::loadInteger());
+                    currentBookNode->book.setYearPublished(DataManipulation::loadInteger());
                     break;
                 case '5':
                     cout<<"Podaj nowy adres zamieszkania ";
-                    currentNode->book.setISBN(DataManipulation::loadLine());
+                    currentBookNode->book.setISBN(DataManipulation::loadLine());
                     break;
                 case '6':
                     cout<<"Podaj nowy adres zamieszkania ";
-                    currentNode->book.setGenre(DataManipulation::loadLine());
+                    currentBookNode->book.setGenre(DataManipulation::loadLine());
                     break;
                 case '7':
                     cout<<"Podaj nowy adres zamieszkania ";
-                    currentNode->book.setStatus(DataManipulation::loadLine());
+                    currentBookNode->book.setStatus(DataManipulation::loadLine());
                     break;
                 case '8':
                     break;
                 }
-                booksDB->editBookInFile(currentNode->book);
+                booksDB->editBookInFile(currentBookNode->book);
                 break;
             }
         }

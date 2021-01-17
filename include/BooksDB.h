@@ -16,8 +16,8 @@ class BooksDB
     public:
         BooksDB();
         virtual ~BooksDB();
-        Node* loadBooksFromFile();
-        Node* findSpot(Node* books, Book book);
+        BookNode* loadBooksFromFile();
+        BookNode* findSpot(BookNode* books, Book book);
         int getLastBookID();
         int setLastBookID(string dataLine);
         string getFilename();

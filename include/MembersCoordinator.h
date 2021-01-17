@@ -1,10 +1,10 @@
 #ifndef MEMBERSSCOORDINATOR_H
 #define MEMBERSSCOORDINATOR_H
+#include "MembersStruct.h"
 #include "Member.h"
-#include "MembersDB.h"
+#include "MemberDB.h"
 #include "DataManipulation.h"
 #include <conio.h>
-#include "MembersStruct.h"
 
 using namespace std;
 
@@ -12,8 +12,8 @@ class MembersCoordinator
 {
     private:
         MembersDB *membersDB;
-        Node* firstOfMembers;
-        Node* lastOfMemberss;
+        MemberNode* firstOfMembers;
+        MemberNode* lastOfMembers;
 
         void addSingleMember(Member member);
         void searchByID(int ID);
@@ -28,7 +28,7 @@ class MembersCoordinator
         void addNewMember();
         Member getSingleMember(int memberId);
         Member setMemberData();
-        Node* findSpot(Member member);
+        MemberNode* findSpot(Member member);
         void searchForMember();
         bool editMember();
         bool removeMember();

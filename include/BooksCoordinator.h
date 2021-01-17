@@ -1,10 +1,9 @@
 #ifndef BOOKSCOORDINATOR_H
 #define BOOKSCOORDINATOR_H
-#include "Book.h"
+#include "BooksStruct.h"
 #include "BooksDB.h"
 #include "DataManipulation.h"
 #include <conio.h>
-#include "BooksStruct.h"
 
 using namespace std;
 
@@ -12,8 +11,8 @@ class BooksCoordinator
 {
     private:
         BooksDB *booksDB;
-        Node* firstOfBooks;
-        Node* lastOfBooks;
+        BookNode* firstOfBooks;
+        BookNode* lastOfBooks;
 
         void addSingleBook(Book book);
         void searchByID(int ID);
@@ -33,7 +32,7 @@ class BooksCoordinator
         void addNewBook();
         Book getSingleBook(int bookId);
         Book setBookData();
-        Node* findSpot(Book book);
+        BookNode* findSpot(Book book);
         void searchForBook();
         bool editBook();
         bool removeBook();

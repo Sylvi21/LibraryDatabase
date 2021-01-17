@@ -18,38 +18,107 @@ int main()
 
     while(true)
     {
-        choice = library.showMenu();
+        choice = library.showMainMenu();
         switch(choice)
         {
-        case '1': {
-            library.showBooksList();
-            break;
-        }
-        case '2':{
-            library.addNewBook();
-            break;
-        }
-        case '3': {
-            if(library.searchForBook())
-                library.booksMenu();
-            else
-                cout << "Nie znaleziono pozycji.";
-            break;
-        }
-        case '4': {
-            library.showMembers();
-            break;
-        }
-        case '5': {
-            library.editBook();
-            break;
-        }
-        case'6': {
-            cout << "Koniec pracy programu.";
-            exit(0);
-        }
-        default:
-            cout<< "Nie ma takiej opcji w menu. Wybierz jeszcze raz.\n";
+            case '1': {
+                choice = library.showTransactionsMenu();
+                switch(choice)
+                {
+                    case '1': {
+                        library.lendBook();
+                        break;
+                    }
+                    case '2':{
+                        library.registerReturn();
+                        break;
+                    }
+                    case '3': {
+                        library.showTransactions();
+                        break;
+                    }
+                    case '4': {
+                        library.showOverdue();
+                        break;
+                    }
+                    case '5': {
+                        break;
+                    }
+                    default:
+                        cout<< "Nie ma takiej opcji w menu. Wybierz jeszcze raz.\n";
+                }
+                break;
+            }
+            case '2': {
+                choice = library.showBooksMenu();
+                switch(choice)
+                {
+                    case '1': {
+                        library.showBooksList();
+                        break;
+                    }
+                    case '2':{
+                        library.addNewBook();
+                        break;
+                    }
+                    case '3': {
+                        library.searchForBook();
+                        break;
+                    }
+                    case '4':{
+                        library.editBook();
+                        break;
+                    }
+                    case '5': {
+                        library.removeBook();
+                        break;
+                    }
+                    case'6': {
+                        break;
+                    }
+                    default:
+                        cout<< "Nie ma takiej opcji w menu. Wybierz jeszcze raz.\n";
+                }
+                break;
+            }
+            case '3': {
+                choice = library.showMembersMenu();
+                switch(choice)
+                {
+                    case '1': {
+                        library.showMembers();
+                        break;
+                    }
+                    case '2':{
+                        library.addNewMember();
+                        break;
+                    }
+                    case '3': {
+                        library.searchForMember();
+                        break;
+                    }
+                    case '4': {
+                        library.editMember();
+                        break;
+                    }
+                    case '5': {
+                        library.removeMember();
+                        break;
+                    }
+                    case '6': {
+                        break;
+                    }
+                    default:
+                        cout<< "Nie ma takiej opcji w menu. Wybierz jeszcze raz.\n";
+                }
+                break;
+            }
+            case'4': {
+                cout << "Koniec pracy programu.";
+                exit(0);
+            }
+            default:
+                cout<< "Nie ma takiej opcji w menu. Wybierz jeszcze raz.\n";
         }
     }
     return 0;
