@@ -2,12 +2,10 @@
 
 BooksDB::BooksDB()
 {
-
 }
 
 BooksDB::~BooksDB()
 {
-    //dtor
 }
 
 int BooksDB::getLastBookID(){

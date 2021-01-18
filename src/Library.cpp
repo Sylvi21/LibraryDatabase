@@ -1,14 +1,20 @@
 #include "Library.h"
 
-Library::Library(BooksCoordinator *booksCoordinator)
+Library::Library(BooksCoordinator *books, MembersCoordinator *members, TransactionsCoordinator *transactions)
 {
-    this->booksCoordinator = booksCoordinator;
+    this->books = books;
+    this->members = members;
+    this->transactions = transactions;
 }
 
 Library::~Library()
 {
-    booksCoordinator = NULL;
-    delete booksCoordinator;
+    delete books;
+    books = NULL;
+    delete books;
+    members = NULL;
+    delete books;
+    transactions = NULL;
 }
 
 char Library::showMainMenu()
@@ -71,70 +77,70 @@ char Library::showMembersMenu(){
 
 void Library::lendBook()
 {
-
+    transactions->lendBook();
 }
 
 void Library::registerReturn()
 {
-
+    transactions->registerReturn();
 }
 
 void Library::showTransactions()
 {
-
+    transactions->showTransactions();
 }
 
 void Library::showOverdue()
 {
-
+    transactions->showOverdue();
 }
 
 void Library::showMembers()
 {
-    membersCoordinator->showMembersList();
+    members->showMembersList();
 }
 
 void Library::addNewMember()
 {
-    membersCoordinator->addNewMember();
+    members->addNewMember();
 }
 
 void Library::searchForMember()
 {
-    membersCoordinator->searchForMember();
+    members->searchForMember();
 }
 
 void Library::editMember()
 {
-    membersCoordinator->editMember();
+    members->editMember();
 }
 
 void Library::removeMember()
 {
-    membersCoordinator->removeMember();
+    members->removeMember();
 }
 
 void Library::showBooksList()
 {
-    booksCoordinator->showBooksList();
+    books->showBooksList();
 }
 
 void Library::addNewBook()
 {
-    booksCoordinator->addNewBook();
+    books->addNewBook();
 }
 
 void Library::searchForBook()
 {
-    booksCoordinator->searchForBook();
+    books->searchForBook();
 }
 
 void Library::editBook()
 {
-    booksCoordinator->editBook();
+    books->editBook();
 }
 
 void Library::removeBook()
 {
-    booksCoordinator->removeBook();
+    books->removeBook();
 }

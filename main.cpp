@@ -12,8 +12,12 @@ using namespace std;
 int main()
 {
     BooksDB *booksDB = new BooksDB();
-    BooksCoordinator *booksCoordinator = new BooksCoordinator(booksDB);
-    Library library(booksCoordinator);
+    BooksCoordinator *books = new BooksCoordinator(booksDB);
+    MembersDB *membersDB = new MembersDB();
+    MembersCoordinator *members = new MembersCoordinator(booksDB);
+    TransactionsDB *transactionsDB = new TransactionsDB();
+    TransactionsCoordinator *transactions = new TransactionsCoordinator(booksDB);
+    Library library(books, members, transactions);
     char choice;
 
     while(true)
