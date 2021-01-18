@@ -9,3 +9,7 @@ TransactionsDB::~TransactionsDB()
 {
     //dtor
 }
+
+TransactionNode* TransactionsDB::loadTransactionsFromFile()
+{
+}

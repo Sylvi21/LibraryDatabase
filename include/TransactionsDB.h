@@ -1,16 +1,17 @@
 #ifndef TRANSACTIONSDB_H
 #define TRANSACTIONSDB_H
+#include "TransactionsStruct.h"
 
+using namespace std;
 
 class TransactionsDB
 {
+    private:
+
     public:
         TransactionsDB();
         virtual ~TransactionsDB();
-
-    protected:
-
-    private:
+        TransactionNode* loadTransactionsFromFile();
 };
 
 #endif // TRANSACTIONSDB_H

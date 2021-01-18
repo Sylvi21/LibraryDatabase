@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1610890800 source:g:\infromatyka - studia\semestr 3\pp\librarydatabase\main.cpp
+1610998550 source:g:\infromatyka - studia\semestr 3\pp\librarydatabase\main.cpp
 	"Library.h"
 	<iostream>
 	<windows.h>
@@ -18,12 +18,12 @@
 1610888601 source:g:\infromatyka - studia\semestr 3\pp\librarydatabase\src\datamanipulation.cpp
 	"DataManipulation.h"
 
-1610888601 g:\infromatyka - studia\semestr 3\pp\librarydatabase\include\datamanipulation.h
+1610997189 g:\infromatyka - studia\semestr 3\pp\librarydatabase\include\datamanipulation.h
 	<iostream>
 	<sstream>
 	<string>
 
-1610893071 source:g:\infromatyka - studia\semestr 3\pp\librarydatabase\src\booksdb.cpp
+1610993095 source:g:\infromatyka - studia\semestr 3\pp\librarydatabase\src\booksdb.cpp
 	"BooksDB.h"
 
 1610893071 g:\infromatyka - studia\semestr 3\pp\librarydatabase\include\booksdb.h
@@ -33,25 +33,27 @@
 	<fstream>
 	"BooksStruct.h"
 
-1610892245 g:\infromatyka - studia\semestr 3\pp\librarydatabase\include\library.h
+1610998048 g:\infromatyka - studia\semestr 3\pp\librarydatabase\include\library.h
 	"BooksCoordinator.h"
 	"MembersCoordinator.h"
+	"TransactionsCoordinator.h"
 	"DataManipulation.h"
 	<iostream>
+	"MembersStruct.h"
 
-1610893071 g:\infromatyka - studia\semestr 3\pp\librarydatabase\include\bookscoordinator.h
+1610997533 g:\infromatyka - studia\semestr 3\pp\librarydatabase\include\bookscoordinator.h
 	"BooksStruct.h"
 	"BooksDB.h"
 	"DataManipulation.h"
 	<conio.h>
 
-1610892142 source:g:\infromatyka - studia\semestr 3\pp\librarydatabase\src\library.cpp
+1610997964 source:g:\infromatyka - studia\semestr 3\pp\librarydatabase\src\library.cpp
 	"Library.h"
 
 1610893071 g:\infromatyka - studia\semestr 3\pp\librarydatabase\include\booksstruct.h
 	"Book.h"
 
-1610893071 source:g:\infromatyka - studia\semestr 3\pp\librarydatabase\src\bookscoordinator.cpp
+1610998232 source:g:\infromatyka - studia\semestr 3\pp\librarydatabase\src\bookscoordinator.cpp
 	"BooksCoordinator.h"
 
 1609174055 g:\infromatyka - studia\semestr 3\pp\librarydatabase\include\status.h
@@ -61,9 +63,9 @@
 1609174736 source:g:\infromatyka - studia\semestr 3\pp\librarydatabase\src\transaction.cpp
 	"Transaction.h"
 
-1610893624 g:\infromatyka - studia\semestr 3\pp\librarydatabase\include\transaction.h
-	"Book.h"
-	"Member.h"
+1610996851 g:\infromatyka - studia\semestr 3\pp\librarydatabase\include\transaction.h
+	"BooksStruct.h"
+	"MembersStruct.h"
 
 1610893071 source:g:\infromatyka - studia\semestr 3\pp\librarydatabase\src\member.cpp
 	"Member.h"
@@ -71,7 +73,7 @@
 1610893071 g:\infromatyka - studia\semestr 3\pp\librarydatabase\include\member.h
 	<string>
 
-1610893071 g:\infromatyka - studia\semestr 3\pp\librarydatabase\include\memberscoordinator.h
+1610998343 g:\infromatyka - studia\semestr 3\pp\librarydatabase\include\memberscoordinator.h
 	"MembersStruct.h"
 	"Member.h"
 	"MemberDB.h"
@@ -88,14 +90,27 @@
 	<iostream>
 	<fstream>
 
-1610893071 source:g:\infromatyka - studia\semestr 3\pp\librarydatabase\src\memberscoordinator.cpp
+1610998357 source:g:\infromatyka - studia\semestr 3\pp\librarydatabase\src\memberscoordinator.cpp
 	"MembersCoordinator.h"
 
 1610893071 source:g:\infromatyka - studia\semestr 3\pp\librarydatabase\src\memberdb.cpp
 	"MemberDB.h"
 
-1610992026 source:g:\infromatyka - studia\semestr 3\pp\librarydatabase\src\transactionsdb.cpp
+1610997507 source:g:\infromatyka - studia\semestr 3\pp\librarydatabase\src\transactionsdb.cpp
 	"TransactionsDB.h"
 
-1610992026 g:\infromatyka - studia\semestr 3\pp\librarydatabase\include\transactionsdb.h
+1610997478 g:\infromatyka - studia\semestr 3\pp\librarydatabase\include\transactionsdb.h
+	"TransactionsStruct.h"
+
+1610997151 source:g:\infromatyka - studia\semestr 3\pp\librarydatabase\src\transactionscoordinator.cpp
+	"TransactionsCoordinator.h"
+
+1610997128 g:\infromatyka - studia\semestr 3\pp\librarydatabase\include\transactionscoordinator.h
+	"TransactionsStruct.h"
+	"TransactionsDB.h"
+	"DataManipulation.h"
+	<conio.h>
+
+1610994137 g:\infromatyka - studia\semestr 3\pp\librarydatabase\include\transactionsstruct.h
+	"Transaction.h"
 

@@ -1,6 +1,5 @@
 #ifndef DATA_MANIPULATION_H
 #define DATA_MANIPULATION_H
-
 #include <iostream>
 #include <sstream>
 #include <string>

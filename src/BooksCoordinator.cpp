@@ -128,7 +128,6 @@ void BooksCoordinator::addNewBook()
 void BooksCoordinator::searchForBook()
 {
     BookNode* currentBookNode = firstOfBooks;
-    int searchedID;
     bool bookExists = false;
     char searchChoice;
     string newData;
@@ -227,7 +226,6 @@ void BooksCoordinator::searchByName(string name)
     delete currentBookNode;
     cout<<"\nKliknij dowolny klawisz, aby powrocic"<<"\n";
     getch();
-
 }
 
 void BooksCoordinator::searchBySurname(string surname)
@@ -363,6 +361,14 @@ void BooksCoordinator::searchByStatus(string status)
     getch();
 }
 
+BookNode* BooksCoordinator::getBookNode(int Id)
+{
+    BookNode* currentBookNode = firstOfBooks;
+    while(currentBookNode != NULL && currentBookNode->book.getID() != Id)
+        currentBookNode=currentBookNode->next;
+    return currentBookNode;
+}
+
 BookNode* BooksCoordinator::findSpot(Book book)
 {
     BookNode* currentBookNode = firstOfBooks;
@@ -410,7 +416,7 @@ void BooksCoordinator::addSingleBook(Book book)
     }
 }
 
-bool BooksCoordinator::editBook(){
+void BooksCoordinator::editBook(){
     BookNode* currentBookNode = firstOfBooks;
     int searchedID;
     bool bookExists = false;
@@ -491,6 +497,6 @@ bool BooksCoordinator::editBook(){
     getch();
 }
 
-bool BooksCoordinator::removeBook(){
+void BooksCoordinator::removeBook(){
 
 }

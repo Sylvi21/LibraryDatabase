@@ -3,7 +3,8 @@
 #include "Transaction.h"
 
 struct TransactionNode {
-    Transaction Transaction;
+    MemberNode *memberNode;
+    BookNode *bookNode;
     TransactionNode *prev;
     TransactionNode *next;
 };

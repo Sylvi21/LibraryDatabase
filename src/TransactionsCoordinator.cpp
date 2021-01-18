@@ -2,8 +2,8 @@
 
 TransactionsCoordinator::TransactionsCoordinator(TransactionsDB *transactionsDB)
 {
-    this->transactionsDB = transactionsB;
-    this->firstOfTransactions = transactionsDB->loadBooksFromFile();
+    this->transactionsDB = transactionsDB;
+    this->firstOfTransactions = transactionsDB->loadTransactionsFromFile();
     this->lastOfTransactions = firstOfTransactions;
     while(lastOfTransactions != NULL){
         if(lastOfTransactions->next == NULL)
@@ -14,5 +14,22 @@ TransactionsCoordinator::TransactionsCoordinator(TransactionsDB *transactionsDB)
 
 TransactionsCoordinator::~TransactionsCoordinator()
 {
-    //dtor
+
+}
+
+void TransactionsCoordinator::lendBook(MemberNode *memberNode, BookNode *bookNode)
+{
+
+}
+void TransactionsCoordinator::registerReturn()
+{
+
+}
+void TransactionsCoordinator::showTransactions()
+{
+
+}
+void TransactionsCoordinator::showOverdue()
+{
+
 }
