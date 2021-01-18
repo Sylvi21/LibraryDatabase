@@ -40,14 +40,24 @@
 		<Unit filename="include/BooksStruct.h" />
 		<Unit filename="include/DataManipulation.h" />
 		<Unit filename="include/Library.h" />
+		<Unit filename="include/Member.h" />
+		<Unit filename="include/MemberDB.h" />
+		<Unit filename="include/MembersCoordinator.h" />
+		<Unit filename="include/MembersStruct.h" />
 		<Unit filename="include/Transaction.h" />
+		<Unit filename="include/TransactionsCoordinator.h" />
+		<Unit filename="include/TransactionsStruct.h" />
 		<Unit filename="main.cpp" />
 		<Unit filename="src/Book.cpp" />
 		<Unit filename="src/BooksCoordinator.cpp" />
 		<Unit filename="src/BooksDB.cpp" />
 		<Unit filename="src/DataManipulation.cpp" />
 		<Unit filename="src/Library.cpp" />
+		<Unit filename="src/Member.cpp" />
+		<Unit filename="src/MemberDB.cpp" />
+		<Unit filename="src/MembersCoordinator.cpp" />
 		<Unit filename="src/Transaction.cpp" />
+		<Unit filename="src/TransactionsCoordinator.cpp" />
 		<Extensions>
 			<code_completion />
 			<envvars />

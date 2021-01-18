@@ -2,6 +2,7 @@
 #define LIBRARY_H
 #include "BooksCoordinator.h"
 #include "MembersCoordinator.h"
+#include "TransactionsCoordinator.h"
 #include "DataManipulation.h"
 #include <iostream>
 
@@ -10,11 +11,11 @@ using namespace std;
 class Library
 {
     private:
-        MembersCoordinator *membersCoordinator;
-        BooksCoordinator *booksCoordinator;
-        //TransactionsCoordinator *transactions;
+        MembersCoordinator *members;
+        BooksCoordinator *books;
+        TransactionsCoordinator *transactions;
     public:
-        Library(BooksCoordinator *booksCoordinator);
+        Library(BooksCoordinator *books, MembersCoordinator *members, TransactionsCoordinator *transactions);
         virtual ~Library();
 
         char showMainMenu();
