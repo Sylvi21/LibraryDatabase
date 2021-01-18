@@ -46,6 +46,7 @@
 		<Unit filename="include/MembersStruct.h" />
 		<Unit filename="include/Transaction.h" />
 		<Unit filename="include/TransactionsCoordinator.h" />
+		<Unit filename="include/TransactionsDB.h" />
 		<Unit filename="include/TransactionsStruct.h" />
 		<Unit filename="main.cpp" />
 		<Unit filename="src/Book.cpp" />
@@ -58,6 +59,7 @@
 		<Unit filename="src/MembersCoordinator.cpp" />
 		<Unit filename="src/Transaction.cpp" />
 		<Unit filename="src/TransactionsCoordinator.cpp" />
+		<Unit filename="src/TransactionsDB.cpp" />
 		<Extensions>
 			<code_completion />
 			<envvars />

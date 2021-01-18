@@ -5,6 +5,7 @@
 #include "TransactionsCoordinator.h"
 #include "DataManipulation.h"
 #include <iostream>
+#include "MembersStruct.h"
 
 using namespace std;
 

@@ -209,6 +209,14 @@ MemberNode* MembersCoordinator::findSpot(Member member)
     return currentMemberNode;
 }
 
+MemberNode* MembersCoordinator::getMemberNode(int Id)
+{
+    MemberNode* currentMemberNode = firstOfMembers;
+    while(currentMemberNode != NULL && currentMemberNode->member.getID() != Id)
+        currentMemberNode=currentMemberNode->next;
+    return currentMemberNode;
+}
+
 void MembersCoordinator::addSingleMember(Member member)
 {
     MemberNode* pom = NULL;

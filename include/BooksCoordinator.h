@@ -33,9 +33,10 @@ class BooksCoordinator
         Book getSingleBook(int bookId);
         Book setBookData();
         BookNode* findSpot(Book book);
+        BookNode* getBookNode(int Id);
         void searchForBook();
-        bool editBook();
-        bool removeBook();
+        void editBook();
+        void removeBook();
 };
 
 #endif // BOOKSCOORDINATOR_H

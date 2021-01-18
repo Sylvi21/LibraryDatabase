@@ -14,9 +14,9 @@ int main()
     BooksDB *booksDB = new BooksDB();
     BooksCoordinator *books = new BooksCoordinator(booksDB);
     MembersDB *membersDB = new MembersDB();
-    MembersCoordinator *members = new MembersCoordinator(booksDB);
+    MembersCoordinator *members = new MembersCoordinator(membersDB);
     TransactionsDB *transactionsDB = new TransactionsDB();
-    TransactionsCoordinator *transactions = new TransactionsCoordinator(booksDB);
+    TransactionsCoordinator *transactions = NULL;//new TransactionsCoordinator(transactionsDB);
     Library library(books, members, transactions);
     char choice;
 

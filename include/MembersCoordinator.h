@@ -29,6 +29,7 @@ class MembersCoordinator
         Member getSingleMember(int memberId);
         Member setMemberData();
         MemberNode* findSpot(Member member);
+        MemberNode* getMemberNode(int Id);
         void searchForMember();
         bool editMember();
         bool removeMember();
