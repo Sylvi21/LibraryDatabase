@@ -4,6 +4,7 @@
 #include "TransactionsDB.h"
 #include "DataManipulation.h"
 #include <conio.h>
+#include <time.h>
 
 using namespace std;
 
@@ -14,14 +15,17 @@ class TransactionsCoordinator
         TransactionNode* firstOfTransactions;
         TransactionNode* lastOfTransactions;
 
+        string getCurrentDate();
         void addSingleTransaction(Transaction transaction);
     public:
 
-        TransactionsCoordinator(TransactionsDB *transactionsDB);
+        TransactionsCoordinator(TransactionNode* firstOfTransactions, TransactionNode* lastOfTransactions, TransactionsDB *transactionsDB);
         virtual ~TransactionsCoordinator();
+        TransactionNode* findSpot(TransactionNode transaction);
         void lendBook(MemberNode *memberNode, BookNode *bookNode);
         void registerReturn();
         void showTransactions();
         void showOverdue();
 };
+
 #endif // TRANSACTIONSCOORDINATOR_H

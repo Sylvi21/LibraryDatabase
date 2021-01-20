@@ -1,11 +1,16 @@
 #include "Transaction.h"
 
-Transaction::Transaction()
+Transaction::Transaction(BookNode *bookNode, MemberNode *memberNode)
 {
-    //ctor
+    this->bookNode = bookNode;
+    this->memberNode = memberNode;
 }
 
 Transaction::~Transaction()
 {
     //dtor
+}
+
+int Transaction::getID(){
+    return ID;
 }

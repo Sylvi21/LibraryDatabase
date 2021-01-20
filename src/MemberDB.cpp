@@ -2,10 +2,22 @@
 
 MembersDB::MembersDB()
 {
+
 }
 
 MembersDB::~MembersDB()
 {
+
+}
+
+MemberNode* MembersDB::getFront()
+{
+    return firstOfMembers;
+}
+
+MemberNode* MembersDB::getBack()
+{
+    return lastOfMembers;
 }
 
 int MembersDB::getLastMemberID(){

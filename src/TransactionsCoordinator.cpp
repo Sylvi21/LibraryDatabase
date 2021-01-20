@@ -1,15 +1,10 @@
 #include "TransactionsCoordinator.h"
 
-TransactionsCoordinator::TransactionsCoordinator(TransactionsDB *transactionsDB)
+TransactionsCoordinator::TransactionsCoordinator(TransactionNode* firstOfTransactions, TransactionNode* lastOfTransactions, TransactionsDB *transactionsDB)
 {
     this->transactionsDB = transactionsDB;
-    this->firstOfTransactions = transactionsDB->loadTransactionsFromFile();
-    this->lastOfTransactions = firstOfTransactions;
-    while(lastOfTransactions != NULL){
-        if(lastOfTransactions->next == NULL)
-            break;
-        lastOfTransactions=lastOfTransactions->next;
-    }
+    this->firstOfTransactions = firstOfTransactions;
+    this->lastOfTransactions = lastOfTransactions;
 }
 
 TransactionsCoordinator::~TransactionsCoordinator()
@@ -17,9 +12,65 @@ TransactionsCoordinator::~TransactionsCoordinator()
 
 }
 
+string getCurrentDate(){
+    time_t now = time(0);
+    struct tm  tstruct;
+    char buffer[80];
+    tstruct = *localtime(&now);
+    strftime(buffer, sizeof(buffer), "%Y-%m-%d.%X", &tstruct);
+
+    return buffer;
+}
+
+TransactionNode* TransactionsCoordinator::findSpot(TransactionNode transaction)
+{
+    TransactionNode* currentNode = firstOfTransactions;
+    while(currentNode != NULL && currentNode->ID < transaction.ID)
+        currentNode=currentNode->next;
+    return currentNode;
+}
+
 void TransactionsCoordinator::lendBook(MemberNode *memberNode, BookNode *bookNode)
 {
+    string date = "";
+    TransactionNode* pom = NULL;
+    TransactionNode* temp = NULL;
 
+    TransactionNode* transaction = new TransactionNode();
+    transaction->ID = transactionsDB->getLastTransactionID()+1;
+    date = getCurrentDate();
+    transaction->dateBorrowed = date;
+   // transaction->dueDate(date + 3 mce trzeba zrobiæ)
+
+    if (firstOfTransactions == NULL) {
+        firstOfTransactions = transaction;
+        lastOfTransactions = transaction;
+        transaction->prev = NULL;
+        transaction->next = NULL;
+    } else {
+        temp = findSpot(*transaction);
+        if(firstOfTransactions == temp){
+            transaction->next = firstOfTransactions;
+            firstOfTransactions->prev = transaction;
+            transaction->prev = NULL;
+            firstOfTransactions = transaction;
+        } else if (temp == NULL){
+            lastOfTransactions->next = transaction;
+            transaction->prev = lastOfTransactions;
+            transaction->next = temp;
+            lastOfTransactions = transaction;
+        } else {
+            pom=temp->prev;
+            pom->next=transaction;
+            transaction->prev=temp->prev;
+            temp->prev=transaction;
+            transaction->next=temp;
+        }
+        temp = NULL;
+        delete temp;
+        pom = NULL;
+        delete pom;
+    }
 }
 void TransactionsCoordinator::registerReturn()
 {

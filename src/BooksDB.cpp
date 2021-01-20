@@ -2,13 +2,28 @@
 
 BooksDB::BooksDB()
 {
+    this->firstOfBooks = NULL;
+    this->lastOfBooks = NULL;
+    this->lastBookID = 0;
 }
 
 BooksDB::~BooksDB()
 {
+
 }
 
-int BooksDB::getLastBookID(){
+BookNode* BooksDB::getFront()
+{
+    return firstOfBooks;
+}
+
+BookNode* BooksDB::getBack()
+{
+    return lastOfBooks;
+}
+
+int BooksDB::getLastBookID()
+{
     return lastBookID;
 }
 
@@ -96,17 +111,6 @@ Book BooksDB::getSingleBookFromFile(string dataLine, int lastBookID)
     }
     return singleBook;
 }
-/*
-BookNode* BooksDB::findSpot(BookNode* lol, Book book)
-{
-    BookNode* books = lol;
-    while(books != NULL && books->book.getAuthorsSurname() < book.getAuthorsSurname()){
-        if(books->next == NULL)
-            break;
-        books=books->next;
-    }
-    return books;
-}*/
 
 BookNode* BooksDB::findSpot(BookNode* books, Book book)
 {
@@ -117,8 +121,6 @@ BookNode* BooksDB::findSpot(BookNode* books, Book book)
 
 BookNode* BooksDB::loadBooksFromFile(){
     string dataLine="", lastBookDataLine="";
-    BookNode* firstOfBooks = NULL;
-    BookNode* lastOfBooks = NULL;
     BookNode* pom = NULL;
     BookNode* temp = new BookNode();
     temp = NULL;
@@ -166,15 +168,15 @@ BookNode* BooksDB::loadBooksFromFile(){
     {
         this->lastBookID = setLastBookID(lastBookDataLine);
     }
-    temp = NULL;
     delete temp;
-    pom = NULL;
+    temp = NULL;
     delete pom;
+    pom = NULL;
 
     return firstOfBooks;
 }
 
-void BooksDB::editBookInFile(Book bookToEdit){
+void BooksDB::editBookInDB(Book book){
     string line=""; string subLine="";
     ifstream inFile("Books.txt");
     ofstream outFile;
@@ -183,7 +185,7 @@ void BooksDB::editBookInFile(Book bookToEdit){
     {
         outFile.close();
         remove("temp.txt");
-        cout<<"Nie udalo sie otworzyc pliku z kontaktami.\n";
+        cout<<"Nie udalo sie otworzyc pliku z ksiazkami.\n";
     }
     else
     {
@@ -196,16 +198,16 @@ void BooksDB::editBookInFile(Book bookToEdit){
                 subLine+=line[i];
                 i++;
             }
-            if (atoi(subLine.c_str()) == bookToEdit.getID())
+            if (atoi(subLine.c_str()) == book.getID())
             {
-                outFile<<bookToEdit.getID()<<"|";
-                outFile<<bookToEdit.getAuthorsName()<<"|";
-                outFile<<bookToEdit.getAuthorsSurname()<<"|";
-                outFile<<bookToEdit.getTitle()<<"|";
-                outFile<<bookToEdit.getYearPublished()<<"|";
-                outFile<<bookToEdit.getGenre()<<"|";
-                outFile<<bookToEdit.getISBN()<<"|";
-                outFile<<bookToEdit.getStatus()<<"|"<<endl;
+                outFile<<book.getID()<<"|";
+                outFile<<book.getAuthorsName()<<"|";
+                outFile<<book.getAuthorsSurname()<<"|";
+                outFile<<book.getTitle()<<"|";
+                outFile<<book.getYearPublished()<<"|";
+                outFile<<book.getGenre()<<"|";
+                outFile<<book.getISBN()<<"|";
+                outFile<<book.getStatus()<<"|"<<endl;
             }
             else outFile<<line<<endl;
         }
@@ -213,6 +215,46 @@ void BooksDB::editBookInFile(Book bookToEdit){
         inFile.close();
         remove("Books.txt");
         rename("temp.txt", "Books.txt");
-        cout<<"Kontakt edytowany pomyslnie!\n";
+        cout<<"Ksiazka edytowana pomyslnie!\n";
+    }
+}
+
+void BooksDB::removeBookFromDB(int ID){
+    ifstream inFile("Books.txt");
+    ofstream outFile;
+    outFile.open("temp.txt", ios::out | ios::app);
+
+    string line="";
+    string subLine;
+    if(inFile.good())
+    {
+        while (getline(inFile, line))
+        {
+            subLine="";
+            int i=0;
+            while(line[i]!='|')
+            {
+                subLine+=line[i];
+                i++;
+            }
+            if(atoi(subLine.c_str()) == ID)
+                continue;
+            else
+            {
+                outFile<<line<<endl;
+                lastBookID = atoi(subLine.c_str());
+            }
+        }
+        outFile.close();
+        inFile.close();
+        remove("Books.txt");
+        rename("temp.txt", "Books.txt");
+        cout<<"Ksiazka usunieta pomyslnie!\n";
+    }
+    else
+    {
+        cout<<"Program napotkal blad. Nie mozna otworzyc pliku.";
+        outFile.close();
+        remove("temp.txt");
     }
 }

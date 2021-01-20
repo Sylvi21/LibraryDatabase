@@ -22,7 +22,7 @@ class MembersCoordinator
         void showSingleMember(Member member);
         void showMemberDetails(Member member);
     public:
-        MembersCoordinator(MembersDB *membersDB);
+        MembersCoordinator(MemberNode* firstOfMembers, MemberNode* lastOfMembers, MembersDB *membersDB);
         virtual ~MembersCoordinator();
         void showMembersList();
         void addNewMember();

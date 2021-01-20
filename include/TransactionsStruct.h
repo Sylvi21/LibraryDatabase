@@ -3,8 +3,12 @@
 #include "Transaction.h"
 
 struct TransactionNode {
-    MemberNode *memberNode;
-    BookNode *bookNode;
+    int ID;
+    Member *member;
+    Book *book;
+    string dateBorrowed;
+    string dueDate;
+    string status;
     TransactionNode *prev;
     TransactionNode *next;
 };

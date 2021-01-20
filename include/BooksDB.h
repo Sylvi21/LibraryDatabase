@@ -13,9 +13,13 @@ class BooksDB
     private:
         string booksFileName = "Books.txt";
         int lastBookID;
+        BookNode *firstOfBooks;
+        BookNode *lastOfBooks;
     public:
         BooksDB();
         virtual ~BooksDB();
+        BookNode* getFront();
+        BookNode* getBack();
         BookNode* loadBooksFromFile();
         BookNode* findSpot(BookNode* books, Book book);
         int getLastBookID();
@@ -23,7 +27,8 @@ class BooksDB
         string getFilename();
         bool addBookToDB(Book book);
         Book getSingleBookFromFile(string dataLine, int lastBookID);
-        void editBookInFile(Book book);
+        void editBookInDB(Book book);
+        void removeBookFromDB(int ID);
 };
 
 #endif // BOOKSDB_H

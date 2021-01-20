@@ -1,15 +1,10 @@
 #include "BooksCoordinator.h"
 
-BooksCoordinator::BooksCoordinator(BooksDB *booksDB)
+BooksCoordinator::BooksCoordinator(BookNode *firstOfBooks, BookNode *lastOfBooks, BooksDB *booksDB)
 {
     this->booksDB = booksDB;
-    this->firstOfBooks = booksDB->loadBooksFromFile();
-    this->lastOfBooks = firstOfBooks;
-    while(lastOfBooks != NULL){
-        if(lastOfBooks->next == NULL)
-            break;
-        lastOfBooks=lastOfBooks->next;
-    }
+    this->firstOfBooks = firstOfBooks;
+    this->lastOfBooks = lastOfBooks;
 }
 
 BooksCoordinator::~BooksCoordinator()
@@ -21,10 +16,11 @@ BooksCoordinator::~BooksCoordinator()
         delete toDelete;
         currentBookNode = &(*currentBookNode)->next;
     }
-    firstOfBooks = NULL;
     delete firstOfBooks;
-    lastOfBooks = NULL;
+    firstOfBooks = NULL;
     delete lastOfBooks;
+    lastOfBooks = NULL;
+
 }
 
 void BooksCoordinator::showSingleBook(Book book){
@@ -424,7 +420,7 @@ void BooksCoordinator::editBook(){
     string newData;
 
     system("cls");
-    cout<<"EDYTUJ KONTAKT\n\n";
+    cout<<"EDYTUJ KSIAZKE\n\n";
 
     if (currentBookNode == NULL)
     {
@@ -484,7 +480,7 @@ void BooksCoordinator::editBook(){
                 case '8':
                     break;
                 }
-                booksDB->editBookInFile(currentBookNode->book);
+                booksDB->editBookInDB(currentBookNode->book);
                 break;
             }
         }
@@ -498,5 +494,74 @@ void BooksCoordinator::editBook(){
 }
 
 void BooksCoordinator::removeBook(){
+    BookNode* currentBookNode = firstOfBooks;
+    int searchedID;
+    bool bookExists = false;
+    char choice;
+    string newData;
 
+    system("cls");
+    cout<<"USUN KSIAZKE\n\n";
+
+    if (currentBookNode == NULL)
+    {
+        cout<<"Baza pozycji jest pusta!\n";
+    } else {
+        cout << "Podaj ID ksiazki do usuniecia: ";
+        searchedID = DataManipulation::loadInteger();
+
+        while(currentBookNode != NULL)
+        {
+            if(currentBookNode->book.getID() == searchedID)
+            {
+                bookExists = true;
+                showBookDetails(currentBookNode->book);
+
+                cout<<"Czy na pewno chcesz usunac kontakt?\n"
+                "Potwierdz usuniecie klawiszem t. Zrezygnuj klawiszem n.\n";
+
+                choice = DataManipulation::loadCharacter();
+                if (choice == 't')
+                {
+                    deleteBook(currentBookNode);
+                    booksDB->removeBookFromDB(searchedID);
+                    break;
+                }
+                else if (choice == 'n')
+                    break;
+                break;
+            }
+        }
+        if (bookExists == false)
+        {
+            cout<<"Brak pozycji w bazie danych. Dodaj pozycje.\n";
+        }
+    }
+    cout<<"Kliknij dowolny klawisz, aby powrocic.\n";
+    getch();
+}
+
+void BooksCoordinator::deleteBook(BookNode* node){
+    BookNode *tmp = NULL;
+    if(firstOfBooks == NULL)
+        return;
+    if(node == firstOfBooks){
+        firstOfBooks = firstOfBooks->next;
+        if(firstOfBooks != NULL)
+            firstOfBooks->prev = NULL;
+    } else {
+        if(node == lastOfBooks){
+            lastOfBooks = lastOfBooks->prev;
+            if(lastOfBooks != NULL)
+                lastOfBooks->next = NULL;
+        } else {
+            tmp = node->prev;
+            tmp->next = tmp->next;
+            tmp = node->next;
+            tmp->prev = node->prev;
+        }
+    }
+    delete node;
+    node = NULL;
+    return;
 }

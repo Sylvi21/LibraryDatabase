@@ -11,9 +11,9 @@ Library::~Library()
 {
     delete books;
     books = NULL;
-    delete books;
+    delete members;
     members = NULL;
-    delete books;
+    delete transactions;
     transactions = NULL;
 }
 
