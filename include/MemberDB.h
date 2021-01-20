@@ -13,9 +13,13 @@ class MembersDB
     private:
         string membersFileName = "Members.txt";
         int lastMemberID;
+        MemberNode* firstOfMembers;
+        MemberNode* lastOfMembers;
     public:
         MembersDB();
         virtual ~MembersDB();
+        MemberNode* getFront();
+        MemberNode* getBack();
         MemberNode* loadMembersFromFile();
         MemberNode* findSpot(MemberNode* members, Member member);
         int getLastMemberID();

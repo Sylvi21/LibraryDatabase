@@ -8,16 +8,13 @@ using namespace std;
 class Transaction
 {
     private:
-        int ID;
-        BookNode *bookNode;
-        MemberNode *memberNode;
-        string dateBorrowed;
-        string dueDate;
-        string status;
+
     public:
-        Transaction();
         Transaction(BookNode *bookNode, MemberNode *memberNode);
         virtual ~Transaction();
+        int getID();
+        string getDateBorrowed();
+        string getDueDate();
         void setDateBorrowed(string date);
         void setDueDate(string date);
         void setStatus();

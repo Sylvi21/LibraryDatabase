@@ -11,12 +11,32 @@ using namespace std;
 
 int main()
 {
+  //  HWND console = GetConsoleWindow();
+//	RECT ConsoleRect;
+//	GetWindowRect(console, &ConsoleRect);
+
+ //   MoveWindow(console, ConsoleRect.left, ConsoleRect.top, 600, 400, TRUE);
+
     BooksDB *booksDB = new BooksDB();
-    BooksCoordinator *books = new BooksCoordinator(booksDB);
+    booksDB->loadBooksFromFile();
+    BookNode *frontBookNode = booksDB->getFront();
+    BookNode *backBookNode = booksDB->getBack();
+    BooksCoordinator *books = new BooksCoordinator(frontBookNode, backBookNode, booksDB);
+
     MembersDB *membersDB = new MembersDB();
-    MembersCoordinator *members = new MembersCoordinator(membersDB);
+    membersDB->loadMembersFromFile();
+    MemberNode *frontMemberNode = membersDB->getFront();
+    MemberNode *backMemberNode = membersDB->getBack();
+    membersDB->getBack();
+    MembersCoordinator *members = new MembersCoordinator(frontMemberNode, backMemberNode, membersDB);
+
     TransactionsDB *transactionsDB = new TransactionsDB();
-    TransactionsCoordinator *transactions = NULL;//new TransactionsCoordinator(transactionsDB);
+    transactionsDB->loadTransactionsFromFile();
+    TransactionNode *frontTransactionNode = transactionsDB->getFront();
+    TransactionNode *backTransactionNode = transactionsDB->getBack();
+    transactionsDB->getBack();
+    TransactionsCoordinator *transactions = NULL;//new TransactionsCoordinator(frontTransactionNode, backTransactionNode, transactionsDB);
+
     Library library(books, members, transactions);
     char choice;
 
@@ -125,6 +145,7 @@ int main()
                 cout<< "Nie ma takiej opcji w menu. Wybierz jeszcze raz.\n";
         }
     }
+
     return 0;
 }
 

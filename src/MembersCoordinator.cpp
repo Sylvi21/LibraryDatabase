@@ -1,15 +1,10 @@
 #include "MembersCoordinator.h"
 
-MembersCoordinator::MembersCoordinator(MembersDB *membersDB)
+MembersCoordinator::MembersCoordinator(MemberNode* firstOfMembers, MemberNode* lastOfMembers, MembersDB *membersDB)
 {
     this->membersDB = membersDB;
-    this->firstOfMembers = membersDB->loadMembersFromFile();
-    this->lastOfMembers = firstOfMembers;
-    while(lastOfMembers != NULL){
-        if(lastOfMembers->next == NULL)
-            break;
-        lastOfMembers=lastOfMembers->next;
-    }
+    this->firstOfMembers = firstOfMembers;
+    this->lastOfMembers = lastOfMembers;
 }
 
 MembersCoordinator::~MembersCoordinator()

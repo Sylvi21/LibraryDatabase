@@ -25,8 +25,9 @@ class BooksCoordinator
         void searchByStatus(string status);
         void showSingleBook(Book book);
         void showBookDetails(Book book);
+        void deleteBook(BookNode* node);
     public:
-        BooksCoordinator(BooksDB *booksDB);
+        BooksCoordinator(BookNode *firstOfBooks, BookNode *lastOfBooks, BooksDB *booksDB);
         virtual ~BooksCoordinator();
         void showBooksList();
         void addNewBook();
