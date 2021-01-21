@@ -135,8 +135,8 @@ void BooksCoordinator::searchForBook()
     {
         cout<<"Baza pozycji jest pusta!\n";
     } else {
-        cout << "Wybierz wg czego chcesz prowadziæ poszukiwania: \n";
-        cout << "1. Imie/Imiona\n";
+        cout << "Wybierz wg czego chcesz prowadzic poszukiwania: \n";
+        cout << "1. ID\n";
         cout << "2. Imie/Imiona\n";
         cout << "3. Nazwisko\n";
         cout << "4. Tytul\n";

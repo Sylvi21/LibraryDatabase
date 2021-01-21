@@ -2,7 +2,9 @@
 
 MembersDB::MembersDB()
 {
-
+    this->firstOfMembers = NULL;
+    this->lastOfMembers = NULL;
+    this->lastMemberID = 0;
 }
 
 MembersDB::~MembersDB()
@@ -43,7 +45,7 @@ bool MembersDB::addMemberToDB(Member member)
     {
         membersDB<<member.getID()<<"|";
         membersDB<<member.getMemberName()<<"|";
-        membersDB<<member.getMemberSurname()<<"|";
+        membersDB<<member.getMemberSurname()<<"|"<<endl;
 
 
         membersDB.close();
@@ -73,13 +75,13 @@ Member MembersDB::getSingleMemberFromFile(string dataLine, int lastMemberID)
         {
             switch(subLineNumber)
             {
-            case 7:
+            case 1:
                 singleMember.setID(stoi(subLine.c_str()));
                 break;
-            case 8:
+            case 2:
                 singleMember.setMemberName(subLine);
                 break;
-            case 9:
+            case 3:
                 singleMember.setMemberSurname(subLine);
                 break;
             }
@@ -100,8 +102,6 @@ MemberNode* MembersDB::findSpot(MemberNode* members, Member member)
 
 MemberNode* MembersDB::loadMembersFromFile(){
     string dataLine="", lastMemberDataLine="";
-    MemberNode* firstOfMembers = NULL;
-    MemberNode* lastOfMembers = NULL;
     MemberNode* pom = NULL;
     MemberNode* temp = new MemberNode();
     temp = NULL;
@@ -166,7 +166,7 @@ void MembersDB::editMemberInFile(Member memberToEdit){
     {
         outFile.close();
         remove("temp.txt");
-        cout<<"Nie udalo sie otworzyc pliku z czlonkami biblioteki.\n";
+        cout<<"Nie udalo sie otworzyc pliku z czytelnikami biblioteki.\n";
     }
     else
     {
@@ -192,6 +192,47 @@ void MembersDB::editMemberInFile(Member memberToEdit){
         inFile.close();
         remove("Members.txt");
         rename("temp.txt", "Members.txt");
-        cout<<"Lista czlonkow edytowana pomyslnie!\n";
+        cout<<"Lista czytelnikow edytowana pomyslnie!\n";
     }
 }
+
+void MembersDB::removeMemberFromDB(int ID){
+    ifstream inFile("Members.txt");
+    ofstream outFile;
+    outFile.open("temp.txt", ios::out | ios::app);
+
+    string line="";
+    string subLine;
+    if(inFile.good())
+    {
+        while (getline(inFile, line))
+        {
+            subLine="";
+            int i=0;
+            while(line[i]!='|')
+            {
+                subLine+=line[i];
+                i++;
+            }
+            if(atoi(subLine.c_str()) == ID)
+                continue;
+            else
+            {
+                outFile<<line<<endl;
+                lastMemberID = atoi(subLine.c_str());
+            }
+        }
+        outFile.close();
+        inFile.close();
+        remove("Members.txt");
+        rename("temp.txt", "Members.txt");
+        cout<<"Czytelnik usuniety pomyslnie!\n";
+    }
+    else
+    {
+        cout<<"Program napotkal blad. Nie mozna otworzyc pliku.";
+        outFile.close();
+        remove("temp.txt");
+    }
+}
+

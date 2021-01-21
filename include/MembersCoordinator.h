@@ -21,6 +21,8 @@ class MembersCoordinator
         void searchBySurname(string surname);
         void showSingleMember(Member member);
         void showMemberDetails(Member member);
+        void deleteMember(MemberNode* node);
+
     public:
         MembersCoordinator(MemberNode* firstOfMembers, MemberNode* lastOfMembers, MembersDB *membersDB);
         virtual ~MembersCoordinator();

@@ -4,6 +4,7 @@
 
 struct TransactionNode {
     int ID;
+    Transaction transaction;
     Member *member;
     Book *book;
     string dateBorrowed;

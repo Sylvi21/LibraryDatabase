@@ -1,9 +1,9 @@
 #include "Transaction.h"
 
-Transaction::Transaction(BookNode *bookNode, MemberNode *memberNode)
+Transaction::Transaction()
 {
-    this->bookNode = bookNode;
-    this->memberNode = memberNode;
+//    this->bookNode = bookNode;
+ //   this->memberNode = memberNode;
 }
 
 Transaction::~Transaction()
@@ -14,3 +14,30 @@ Transaction::~Transaction()
 int Transaction::getID(){
     return ID;
 }
+
+void Transaction::setID(int ID)
+{
+    this->ID = ID;
+}
+
+void Transaction::setBookID(int BookID)
+{
+    this->BookID = BookID;
+}
+
+void Transaction::setMemberID(int MemberID)
+{
+    this->MemberID = MemberID;
+}
+
+int Transaction::getBookID()
+{
+return BookID;
+}
+
+int Transaction::getMemberID()
+{
+return MemberID;
+}
+
+

@@ -24,6 +24,7 @@ class TransactionsCoordinator
         TransactionNode* findSpot(TransactionNode transaction);
         void lendBook(MemberNode *memberNode, BookNode *bookNode);
         void registerReturn();
+        void showSingleTransaction(Transaction transaction);
         void showTransactions();
         void showOverdue();
 };

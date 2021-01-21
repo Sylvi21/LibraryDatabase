@@ -24,7 +24,7 @@ char Library::showMainMenu()
     cout << "----- MENU GLOWNE BIBLIOTEKI -----\n\n";
     cout<<"1. Menu wypozyczen\n";
     cout<<"2. Menu ksiazek\n";
-    cout<<"3. Menu czlownkow\n";
+    cout<<"3. Menu czytelnikow\n";
     cout<<"4. Zakoncz program\n";
 
     choice = DataManipulation::loadCharacter();
@@ -49,7 +49,7 @@ char Library::showBooksMenu(){
     char choice;
     system("cls");
     cout << "----- MENU KSIAZEK -----\n\n";
-    cout<<"1. Wyœwietl wszystkie ksiazki\n";
+    cout<<"1. Wyswietl wszystkie ksiazki\n";
     cout<<"2. Dodaj ksiazke\n";
     cout<<"3. Wyszukaj ksiazke\n";
     cout<<"4. Edytuj ksiazke\n";
@@ -64,7 +64,7 @@ char Library::showMembersMenu(){
     char choice;
     system("cls");
     cout << "----- MENU CZYTELNIKOW -----\n\n";
-    cout<<"1. Wyswietl wszsytkich czytelnikow\n";
+    cout<<"1. Wyswietl wszystkich czytelnikow\n";
     cout<<"2. Dodaj czytelnika\n";
     cout<<"3. Wyszukaj czytelnika\n";
     cout<<"4. Edytuj czytelnika\n";
@@ -78,10 +78,10 @@ char Library::showMembersMenu(){
 void Library::lendBook()
 {
     system("cls");
-    searchForMember();
+    //searchForMember();
     cout<<"Podaj ID czytelnika, ktory chce wypozyczyc ksiazke: ";
     int memberId = DataManipulation::loadInteger();
-    searchForBook();
+    //searchForBook();
     cout<<"Podaj ID ksiazki, ktora bedzie wypozyczona: ";
     int bookId = DataManipulation::loadInteger();
     MemberNode *member = members->getMemberNode(memberId);

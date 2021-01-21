@@ -31,7 +31,7 @@ void MembersCoordinator::showSingleMember(Member member){
 void MembersCoordinator::showMembersList(){
     MemberNode* currentMemberNode = firstOfMembers;
     system("cls");
-    cout<<"-----CZLONKOWIE-----\n\n";
+    cout<<"-----CZYTELNICY-----\n\n";
     if (currentMemberNode == NULL)
         cout<<"Baza danych jest pusta. Dodaj czlonkow."<<"\n";
     else
@@ -58,11 +58,11 @@ Member MembersCoordinator::setMemberData(){
     string memberName, memberSurname;
     member.setID(membersDB->getLastMemberID()+1);
 
-    cout << "Podaj imie czlonka: \n";
+    cout << "Podaj imie czytelnika: \n";
     memberName = DataManipulation::loadLine();
     member.setMemberName(memberName);
 
-    cout << "Podaj nazwisko czlonka: \n";
+    cout << "Podaj nazwisko czytelnika: \n";
     memberSurname = DataManipulation::loadLine();
     member.setMemberSurname(memberSurname);
 
@@ -73,17 +73,17 @@ void MembersCoordinator::addNewMember()
 {
     Member member;
     system("cls");
-    cout << "DODAJ NOWEGO CZLONKA\n\n";
+    cout << "DODAJ NOWEGO CZYTELNIKA\n\n";
 
     member = setMemberData();
 
     if (membersDB->addMemberToDB(member))
     {
         addSingleMember(member);
-        cout << "Pomyslnie dodano czlonka! \n";
+        cout << "Pomyslnie dodano czytelnika! \n";
     }
     else
-        cout << "Nie udalo sie dodac czlonka! \n";
+        cout << "Nie udalo sie dodac czytelnika! \n";
 
     cout << "Kliknij dowolny klawisz, aby powrocic" << "\n";
     getch();
@@ -98,7 +98,7 @@ void MembersCoordinator::searchForMember()
     string newData;
 
     system("cls");
-    cout<<"WYSZUKAJ CZLONKA\n\n";
+    cout<<"WYSZUKAJ CZYTELNIKA\n\n";
 
     if (currentMemberNode == NULL)
     {
@@ -133,7 +133,7 @@ void MembersCoordinator::searchByID(int ID)
     MemberNode* currentMemberNode = firstOfMembers;
     bool found = false;
     system("cls");
-    cout<<"----- CZLONKOWIE O ID "<<ID<<" -----\n\n";
+    cout<<"----- CZYTELNICY O ID "<<ID<<" -----\n\n";
     while(currentMemberNode != NULL){
         if(currentMemberNode->member.getID() == ID){
             showMemberDetails(currentMemberNode->member);
@@ -156,7 +156,7 @@ void MembersCoordinator::searchByName(string name)
     MemberNode* currentMemberNode = firstOfMembers;
     bool found = false;
     system("cls");
-    cout<<"----- CZLONKOWIE O IMIENIU: "<<name<<" -----\n\n";
+    cout<<"----- CZYTELNICY O IMIENIU: "<<name<<" -----\n\n";
     while(currentMemberNode != NULL){
         if(currentMemberNode->member.getMemberName() == name){
             showMemberDetails(currentMemberNode->member);
@@ -179,7 +179,7 @@ void MembersCoordinator::searchBySurname(string surname)
     MemberNode* currentMemberNode = firstOfMembers;
     bool found = false;
     system("cls");
-    cout<<"----- CZLONKOWIE O NAZWISKU:  "<<surname<<" -----\n\n";
+    cout<<"----- CZYTELNICY O NAZWISKU:  "<<surname<<" -----\n\n";
     while(currentMemberNode != NULL){
         if(currentMemberNode->member.getMemberSurname() == surname){
             showMemberDetails(currentMemberNode->member);
@@ -259,13 +259,13 @@ bool MembersCoordinator::editMember(){
     string newData;
 
     system("cls");
-    cout<<"EDYTUJ DANE CZLONKA\n\n";
+    cout<<"EDYTUJ DANE CZYTELNIKA\n\n";
 
     if (currentMemberNode == NULL)
     {
         cout<<"Baza pozycji jest pusta!\n";
     } else {
-        cout << "Podaj ID czlonka do edytowania: ";
+        cout << "Podaj ID czytelnika do edytowania: ";
         searchedID = DataManipulation::loadInteger();
 
         while(currentMemberNode != NULL)
@@ -306,6 +306,77 @@ bool MembersCoordinator::editMember(){
     getch();
 }
 
-bool MembersCoordinator::removeMember(){
 
+
+bool MembersCoordinator::removeMember(){
+    MemberNode* currentMemberNode = firstOfMembers;
+    int searchedID;
+    bool memberExists = false;
+    char choice;
+    string newData;
+
+    system("cls");
+    cout<<"USUN CZYTELNIKA\n\n";
+
+    if (currentMemberNode == NULL)
+    {
+        cout<<"Baza pozycji jest pusta!\n";
+    } else {
+        cout << "Podaj ID czytelnika do usuniecia: ";
+        searchedID = DataManipulation::loadInteger();
+
+        while(currentMemberNode != NULL)
+        {
+            if(currentMemberNode->member.getID() == searchedID)
+            {
+                memberExists = true;
+                showMemberDetails(currentMemberNode->member);
+
+                cout<<"Czy na pewno chcesz usunac czytelnika?\n"
+                "Potwierdz usuniecie klawiszem t. Zrezygnuj klawiszem n.\n";
+
+                choice = DataManipulation::loadCharacter();
+                if (choice == 't')
+                {
+                    deleteMember(currentMemberNode);
+                    membersDB->removeMemberFromDB(searchedID);
+                    break;
+                }
+                else if (choice == 'n')
+                    break;
+                break;
+            }
+        }
+        if (memberExists == false)
+        {
+            cout<<"Brak pozycji w bazie danych. Dodaj pozycje.\n";
+        }
+    }
+    cout<<"Kliknij dowolny klawisz, aby powrocic.\n";
+    getch();
+}
+
+void MembersCoordinator::deleteMember(MemberNode* node){
+    MemberNode *tmp = NULL;
+    if(firstOfMembers == NULL)
+        return;
+    if(node == firstOfMembers){
+        firstOfMembers = firstOfMembers->next;
+        if(firstOfMembers != NULL)
+            firstOfMembers->prev = NULL;
+    } else {
+        if(node == lastOfMembers){
+            lastOfMembers = lastOfMembers->prev;
+            if(lastOfMembers != NULL)
+                lastOfMembers->next = NULL;
+        } else {
+            tmp = node->prev;
+            tmp->next = tmp->next;
+            tmp = node->next;
+            tmp->prev = node->prev;
+        }
+    }
+    delete node;
+    node = NULL;
+    return;
 }

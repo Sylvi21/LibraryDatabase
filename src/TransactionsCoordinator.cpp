@@ -37,9 +37,9 @@ void TransactionsCoordinator::lendBook(MemberNode *memberNode, BookNode *bookNod
     TransactionNode* temp = NULL;
 
     TransactionNode* transaction = new TransactionNode();
-    transaction->ID = transactionsDB->getLastTransactionID()+1;
-    date = getCurrentDate();
-    transaction->dateBorrowed = date;
+//    transaction->ID = transactionsDB->getLastTransactionID()+1;
+//    date = getCurrentDate();
+ //   transaction->dateBorrowed = date;
    // transaction->dueDate(date + 3 mce trzeba zrobiæ)
 
     if (firstOfTransactions == NULL) {
@@ -76,9 +76,31 @@ void TransactionsCoordinator::registerReturn()
 {
 
 }
+
+void TransactionsCoordinator::showSingleTransaction(Transaction transaction){
+    cout<<transaction.getID()<<" "<<
+    transaction.getBookID()<<" "<<
+    transaction.getMemberID()<<endl;
+}
+
 void TransactionsCoordinator::showTransactions()
 {
-
+    TransactionNode* currentTransactionNode = firstOfTransactions;
+    system("cls");
+    cout<<"-----WYPOZYCZENIA-----\n\n";
+    if (currentTransactionNode == NULL)
+        cout<<"Baza danych jest pusta. Dodaj wypozyczenia."<<"\n";
+    else
+    {
+        while(currentTransactionNode != NULL){
+            showSingleTransaction(currentTransactionNode->transaction);
+            currentTransactionNode = currentTransactionNode->next;
+        }
+    }
+    currentTransactionNode = NULL;
+    delete currentTransactionNode;
+    cout<<"\nKliknij dowolny klawisz, aby powrocic"<<"\n";
+    getch();
 }
 void TransactionsCoordinator::showOverdue()
 {

@@ -2,6 +2,7 @@
 
 Member::Member()
 {
+
 }
 
 Member::~Member()

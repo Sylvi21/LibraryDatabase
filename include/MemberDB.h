@@ -28,6 +28,8 @@ class MembersDB
         bool addMemberToDB(Member member);
         Member getSingleMemberFromFile(string dataLine, int lastMemberID);
         void editMemberInFile(Member member);
+        void removeMemberFromDB(int ID);
+
 };
 
 #endif // MEMBERDB_H
