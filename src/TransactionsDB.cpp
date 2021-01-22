@@ -4,7 +4,8 @@ TransactionsDB::TransactionsDB()
 {
     this->firstOfTransactions = NULL;
     this->lastOfTransactions = NULL;
-    this->lastTransactionID = 0;}
+    this->lastTransactionID = 0;
+}
 
 TransactionsDB::~TransactionsDB()
 {
@@ -23,7 +24,7 @@ TransactionNode* TransactionsDB::getBack()
 
 TransactionNode* TransactionsDB::loadTransactionsFromFile()
 {
-        string dataLine="", lastTransactionDataLine="";
+    string dataLine="", lastTransactionDataLine="";
     TransactionNode* pom = NULL;
     TransactionNode* temp = new TransactionNode();
     temp = NULL;
@@ -77,6 +78,10 @@ TransactionNode* TransactionsDB::loadTransactionsFromFile()
     pom = NULL;
 
     return firstOfTransactions;
+}
+
+int TransactionsDB::getLastTransactionID(){
+    return lastTransactionID;
 }
 
 int TransactionsDB::setLastTransactionID(string dataLine)

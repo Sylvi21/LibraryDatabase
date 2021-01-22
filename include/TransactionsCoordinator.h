@@ -22,7 +22,8 @@ class TransactionsCoordinator
         TransactionsCoordinator(TransactionNode* firstOfTransactions, TransactionNode* lastOfTransactions, TransactionsDB *transactionsDB);
         virtual ~TransactionsCoordinator();
         TransactionNode* findSpot(TransactionNode transaction);
-        void lendBook(MemberNode *memberNode, BookNode *bookNode);
+        void lendBook(Member *memberNode, Book *bookNode);
+        void aquireObjectsByID(MemberNode *frontMemberNode, BookNode *frontBookNode);
         void registerReturn();
         void showSingleTransaction(Transaction transaction);
         void showTransactions();

@@ -15,6 +15,7 @@ class Library
         MembersCoordinator *members;
         BooksCoordinator *books;
         TransactionsCoordinator *transactions;
+
     public:
         Library(BooksCoordinator *books, MembersCoordinator *members, TransactionsCoordinator *transactions);
         virtual ~Library();
