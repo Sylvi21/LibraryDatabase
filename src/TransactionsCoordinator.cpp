@@ -9,38 +9,80 @@ TransactionsCoordinator::TransactionsCoordinator(TransactionNode* firstOfTransac
 
 TransactionsCoordinator::~TransactionsCoordinator()
 {
+    TransactionNode **currentTransactionNode = &firstOfTransactions;
+    while(*currentTransactionNode != NULL){
+        TransactionNode *toDelete = *currentTransactionNode;
+        *currentTransactionNode = toDelete->next;
+        delete toDelete;
+        currentTransactionNode = &(*currentTransactionNode)->next;
+    }
+    delete firstOfTransactions;
+    firstOfTransactions = NULL;
+    delete lastOfTransactions;
+    lastOfTransactions = NULL;
+}
+
+
+void TransactionsCoordinator::aquireObjectsByID(MemberNode *frontMemberNode, BookNode *frontBookNode){
+    int ID, counter = 1;
+    TransactionNode* currentNode = firstOfTransactions;
+    while(currentNode != NULL){
+        //get Member
+        ID = currentNode->transaction.getMemberID();
+        MemberNode *tempMember = frontMemberNode;
+        while(tempMember != NULL && tempMember->member.getID() != ID)
+            tempMember = tempMember->next;
+        currentNode->member = &(tempMember->member);
+        //get Book
+        ID = currentNode->transaction.getBookID();
+        BookNode *tempBook = frontBookNode;
+        while(tempBook != NULL && tempBook->book.getID() != ID)
+            tempBook = tempBook->next;
+        currentNode->book = &(tempBook->book);
+        //next transaction
+
+        if(counter == 1)
+            firstOfTransactions = currentNode;
+        currentNode=currentNode->next;
+    }
 
 }
 
-string getCurrentDate(){
-    time_t now = time(0);
-    struct tm  tstruct;
+string TransactionsCoordinator::getCurrentDate(){
+    time_t rawtime;
+    struct tm * timeinfo;
     char buffer[80];
-    tstruct = *localtime(&now);
-    strftime(buffer, sizeof(buffer), "%Y-%m-%d.%X", &tstruct);
 
-    return buffer;
+    time(&rawtime);
+    timeinfo = localtime(&rawtime);
+
+    strftime(buffer, 80, "%m/%d/%Y ", timeinfo);
+    string str(buffer);
+    return str;
 }
 
 TransactionNode* TransactionsCoordinator::findSpot(TransactionNode transaction)
 {
     TransactionNode* currentNode = firstOfTransactions;
-    while(currentNode != NULL && currentNode->ID < transaction.ID)
+    while(currentNode != NULL && currentNode->transaction.getID() < transaction.transaction.getID())
         currentNode=currentNode->next;
     return currentNode;
 }
 
-void TransactionsCoordinator::lendBook(MemberNode *memberNode, BookNode *bookNode)
+void TransactionsCoordinator::lendBook(Member *member, Book *book)
 {
     string date = "";
     TransactionNode* pom = NULL;
     TransactionNode* temp = NULL;
 
+    book->setStatus("wypozyczona");
     TransactionNode* transaction = new TransactionNode();
-//    transaction->ID = transactionsDB->getLastTransactionID()+1;
-//    date = getCurrentDate();
- //   transaction->dateBorrowed = date;
-   // transaction->dueDate(date + 3 mce trzeba zrobiæ)
+    transaction->member = member;
+    transaction->book = book;
+    transaction->transaction.setID(transactionsDB->getLastTransactionID()+1);
+    date = getCurrentDate();
+    transaction->transaction.setDateBorrowed(date);
+ //   transaction->dueDate(date + 3 mce trzeba zrobiæ)
 
     if (firstOfTransactions == NULL) {
         firstOfTransactions = transaction;
@@ -97,8 +139,8 @@ void TransactionsCoordinator::showTransactions()
             currentTransactionNode = currentTransactionNode->next;
         }
     }
-    currentTransactionNode = NULL;
     delete currentTransactionNode;
+    currentTransactionNode = NULL;
     cout<<"\nKliknij dowolny klawisz, aby powrocic"<<"\n";
     getch();
 }

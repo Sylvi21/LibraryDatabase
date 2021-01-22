@@ -84,17 +84,20 @@ void Library::lendBook()
     //searchForBook();
     cout<<"Podaj ID ksiazki, ktora bedzie wypozyczona: ";
     int bookId = DataManipulation::loadInteger();
-    MemberNode *member = members->getMemberNode(memberId);
+
+    Member *member = &(members->getMemberNode(memberId)->member);
     if (member == NULL){
         cout<<"Wystapil blad. Nie udalo sie dodac uzytkownika.\n";
         return;
     }
-    BookNode *book = books->getBookNode(bookId);
+
+    Book *book = &(books->getBookNode(bookId)->book);
     if (book == NULL){
         cout<<"Wystapil blad. Nie udalo sie dodac ksiazki.\n";
         return;
     }
-    transactions->lendBook(member, book);
+
+    transactions->lendBook(&*member, &*book);
 }
 
 void Library::registerReturn()

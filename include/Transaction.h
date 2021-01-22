@@ -11,20 +11,22 @@ class Transaction
         int ID;
         int BookID;
         int MemberID;
+        string dateBorrowed;
+        string dueDate;
     public:
         Transaction();
         virtual ~Transaction();
         int getID();
-        string getDateBorrowed();
-        string getDueDate();
-        void setDateBorrowed(string date);
-        void setDueDate(string date);
-        void setStatus();
         void setID(int ID);
         void setBookID(int BookID);
         void setMemberID(int MemberID);
         int getBookID();
         int getMemberID();
+        string getDateBorrowed();
+        string getDueDate();
+        void setDateBorrowed(string date);
+        void setDueDate(string date);
+        void setStatus();
 };
 
 #endif // TRANSACTION_H

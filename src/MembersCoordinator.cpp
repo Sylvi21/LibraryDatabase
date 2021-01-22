@@ -16,10 +16,10 @@ MembersCoordinator::~MembersCoordinator()
         delete toDelete;
         currentMemberNode = &(*currentMemberNode)->next;
     }
-    firstOfMembers = NULL;
     delete firstOfMembers;
-    lastOfMembers = NULL;
+    firstOfMembers = NULL;
     delete lastOfMembers;
+    lastOfMembers = NULL;
 }
 
 void MembersCoordinator::showSingleMember(Member member){

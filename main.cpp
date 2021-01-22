@@ -35,7 +35,8 @@ int main()
     TransactionNode *frontTransactionNode = transactionsDB->getFront();
     TransactionNode *backTransactionNode = transactionsDB->getBack();
     transactionsDB->getBack();
-    TransactionsCoordinator *transactions = NULL;//new TransactionsCoordinator(frontTransactionNode, backTransactionNode, transactionsDB);
+    TransactionsCoordinator *transactions = new TransactionsCoordinator(frontTransactionNode, backTransactionNode, transactionsDB);
+    transactions->aquireObjectsByID(frontMemberNode, frontBookNode);
 
     Library library(books, members, transactions);
     char choice;

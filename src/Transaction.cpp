@@ -40,4 +40,6 @@ int Transaction::getMemberID()
 return MemberID;
 }
 
-
+void Transaction::setDateBorrowed(string date){
+    this->dateBorrowed = date;
+}
