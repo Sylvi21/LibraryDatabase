@@ -139,7 +139,7 @@ void TransactionsCoordinator::lendBook(Member *member, Book *book)
     cout << "Kliknij dowolny klawisz, aby powrocic" << "\n";
     getch();
 }
-
+/*
 void TransactionsCoordinator::registerReturn(int id)
 {
     int removedId;
@@ -161,7 +161,7 @@ void TransactionsCoordinator::registerReturn(int id)
     cout << "Kliknij dowolny klawisz, aby powrocic" << "\n";
     getch();
 }
-
+*/
 void TransactionsCoordinator::removeTransaction(TransactionNode* node){
     TransactionNode *tmp = NULL;
     if(firstOfTransactions == NULL)

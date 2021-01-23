@@ -43,3 +43,7 @@ return MemberID;
 void Transaction::setDateBorrowed(string date){
     this->dateBorrowed = date;
 }
+
+string Transaction::getDateBorrowed(){
+    return dateBorrowed;
+}

@@ -28,6 +28,8 @@ class TransactionsDB
         bool addTransactionToDB(Transaction transaction);
         Transaction getSingleTransactionFromFile(string dataLine, int lastTransactionID);
         void editTransactionInDB(Transaction transactionsFileName);
+        void removeTransactionFromDB(int ID);
+
 };
 
 #endif // TRANSACTIONSDB_H

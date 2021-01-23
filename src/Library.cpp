@@ -108,7 +108,7 @@ void Library::registerReturn()
     cout<<"Wybierz ID wypozyczenia: ";
     int transactionId = DataManipulation::loadInteger();
 
-    transactions->registerReturn(transactionId);
+//    transactions->registerReturn(transactionId);
 }
 
 void Library::showTransactions()

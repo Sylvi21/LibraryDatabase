@@ -131,3 +131,70 @@ Transaction TransactionsDB::getSingleTransactionFromFile(string dataLine, int la
     return singleTransaction;
 }
 
+bool TransactionsDB::addTransactionToDB(Transaction transaction)
+{
+
+    fstream transactionsDB;
+    transactionsDB.open(getFilename(), ios::app);
+    if(transactionsDB.good()==true)
+    {
+        transactionsDB<<transaction.getID()<<"|";
+        transactionsDB<<transaction.getMemberID()<<"|";
+        transactionsDB<<transaction.getBookID()<<"|";
+        transactionsDB<<transaction.getDateBorrowed()<<endl;
+
+        transactionsDB.close();
+        lastTransactionID++;
+        return true;
+    }
+    else
+    {
+        cout<<"Nie udalo sie otworzyc pliku i zapisac do niego danych.";
+        return false;
+    }
+}
+
+string TransactionsDB::getFilename(){
+    return transactionsFileName;
+}
+
+
+void TransactionsDB::removeTransactionFromDB(int ID){
+    ifstream inFile("Transactions.txt");
+    ofstream outFile;
+    outFile.open("temp.txt", ios::out | ios::app);
+
+    string line="";
+    string subLine;
+    if(inFile.good())
+    {
+        while (getline(inFile, line))
+        {
+            subLine="";
+            int i=0;
+            while(line[i]!='|')
+            {
+                subLine+=line[i];
+                i++;
+            }
+            if(atoi(subLine.c_str()) == ID)
+                continue;
+            else
+            {
+                outFile<<line<<endl;
+                lastTransactionID = atoi(subLine.c_str());
+            }
+        }
+        outFile.close();
+        inFile.close();
+        remove("Transactions.txt");
+        rename("temp.txt", "Transactions.txt");
+        cout<<"Wypozyczenie usuniete pomyslnie!\n";
+    }
+    else
+    {
+        cout<<"Program napotkal blad. Nie mozna otworzyc pliku.";
+        outFile.close();
+        remove("temp.txt");
+    }
+}
