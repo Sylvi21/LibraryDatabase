@@ -22,7 +22,6 @@ TransactionsCoordinator::~TransactionsCoordinator()
     lastOfTransactions = NULL;
 }
 
-
 void TransactionsCoordinator::aquireObjectsByID(MemberNode *frontMemberNode, BookNode *frontBookNode){
     int ID, counter = 1;
     TransactionNode* currentNode = firstOfTransactions;
@@ -45,7 +44,13 @@ void TransactionsCoordinator::aquireObjectsByID(MemberNode *frontMemberNode, Boo
             firstOfTransactions = currentNode;
         currentNode=currentNode->next;
     }
+}
 
+TransactionNode* TransactionsCoordinator::getTransactionById(int id){
+    TransactionNode* currentNode = firstOfTransactions;
+    while(currentNode != NULL && currentNode->transaction.getID() == id)
+        currentNode=currentNode->next;
+    return currentNode;
 }
 
 string TransactionsCoordinator::getCurrentDate(){
@@ -135,9 +140,51 @@ void TransactionsCoordinator::lendBook(Member *member, Book *book)
     getch();
 }
 
-void TransactionsCoordinator::registerReturn()
+void TransactionsCoordinator::registerReturn(int id)
 {
+    int removedId;
+    TransactionNode *transactionNode = getTransactionById(id);
+    if(transactionNode == NULL){
+        cout << "Nie udalo sie odnalezc wypozyczenia o ID "<<id<<"! \n";
+    }
+    if(transactionsDB->removeTransactionFromDB(transactionNode->transaction.getID())){
+        transactionNode->book->setStatus("dostepna");
+        removedId = removeTransaction(transactionNode);
+        if(removedId != 0){
+            cout << "Zarejestrowano zwrot.\n";
+        } else {
+            cout << "Wystapil blad w programie. Nie udalo sie zarejestrowac zwrotu.\n";
+        }
+    } else {
+        cout << "Wystapil blad z dostepem do bazy danych. Nie udalo sie zarejestrowac zwrotu.\n";
+    }
+    cout << "Kliknij dowolny klawisz, aby powrocic" << "\n";
+    getch();
+}
 
+void TransactionsCoordinator::removeTransaction(TransactionNode* node){
+    TransactionNode *tmp = NULL;
+    if(firstOfTransactions == NULL)
+        return;
+    if(node == firstOfTransactions){
+        firstOfTransactions = firstOfTransactions->next;
+        if(firstOfTransactions != NULL)
+            firstOfTransactions->prev = NULL;
+    } else {
+        if(node == lastOfTransactions){
+            lastOfTransactions = lastOfTransactions->prev;
+            if(lastOfTransactions != NULL)
+                lastOfTransactions->next = NULL;
+        } else {
+            tmp = node->prev;
+            tmp->next = tmp->next;
+            tmp = node->next;
+            tmp->prev = node->prev;
+        }
+    }
+    delete node;
+    node = NULL;
+    return;
 }
 
 void TransactionsCoordinator::showSingleTransaction(TransactionNode* transaction)
@@ -148,6 +195,25 @@ void TransactionsCoordinator::showSingleTransaction(TransactionNode* transaction
     transaction->book->getAuthorsName()<<" "<<
     transaction->book->getAuthorsSurname()<<" "<<
     transaction->book->getTitle()<<endl;
+}
+
+void TransactionsCoordinator::showTransactionsByMember(int memberId){
+    TransactionNode* currentTransactionNode = firstOfTransactions;
+    system("cls");
+    cout<<"-----WYPOZYCZENIA-----\n\n";
+    if (currentTransactionNode == NULL)
+        cout<<"Baza danych jest pusta. Dodaj wypozyczenia."<<"\n";
+    else
+    {
+        while(currentTransactionNode != NULL && currentTransactionNode->member->getID() == memberId){
+            showSingleTransaction(currentTransactionNode);
+            currentTransactionNode = currentTransactionNode->next;
+        }
+    }
+    delete currentTransactionNode;
+    currentTransactionNode = NULL;
+    cout<<"\nKliknij dowolny klawisz, aby powrocic"<<"\n";
+    getch();
 }
 
 void TransactionsCoordinator::showTransactions()
@@ -169,6 +235,7 @@ void TransactionsCoordinator::showTransactions()
     cout<<"\nKliknij dowolny klawisz, aby powrocic"<<"\n";
     getch();
 }
+
 void TransactionsCoordinator::showOverdue()
 {
 
