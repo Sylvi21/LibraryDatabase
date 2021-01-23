@@ -69,20 +69,10 @@ TransactionNode* TransactionsCoordinator::findSpot(TransactionNode transaction)
     return currentNode;
 }
 
-void TransactionsCoordinator::lendBook(Member *member, Book *book)
+void TransactionsCoordinator::addSingleTransaction(TransactionNode *transaction)
 {
-    string date = "";
     TransactionNode* pom = NULL;
     TransactionNode* temp = NULL;
-
-    book->setStatus("wypozyczona");
-    TransactionNode* transaction = new TransactionNode();
-    transaction->member = member;
-    transaction->book = book;
-    transaction->transaction.setID(transactionsDB->getLastTransactionID()+1);
-    date = getCurrentDate();
-    transaction->transaction.setDateBorrowed(date);
- //   transaction->dueDate(date + 3 mce trzeba zrobiæ)
 
     if (firstOfTransactions == NULL) {
         firstOfTransactions = transaction;
@@ -114,15 +104,50 @@ void TransactionsCoordinator::lendBook(Member *member, Book *book)
         delete pom;
     }
 }
+
+void TransactionsCoordinator::lendBook(Member *member, Book *book)
+{
+    system("cls");
+    cout << "WYPOZYCZ KSIAZKE\n\n";
+
+    string date = "";
+
+    TransactionNode* transactionNode = new TransactionNode();
+    transactionNode->member = member;
+    transactionNode->book = book;
+    transactionNode->transaction.setID(transactionsDB->getLastTransactionID()+1);
+    transactionNode->transaction.setBookID(book->getID());
+    transactionNode->transaction.setMemberID(member->getID());
+    date = getCurrentDate();
+    transactionNode->transaction.setDateBorrowed(date);
+ //   transactionNode->dueDate(date + 3 mce trzeba zrobiæ)
+
+    if (transactionsDB->addTransactionToDB(transactionNode->transaction))
+    {
+        addSingleTransaction(transactionNode);
+        book->setStatus("wypozyczona");
+        cout << "Pomyslnie zarejestrowano wypozyczenie! \n";
+    }
+    else
+        cout << "Nie udalo sie zarejestrowac wypozyczenia! \n";
+
+    cout << "Kliknij dowolny klawisz, aby powrocic" << "\n";
+    getch();
+}
+
 void TransactionsCoordinator::registerReturn()
 {
 
 }
 
-void TransactionsCoordinator::showSingleTransaction(Transaction transaction){
-    cout<<transaction.getID()<<" "<<
-    transaction.getBookID()<<" "<<
-    transaction.getMemberID()<<endl;
+void TransactionsCoordinator::showSingleTransaction(TransactionNode* transaction)
+{
+    cout<<transaction->transaction.getID()<<" "<<
+    transaction->member->getMemberName()<<" "<<
+    transaction->member->getMemberSurname()<<" "<<
+    transaction->book->getAuthorsName()<<" "<<
+    transaction->book->getAuthorsSurname()<<" "<<
+    transaction->book->getTitle()<<endl;
 }
 
 void TransactionsCoordinator::showTransactions()
@@ -135,7 +160,7 @@ void TransactionsCoordinator::showTransactions()
     else
     {
         while(currentTransactionNode != NULL){
-            showSingleTransaction(currentTransactionNode->transaction);
+            showSingleTransaction(currentTransactionNode);
             currentTransactionNode = currentTransactionNode->next;
         }
     }
