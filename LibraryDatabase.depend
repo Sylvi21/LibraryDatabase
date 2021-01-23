@@ -47,7 +47,7 @@
 	"DataManipulation.h"
 	<conio.h>
 
-1611305429 source:g:\infromatyka - studia\semestr 3\pp\librarydatabase\src\library.cpp
+1611402445 source:g:\infromatyka - studia\semestr 3\pp\librarydatabase\src\library.cpp
 	"Library.h"
 
 1610893071 g:\infromatyka - studia\semestr 3\pp\librarydatabase\include\booksstruct.h
@@ -99,7 +99,7 @@
 1611305429 source:g:\infromatyka - studia\semestr 3\pp\librarydatabase\src\transactionsdb.cpp
 	"TransactionsDB.h"
 
-1611302472 g:\infromatyka - studia\semestr 3\pp\librarydatabase\include\transactionsdb.h
+1611404689 g:\infromatyka - studia\semestr 3\pp\librarydatabase\include\transactionsdb.h
 	"TransactionsStruct.h"
 	"DataManipulation.h"
 	<iostream>
@@ -108,7 +108,7 @@
 1611389974 source:g:\infromatyka - studia\semestr 3\pp\librarydatabase\src\transactionscoordinator.cpp
 	"TransactionsCoordinator.h"
 
-1611389876 g:\infromatyka - studia\semestr 3\pp\librarydatabase\include\transactionscoordinator.h
+1611402489 g:\infromatyka - studia\semestr 3\pp\librarydatabase\include\transactionscoordinator.h
 	"TransactionsStruct.h"
 	"TransactionsDB.h"
 	"DataManipulation.h"

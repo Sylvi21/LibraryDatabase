@@ -78,31 +78,37 @@ char Library::showMembersMenu(){
 void Library::lendBook()
 {
     system("cls");
-    //searchForMember();
     cout<<"Podaj ID czytelnika, ktory chce wypozyczyc ksiazke: ";
     int memberId = DataManipulation::loadInteger();
-    //searchForBook();
-    cout<<"Podaj ID ksiazki, ktora bedzie wypozyczona: ";
-    int bookId = DataManipulation::loadInteger();
 
     Member *member = &(members->getMemberNode(memberId)->member);
     if (member == NULL){
-        cout<<"Wystapil blad. Nie udalo sie dodac uzytkownika.\n";
+        cout<<"Wystapil blad. Nie udalo sie znalezc uzytkownika.\n";
         return;
     }
+
+    cout<<"Podaj ID ksiazki, ktora bedzie wypozyczona: ";
+    int bookId = DataManipulation::loadInteger();
 
     Book *book = &(books->getBookNode(bookId)->book);
     if (book == NULL){
         cout<<"Wystapil blad. Nie udalo sie dodac ksiazki.\n";
         return;
     }
-
     transactions->lendBook(&*member, &*book);
 }
 
 void Library::registerReturn()
 {
-    transactions->registerReturn();
+    system("cls");
+    cout<<"Podaj ID uzytkownika zwracaj¹cego ksiazke: ";
+    int memberId = DataManipulation::loadInteger();
+
+    transactions->showTransactionsByMember(memberId);
+    cout<<"Wybierz ID wypozyczenia: ";
+    int transactionId = DataManipulation::loadInteger();
+
+    transactions->registerReturn(transactionId);
 }
 
 void Library::showTransactions()
