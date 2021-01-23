@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1611303208 source:g:\infromatyka - studia\semestr 3\pp\librarydatabase\main.cpp
+1611305429 source:g:\infromatyka - studia\semestr 3\pp\librarydatabase\main.cpp
 	"Library.h"
 	<iostream>
 	<windows.h>
@@ -33,7 +33,7 @@
 	<fstream>
 	"BooksStruct.h"
 
-1611304196 g:\infromatyka - studia\semestr 3\pp\librarydatabase\include\library.h
+1611305429 g:\infromatyka - studia\semestr 3\pp\librarydatabase\include\library.h
 	"BooksCoordinator.h"
 	"MembersCoordinator.h"
 	"TransactionsCoordinator.h"
@@ -47,7 +47,7 @@
 	"DataManipulation.h"
 	<conio.h>
 
-1611302621 source:g:\infromatyka - studia\semestr 3\pp\librarydatabase\src\library.cpp
+1611305429 source:g:\infromatyka - studia\semestr 3\pp\librarydatabase\src\library.cpp
 	"Library.h"
 
 1610893071 g:\infromatyka - studia\semestr 3\pp\librarydatabase\include\booksstruct.h
@@ -60,10 +60,10 @@
 
 1609174014 g:\infromatyka - studia\semestr 3\pp\librarydatabase\include\genre.h
 
-1611305162 source:g:\infromatyka - studia\semestr 3\pp\librarydatabase\src\transaction.cpp
+1611305429 source:g:\infromatyka - studia\semestr 3\pp\librarydatabase\src\transaction.cpp
 	"Transaction.h"
 
-1611305193 g:\infromatyka - studia\semestr 3\pp\librarydatabase\include\transaction.h
+1611305429 g:\infromatyka - studia\semestr 3\pp\librarydatabase\include\transaction.h
 	"BooksStruct.h"
 	"MembersStruct.h"
 
@@ -90,13 +90,13 @@
 	<iostream>
 	<fstream>
 
-1611301973 source:g:\infromatyka - studia\semestr 3\pp\librarydatabase\src\memberscoordinator.cpp
+1611305429 source:g:\infromatyka - studia\semestr 3\pp\librarydatabase\src\memberscoordinator.cpp
 	"MembersCoordinator.h"
 
 1611300687 source:g:\infromatyka - studia\semestr 3\pp\librarydatabase\src\memberdb.cpp
 	"MemberDB.h"
 
-1611304578 source:g:\infromatyka - studia\semestr 3\pp\librarydatabase\src\transactionsdb.cpp
+1611305429 source:g:\infromatyka - studia\semestr 3\pp\librarydatabase\src\transactionsdb.cpp
 	"TransactionsDB.h"
 
 1611302472 g:\infromatyka - studia\semestr 3\pp\librarydatabase\include\transactionsdb.h
@@ -105,17 +105,17 @@
 	<iostream>
 	<fstream>
 
-1611305286 source:g:\infromatyka - studia\semestr 3\pp\librarydatabase\src\transactionscoordinator.cpp
+1611389974 source:g:\infromatyka - studia\semestr 3\pp\librarydatabase\src\transactionscoordinator.cpp
 	"TransactionsCoordinator.h"
 
-1611304213 g:\infromatyka - studia\semestr 3\pp\librarydatabase\include\transactionscoordinator.h
+1611389876 g:\infromatyka - studia\semestr 3\pp\librarydatabase\include\transactionscoordinator.h
 	"TransactionsStruct.h"
 	"TransactionsDB.h"
 	"DataManipulation.h"
 	<conio.h>
 	<time.h>
 
-1611304196 g:\infromatyka - studia\semestr 3\pp\librarydatabase\include\transactionsstruct.h
+1611305429 g:\infromatyka - studia\semestr 3\pp\librarydatabase\include\transactionsstruct.h
 	"Transaction.h"
 
 1611251091 source:c:\users\huber\desktop\pp_pro\librarydatabase\main.cpp

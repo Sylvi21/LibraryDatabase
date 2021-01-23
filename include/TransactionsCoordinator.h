@@ -16,7 +16,8 @@ class TransactionsCoordinator
         TransactionNode* lastOfTransactions;
 
         string getCurrentDate();
-        void addSingleTransaction(Transaction transaction);
+        void showSingleTransaction(TransactionNode *transaction);
+        void addSingleTransaction(TransactionNode *transaction);
     public:
 
         TransactionsCoordinator(TransactionNode* firstOfTransactions, TransactionNode* lastOfTransactions, TransactionsDB *transactionsDB);
@@ -25,7 +26,6 @@ class TransactionsCoordinator
         void lendBook(Member *memberNode, Book *bookNode);
         void aquireObjectsByID(MemberNode *frontMemberNode, BookNode *frontBookNode);
         void registerReturn();
-        void showSingleTransaction(Transaction transaction);
         void showTransactions();
         void showOverdue();
 };
