@@ -39,7 +39,7 @@ char Library::showTransactionsMenu(){
     cout<<"2. Zarejestruj zwrot\n";
     cout<<"3. Wyswietl wszystkie wypozyczenia\n";
     cout<<"4. Wyswietl opoznienia w zwrocie\n";
-    cout<<"8. Wyjscie\n";
+    cout<<"5. Wyjscie\n";
 
     choice = DataManipulation::loadCharacter();
     return choice;
@@ -93,6 +93,8 @@ void Library::lendBook()
     Book *book = &(books->getBookNode(bookId)->book);
     if (book == NULL){
         cout<<"Wystapil blad. Nie udalo sie dodac ksiazki.\n";
+        cout<<"Kliknij dowolny klawisz, aby powrocic.\n";
+        getch();
         return;
     }
     transactions->lendBook(&*member, &*book);
@@ -100,15 +102,28 @@ void Library::lendBook()
 
 void Library::registerReturn()
 {
-    system("cls");
-    cout<<"Podaj ID uzytkownika zwracaj¹cego ksiazke: ";
+    system("cls"); bool found;
+    cout<<"Podaj ID uzytkownika zwracajacego ksiazke: ";
     int memberId = DataManipulation::loadInteger();
 
-    transactions->showTransactionsByMember(memberId);
+    found = transactions->showTransactionsByMember(memberId);
+    if(!found){
+        cout<<"Uzytkownik nie ma na swoim koncie wypozyczen"<<endl;
+        return;
+    }
+
     cout<<"Wybierz ID wypozyczenia: ";
     int transactionId = DataManipulation::loadInteger();
 
-//    transactions->registerReturn(transactionId);
+    Book *book = transactions->registerReturn(transactionId);
+    if(book != NULL){
+        if(books->setBookAsAvailable(book))
+            book->setStatus("dostepna");
+        else
+            cout<<"Wystapil blad. Zmiany zostana utracone po restarcie programu."<<endl;
+            cout<<"Kliknij dowolny klawisz, aby powrocic.\n";
+            getch();
+    }
 }
 
 void Library::showTransactions()

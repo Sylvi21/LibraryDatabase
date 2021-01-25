@@ -480,7 +480,10 @@ void BooksCoordinator::editBook(){
                 case '8':
                     break;
                 }
-                booksDB->editBookInDB(currentBookNode->book);
+                if(booksDB->editBookInDB(currentBookNode->book))
+                    cout<<"Ksiazka edytowana.\n";
+                else
+                    cout<<"Wystapil blad. Zmiany zostana utracone po restarcie programu.\n";
                 break;
             }
         }
@@ -564,4 +567,11 @@ void BooksCoordinator::deleteBook(BookNode* node){
     delete node;
     node = NULL;
     return;
+}
+
+bool BooksCoordinator::setBookAsAvailable(Book* book){
+    if(booksDB->editBookInDB(*book)){
+        return true;
+    }
+    return false;
 }

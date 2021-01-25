@@ -20,15 +20,15 @@ class TransactionsDB
         virtual ~TransactionsDB();
         TransactionNode* getFront();
         TransactionNode* getBack();
-        TransactionNode* loadTransactionsFromFile();
+        void loadTransactionsFromFile();
         TransactionNode* findSpot(TransactionNode* transactions, Transaction transaction);
         int getLastTransactionID();
         int setLastTransactionID(string dataLine);
         string getFilename();
         bool addTransactionToDB(Transaction transaction);
-        Transaction getSingleTransactionFromFile(string dataLine, int lastTransactionID);
-        void editTransactionInDB(Transaction transactionsFileName);
-        void removeTransactionFromDB(int ID);
+        Transaction getSingleTransactionFromFile(string dataLine);
+        bool editTransactionInDB(Transaction transactionsFileName);
+        bool removeTransactionFromDB(int ID);
 
 };
 

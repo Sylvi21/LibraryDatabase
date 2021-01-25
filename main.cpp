@@ -11,12 +11,6 @@ using namespace std;
 
 int main()
 {
-  //  HWND console = GetConsoleWindow();
-//	RECT ConsoleRect;
-//	GetWindowRect(console, &ConsoleRect);
-
- //   MoveWindow(console, ConsoleRect.left, ConsoleRect.top, 600, 400, TRUE);
-
     BooksDB *booksDB = new BooksDB();
     booksDB->loadBooksFromFile();
     BookNode *frontBookNode = booksDB->getFront();
@@ -72,7 +66,6 @@ int main()
                     default:
                         cout<< "Nie ma takiej opcji w menu. Wybierz jeszcze raz.\n";
                 }
-                break;
             }
             case '2': {
                 choice = library.showBooksMenu();
@@ -101,8 +94,9 @@ int main()
                     case'6': {
                         break;
                     }
-                    default:
+                    default:{
                         cout<< "Nie ma takiej opcji w menu. Wybierz jeszcze raz.\n";
+                    }
                 }
                 break;
             }

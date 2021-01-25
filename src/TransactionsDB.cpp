@@ -22,7 +22,7 @@ TransactionNode* TransactionsDB::getBack()
     return lastOfTransactions;
 }
 
-TransactionNode* TransactionsDB::loadTransactionsFromFile()
+void TransactionsDB::loadTransactionsFromFile()
 {
     string dataLine="", lastTransactionDataLine="";
     TransactionNode* pom = NULL;
@@ -36,7 +36,7 @@ TransactionNode* TransactionsDB::loadTransactionsFromFile()
     {
         while (getline(transactionsFile, dataLine))
         {
-            singleTransaction = getSingleTransactionFromFile(dataLine, lastTransactionID);
+            singleTransaction = getSingleTransactionFromFile(dataLine);
             TransactionNode* newTransactionNode = new TransactionNode();
             newTransactionNode->transaction = singleTransaction;
             if (firstOfTransactions == NULL) {
@@ -76,8 +76,6 @@ TransactionNode* TransactionsDB::loadTransactionsFromFile()
     temp = NULL;
     delete pom;
     pom = NULL;
-
-    return firstOfTransactions;
 }
 
 int TransactionsDB::getLastTransactionID(){
@@ -98,7 +96,7 @@ TransactionNode* TransactionsDB::findSpot(TransactionNode* transactions, Transac
     return transactions;
 }
 
-Transaction TransactionsDB::getSingleTransactionFromFile(string dataLine, int lastTransactionID)
+Transaction TransactionsDB::getSingleTransactionFromFile(string dataLine)
 {
     Transaction singleTransaction;
     string subLine="";
@@ -123,6 +121,9 @@ Transaction TransactionsDB::getSingleTransactionFromFile(string dataLine, int la
             case 3:
                 singleTransaction.setMemberID(stoi(subLine.c_str()));
                 break;
+            case 4:
+                singleTransaction.setDateBorrowed(subLine);
+                break;
             }
             subLine="";
             subLineNumber++;
@@ -141,7 +142,8 @@ bool TransactionsDB::addTransactionToDB(Transaction transaction)
         transactionsDB<<transaction.getID()<<"|";
         transactionsDB<<transaction.getMemberID()<<"|";
         transactionsDB<<transaction.getBookID()<<"|";
-        transactionsDB<<transaction.getDateBorrowed()<<endl;
+       // transactionsDB<<transaction.getDateBorrowed()<<"|";
+        transactionsDB<<transaction.getDateBorrowed()<<"|"<<endl;
 
         transactionsDB.close();
         lastTransactionID++;
@@ -159,7 +161,7 @@ string TransactionsDB::getFilename(){
 }
 
 
-void TransactionsDB::removeTransactionFromDB(int ID){
+bool TransactionsDB::removeTransactionFromDB(int ID){
     ifstream inFile("Transactions.txt");
     ofstream outFile;
     outFile.open("temp.txt", ios::out | ios::app);
@@ -189,12 +191,12 @@ void TransactionsDB::removeTransactionFromDB(int ID){
         inFile.close();
         remove("Transactions.txt");
         rename("temp.txt", "Transactions.txt");
-        cout<<"Wypozyczenie usuniete pomyslnie!\n";
+        return true;
     }
     else
     {
-        cout<<"Program napotkal blad. Nie mozna otworzyc pliku.";
         outFile.close();
         remove("temp.txt");
+        return false;
     }
 }

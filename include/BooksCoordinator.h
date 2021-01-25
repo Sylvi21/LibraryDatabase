@@ -36,6 +36,7 @@ class BooksCoordinator
         BookNode* findSpot(Book book);
         BookNode* getBookNode(int Id);
         void searchForBook();
+        bool setBookAsAvailable(Book* book);
         void editBook();
         void removeBook();
 };
