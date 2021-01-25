@@ -19,7 +19,7 @@ class TransactionsCoordinator
         TransactionNode* getTransactionById(int id);
         void showSingleTransaction(TransactionNode *transaction);
         void addSingleTransaction(TransactionNode *transaction);
-        void removeTransaction(TransactionNode* node);
+        int removeTransaction(TransactionNode* node);
     public:
 
         TransactionsCoordinator(TransactionNode* firstOfTransactions, TransactionNode* lastOfTransactions, TransactionsDB *transactionsDB);
@@ -27,9 +27,9 @@ class TransactionsCoordinator
         TransactionNode* findSpot(TransactionNode transaction);
         void lendBook(Member *memberNode, Book *bookNode);
         void aquireObjectsByID(MemberNode *frontMemberNode, BookNode *frontBookNode);
-        void registerReturn(int id);
+        Book* registerReturn(int id);
         void showTransactions();
-        void showTransactionsByMember(int memberId);
+        bool showTransactionsByMember(int memberId);
         void showOverdue();
 };
 

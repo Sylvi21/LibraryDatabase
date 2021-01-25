@@ -20,7 +20,7 @@ class MembersDB
         virtual ~MembersDB();
         MemberNode* getFront();
         MemberNode* getBack();
-        MemberNode* loadMembersFromFile();
+        void loadMembersFromFile();
         MemberNode* findSpot(MemberNode* members, Member member);
         int getLastMemberID();
         int setLastMemberID(string dataLine);

@@ -119,7 +119,7 @@ BookNode* BooksDB::findSpot(BookNode* books, Book book)
     return books;
 }
 
-BookNode* BooksDB::loadBooksFromFile(){
+void BooksDB::loadBooksFromFile(){
     string dataLine="", lastBookDataLine="";
     BookNode* pom = NULL;
     BookNode* temp = new BookNode();
@@ -172,11 +172,9 @@ BookNode* BooksDB::loadBooksFromFile(){
     temp = NULL;
     delete pom;
     pom = NULL;
-
-    return firstOfBooks;
 }
 
-void BooksDB::editBookInDB(Book book){
+bool BooksDB::editBookInDB(Book book){
     string line=""; string subLine="";
     ifstream inFile("Books.txt");
     ofstream outFile;
@@ -186,6 +184,7 @@ void BooksDB::editBookInDB(Book book){
         outFile.close();
         remove("temp.txt");
         cout<<"Nie udalo sie otworzyc pliku z ksiazkami.\n";
+        return false;
     }
     else
     {
@@ -216,6 +215,7 @@ void BooksDB::editBookInDB(Book book){
         remove("Books.txt");
         rename("temp.txt", "Books.txt");
         cout<<"Ksiazka edytowana pomyslnie!\n";
+        return true;
     }
 }
 

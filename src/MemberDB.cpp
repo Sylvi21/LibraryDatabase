@@ -100,7 +100,7 @@ MemberNode* MembersDB::findSpot(MemberNode* members, Member member)
     return members;
 }
 
-MemberNode* MembersDB::loadMembersFromFile(){
+void MembersDB::loadMembersFromFile(){
     string dataLine="", lastMemberDataLine="";
     MemberNode* pom = NULL;
     MemberNode* temp = new MemberNode();
@@ -153,8 +153,6 @@ MemberNode* MembersDB::loadMembersFromFile(){
     delete temp;
     pom = NULL;
     delete pom;
-
-    return firstOfMembers;
 }
 
 void MembersDB::editMemberInFile(Member memberToEdit){

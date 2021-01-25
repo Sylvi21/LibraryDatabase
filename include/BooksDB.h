@@ -20,14 +20,14 @@ class BooksDB
         virtual ~BooksDB();
         BookNode* getFront();
         BookNode* getBack();
-        BookNode* loadBooksFromFile();
+        void loadBooksFromFile();
         BookNode* findSpot(BookNode* books, Book book);
         int getLastBookID();
         int setLastBookID(string dataLine);
         string getFilename();
         bool addBookToDB(Book book);
         Book getSingleBookFromFile(string dataLine, int lastBookID);
-        void editBookInDB(Book book);
+        bool editBookInDB(Book book);
         void removeBookFromDB(int ID);
 };
 

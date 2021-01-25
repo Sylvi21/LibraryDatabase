@@ -1,4 +1,5 @@
 #include "TransactionsCoordinator.h"
+#include <iomanip>
 
 TransactionsCoordinator::TransactionsCoordinator(TransactionNode* firstOfTransactions, TransactionNode* lastOfTransactions, TransactionsDB *transactionsDB)
 {
@@ -28,22 +29,46 @@ void TransactionsCoordinator::aquireObjectsByID(MemberNode *frontMemberNode, Boo
     while(currentNode != NULL){
         //get Member
         ID = currentNode->transaction.getMemberID();
+        cout<<"Member ID = "<<ID<<endl;
         MemberNode *tempMember = frontMemberNode;
-        while(tempMember != NULL && tempMember->member.getID() != ID)
+        while(tempMember != NULL || tempMember->member.getID()!= ID){
+            cout<<"counter: "<<counter<<endl;
+            cout<<"tempMember.member = "<<tempMember->member.getID()<<endl;
+            if(tempMember->member.getID()== ID)
+                break;
             tempMember = tempMember->next;
+
+   /*     if(tempMember->next != NULL)
+            cout<<"tempMember.next = "<<tempMember->next->member.getID()<<endl;
+        if(tempMember->prev != NULL)
+            cout<<"tempMember.prev = "<<tempMember->prev->member.getID()<<endl;*/
+        }
         currentNode->member = &(tempMember->member);
+        cout<<"currentNode->member = "<<currentNode->member->getMemberSurname()<<endl;
         //get Book
         ID = currentNode->transaction.getBookID();
+        cout<<"Book ID = "<<ID<<endl;
         BookNode *tempBook = frontBookNode;
-        while(tempBook != NULL && tempBook->book.getID() != ID)
+        while(tempBook != NULL || tempBook->book.getID() != ID){
+            cout<<"counter: "<<counter<<endl;
+            cout<<"tempBook.book = "<<tempBook->book.getID()<<endl;
+            if(tempBook->book.getID() == ID)
+                break;
             tempBook = tempBook->next;
+   /*     if(tempBook->next != NULL)
+            cout<<"tempBook.next = "<<tempBook->next->book.getID()<<endl;
+        if(tempBook->prev != NULL)
+            cout<<"tempBook.prev = "<<tempBook->prev->book.getID()<<endl;*/
+        }
         currentNode->book = &(tempBook->book);
         //next transaction
 
-        if(counter == 1)
-            firstOfTransactions = currentNode;
+ /*       if(counter == 1)
+            firstOfTransactions = currentNode;*/
+        counter ++;
         currentNode=currentNode->next;
     }
+
 }
 
 TransactionNode* TransactionsCoordinator::getTransactionById(int id){
@@ -139,20 +164,21 @@ void TransactionsCoordinator::lendBook(Member *member, Book *book)
     cout << "Kliknij dowolny klawisz, aby powrocic" << "\n";
     getch();
 }
-/*
-void TransactionsCoordinator::registerReturn(int id)
+
+Book* TransactionsCoordinator::registerReturn(int id)
 {
-    int removedId;
+    int removedId; Book* book = NULL;
     TransactionNode *transactionNode = getTransactionById(id);
     if(transactionNode == NULL){
         cout << "Nie udalo sie odnalezc wypozyczenia o ID "<<id<<"! \n";
     }
     if(transactionsDB->removeTransactionFromDB(transactionNode->transaction.getID())){
-        transactionNode->book->setStatus("dostepna");
+        book = transactionNode->book;
         removedId = removeTransaction(transactionNode);
         if(removedId != 0){
             cout << "Zarejestrowano zwrot.\n";
         } else {
+            book = NULL;
             cout << "Wystapil blad w programie. Nie udalo sie zarejestrowac zwrotu.\n";
         }
     } else {
@@ -160,12 +186,15 @@ void TransactionsCoordinator::registerReturn(int id)
     }
     cout << "Kliknij dowolny klawisz, aby powrocic" << "\n";
     getch();
+    return book;
 }
-*/
-void TransactionsCoordinator::removeTransaction(TransactionNode* node){
+
+int TransactionsCoordinator::removeTransaction(TransactionNode* node){
     TransactionNode *tmp = NULL;
     if(firstOfTransactions == NULL)
-        return;
+        return 0;
+    int id = node->book->getID();
+
     if(node == firstOfTransactions){
         firstOfTransactions = firstOfTransactions->next;
         if(firstOfTransactions != NULL)
@@ -184,36 +213,43 @@ void TransactionsCoordinator::removeTransaction(TransactionNode* node){
     }
     delete node;
     node = NULL;
-    return;
+    return id;
 }
 
 void TransactionsCoordinator::showSingleTransaction(TransactionNode* transaction)
 {
-    cout<<transaction->transaction.getID()<<" "<<
-    transaction->member->getMemberName()<<" "<<
-    transaction->member->getMemberSurname()<<" "<<
-    transaction->book->getAuthorsName()<<" "<<
-    transaction->book->getAuthorsSurname()<<" "<<
-    transaction->book->getTitle()<<endl;
+    cout <<transaction->transaction.getID()<<"|"<<
+    transaction->transaction.getMemberID()<<"|"<<
+    transaction->member->getMemberName()<<"|"<<
+    transaction->member->getMemberSurname()<<"|"<<
+    transaction->transaction.getBookID()<<"|"<<
+    transaction->book->getAuthorsName()<<"|"<<
+    transaction->book->getAuthorsSurname()<<"|"<<
+    transaction->book->getTitle()<<"|"<<endl;
 }
 
-void TransactionsCoordinator::showTransactionsByMember(int memberId){
+bool TransactionsCoordinator::showTransactionsByMember(int memberId){
     TransactionNode* currentTransactionNode = firstOfTransactions;
-    system("cls");
+    system("cls"); bool found = false;
     cout<<"-----WYPOZYCZENIA-----\n\n";
     if (currentTransactionNode == NULL)
         cout<<"Baza danych jest pusta. Dodaj wypozyczenia."<<"\n";
-    else
-    {
-        while(currentTransactionNode != NULL && currentTransactionNode->member->getID() == memberId){
+        cout<<"\nKliknij dowolny klawisz, aby powrocic"<<"\n";
+        getch();
+        return false;
+
+    while(currentTransactionNode != NULL){
+        if (currentTransactionNode->member->getID() == memberId){
             showSingleTransaction(currentTransactionNode);
-            currentTransactionNode = currentTransactionNode->next;
         }
+        currentTransactionNode = currentTransactionNode->next;
     }
+
     delete currentTransactionNode;
     currentTransactionNode = NULL;
     cout<<"\nKliknij dowolny klawisz, aby powrocic"<<"\n";
     getch();
+    return found;
 }
 
 void TransactionsCoordinator::showTransactions()

@@ -32,12 +32,12 @@ void Transaction::setMemberID(int MemberID)
 
 int Transaction::getBookID()
 {
-return BookID;
+    return BookID;
 }
 
 int Transaction::getMemberID()
 {
-return MemberID;
+    return MemberID;
 }
 
 void Transaction::setDateBorrowed(string date){
