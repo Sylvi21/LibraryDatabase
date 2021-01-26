@@ -1,4 +1,6 @@
 #include "TransactionsCoordinator.h"
+#include "DataManipulation.h"
+
 #include <iomanip>
 
 TransactionsCoordinator::TransactionsCoordinator(TransactionNode* firstOfTransactions, TransactionNode* lastOfTransactions, TransactionsDB *transactionsDB)
@@ -269,5 +271,36 @@ void TransactionsCoordinator::showTransactions()
 
 void TransactionsCoordinator::showOverdue()
 {
-
+    DataManipulation* data = dataManipulation;
+    TransactionNode* currentTransactionNode = firstOfTransactions;
+    system("cls");
+    cout<<"-----WYPOZYCZENIA PRZETERMINOWANE-----\n\n";
+    if (currentTransactionNode == NULL)
+        cout<<"Baza danych jest pusta. Dodaj wypozyczenia."<<"\n";
+    else
+    {
+        while(currentTransactionNode != NULL){
+           if(data->getCurrentDate()>currentTransactionNode->transaction.getDueDate())
+           {
+               showSingleTransaction(currentTransactionNode);
+                cout<<"Wygenerowano ponaglenie do przeterminowanego wypozyczenia"<<endl;
+                    fstream expired;
+                    expired.open("expired.txt", ios::app);
+                    if(expired.good()==true)
+                    {
+                    expired<<"Szanowny/na "<<currentTransactionNode->member->getMemberName()<<" "<<currentTransactionNode->member->getMemberSurname()<<" z dniem "<<currentTransactionNode->transaction.getDueDate()<<" minal czas zwrotu ksiazki: "<<currentTransactionNode->book->getTitle()<<" autorstwa "<<currentTransactionNode->book->getAuthorsName()<<" "<<currentTransactionNode->book->getAuthorsSurname()<<". Prosimy o zwrot ksiazki do biblioteki w ciagu tygodnia od otrzymania ponaglenia. W przypadku braku zwrotu nalozona zostanie kara w wysokosci wartosci wypozyczonej ksiazki.\n"<<endl;
+                    expired.close();
+                    }
+    else
+    {
+        cout<<"Nie udalo sie otworzyc pliku i zapisac do niego danych.";
+    }
+           }
+            currentTransactionNode = currentTransactionNode->next;
+        }
+    }
+    delete currentTransactionNode;
+    currentTransactionNode = NULL;
+    cout<<"\nKliknij dowolny klawisz, aby powrocic"<<"\n";
+    getch();
 }

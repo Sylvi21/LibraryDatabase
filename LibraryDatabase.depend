@@ -120,7 +120,7 @@
 1611305429 g:\infromatyka - studia\semestr 3\pp\librarydatabase\include\transactionsstruct.h
 	"Transaction.h"
 
-1611318833 source:c:\users\huber\desktop\pp_pro\librarydatabase\main.cpp
+1611686041 source:c:\users\huber\desktop\pp_pro\librarydatabase\main.cpp
 	"Library.h"
 	<iostream>
 	<windows.h>
@@ -138,7 +138,7 @@
 	<iostream>
 	"MembersStruct.h"
 
-1611251091 c:\users\huber\desktop\pp_pro\librarydatabase\include\bookscoordinator.h
+1611686041 c:\users\huber\desktop\pp_pro\librarydatabase\include\bookscoordinator.h
 	"BooksStruct.h"
 	"BooksDB.h"
 	"DataManipulation.h"
@@ -150,17 +150,18 @@
 1611251091 c:\users\huber\desktop\pp_pro\librarydatabase\include\book.h
 	<string>
 
-1611251091 c:\users\huber\desktop\pp_pro\librarydatabase\include\booksdb.h
+1611686041 c:\users\huber\desktop\pp_pro\librarydatabase\include\booksdb.h
 	"Book.h"
 	"DataManipulation.h"
 	<iostream>
 	<fstream>
 	"BooksStruct.h"
 
-1611251091 c:\users\huber\desktop\pp_pro\librarydatabase\include\datamanipulation.h
+1611686041 c:\users\huber\desktop\pp_pro\librarydatabase\include\datamanipulation.h
 	<iostream>
 	<sstream>
 	<string>
+	<ctime>
 
 1611255475 c:\users\huber\desktop\pp_pro\librarydatabase\include\memberscoordinator.h
 	"MembersStruct.h"
@@ -175,14 +176,14 @@
 1611251091 c:\users\huber\desktop\pp_pro\librarydatabase\include\member.h
 	<string>
 
-1611255316 c:\users\huber\desktop\pp_pro\librarydatabase\include\memberdb.h
+1611686041 c:\users\huber\desktop\pp_pro\librarydatabase\include\memberdb.h
 	"Member.h"
 	"DataManipulation.h"
 	"MembersStruct.h"
 	<iostream>
 	<fstream>
 
-1611405024 c:\users\huber\desktop\pp_pro\librarydatabase\include\transactionscoordinator.h
+1611691418 c:\users\huber\desktop\pp_pro\librarydatabase\include\transactionscoordinator.h
 	"TransactionsStruct.h"
 	"TransactionsDB.h"
 	"DataManipulation.h"
@@ -196,7 +197,7 @@
 	"BooksStruct.h"
 	"MembersStruct.h"
 
-1611405700 c:\users\huber\desktop\pp_pro\librarydatabase\include\transactionsdb.h
+1611686041 c:\users\huber\desktop\pp_pro\librarydatabase\include\transactionsdb.h
 	"TransactionsStruct.h"
 	"DataManipulation.h"
 	<iostream>
@@ -205,33 +206,35 @@
 1611251091 source:c:\users\huber\desktop\pp_pro\librarydatabase\src\book.cpp
 	"Book.h"
 
-1611252968 source:c:\users\huber\desktop\pp_pro\librarydatabase\src\bookscoordinator.cpp
+1611686041 source:c:\users\huber\desktop\pp_pro\librarydatabase\src\bookscoordinator.cpp
 	"BooksCoordinator.h"
 
-1611251091 source:c:\users\huber\desktop\pp_pro\librarydatabase\src\booksdb.cpp
+1611686041 source:c:\users\huber\desktop\pp_pro\librarydatabase\src\booksdb.cpp
 	"BooksDB.h"
 
-1611251091 source:c:\users\huber\desktop\pp_pro\librarydatabase\src\datamanipulation.cpp
+1611686041 source:c:\users\huber\desktop\pp_pro\librarydatabase\src\datamanipulation.cpp
 	"DataManipulation.h"
 
-1611405024 source:c:\users\huber\desktop\pp_pro\librarydatabase\src\library.cpp
+1611686041 source:c:\users\huber\desktop\pp_pro\librarydatabase\src\library.cpp
 	"Library.h"
 
 1611251433 source:c:\users\huber\desktop\pp_pro\librarydatabase\src\member.cpp
 	"Member.h"
 
-1611262778 source:c:\users\huber\desktop\pp_pro\librarydatabase\src\memberdb.cpp
+1611686041 source:c:\users\huber\desktop\pp_pro\librarydatabase\src\memberdb.cpp
 	"MemberDB.h"
 
-1611318833 source:c:\users\huber\desktop\pp_pro\librarydatabase\src\memberscoordinator.cpp
+1611686041 source:c:\users\huber\desktop\pp_pro\librarydatabase\src\memberscoordinator.cpp
 	"MembersCoordinator.h"
 
-1611405511 source:c:\users\huber\desktop\pp_pro\librarydatabase\src\transactionsdb.cpp
+1611686041 source:c:\users\huber\desktop\pp_pro\librarydatabase\src\transactionsdb.cpp
 	"TransactionsDB.h"
 
-1611405350 source:c:\users\huber\desktop\pp_pro\librarydatabase\src\transaction.cpp
+1611686041 source:c:\users\huber\desktop\pp_pro\librarydatabase\src\transaction.cpp
 	"Transaction.h"
 
-1611405736 source:c:\users\huber\desktop\pp_pro\librarydatabase\src\transactionscoordinator.cpp
+1611691942 source:c:\users\huber\desktop\pp_pro\librarydatabase\src\transactionscoordinator.cpp
 	"TransactionsCoordinator.h"
+	"DataManipulation.h"
+	<iomanip>
 
