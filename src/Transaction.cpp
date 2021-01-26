@@ -47,3 +47,11 @@ void Transaction::setDateBorrowed(string date){
 string Transaction::getDateBorrowed(){
     return dateBorrowed;
 }
+
+void Transaction::setDueDate(string date){
+    this->dueDate = date;
+}
+
+string Transaction::getDueDate(){
+    return dueDate;
+}

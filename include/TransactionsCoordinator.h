@@ -15,7 +15,6 @@ class TransactionsCoordinator
         TransactionNode* firstOfTransactions;
         TransactionNode* lastOfTransactions;
 
-        string getCurrentDate();
         TransactionNode* getTransactionById(int id);
         void showSingleTransaction(TransactionNode *transaction);
         void addSingleTransaction(TransactionNode *transaction);

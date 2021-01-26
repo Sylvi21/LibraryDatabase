@@ -74,3 +74,58 @@ int DataManipulation::extractNumber(std::string dataLine, int caseNumber)
     intNumber = stringToInt(stringNumber);
     return intNumber;
 }
+
+bool isLeapYear(int year)
+{
+    if ((year%4==0 && year%100!=0) || year%400==0)
+        return true;
+    else
+        return false;
+}
+
+int getDaysInMonth(int year, int month)
+{
+    if (month == 4 || month == 6 || month == 9 || month == 11)
+        return 30;
+    else if (month == 2 && isLeapYear(year))
+        return 29;
+    else if (month == 2 && !isLeapYear(year))
+        return 28;
+    else
+        return 31;
+}
+
+string DataManipulation::getCurrentDate()
+{
+    time_t now = time(0);
+    tm *ltm = localtime(&now);
+
+    return to_string(1900 + ltm->tm_year)+"/"+to_string(1 + ltm->tm_mon)+"/"+to_string(ltm->tm_mday);
+}
+
+string DataManipulation::getDueDate()
+{
+    time_t now = time(0);
+    tm *ltm = localtime(&now);
+    int year = 1900 + ltm->tm_year;
+    int month = 1 + ltm->tm_mon;
+    if(month + 3 > 12){
+        month = month + 3 - 12;
+        year += 1;
+    }
+    int day =ltm->tm_mday;
+
+    int daysThreeMonthsFromNow = getDaysInMonth(year, month);
+    while (month > 12 || daysThreeMonthsFromNow < day){
+        if (month > 12){
+            year += 1;
+        }
+        if (daysThreeMonthsFromNow < day){
+            day -= daysThreeMonthsFromNow;
+            month += 1;
+        }
+        daysThreeMonthsFromNow = getDaysInMonth(year, month);
+    }
+
+    return to_string(1900 + ltm->tm_year)+"/"+to_string(1 + ltm->tm_mon)+"/"+to_string(ltm->tm_mday);
+}

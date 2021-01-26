@@ -71,24 +71,15 @@ void TransactionsCoordinator::aquireObjectsByID(MemberNode *frontMemberNode, Boo
 
 }
 
-TransactionNode* TransactionsCoordinator::getTransactionById(int id){
+TransactionNode* TransactionsCoordinator::getTransactionById(int id)
+{
     TransactionNode* currentNode = firstOfTransactions;
-    while(currentNode != NULL && currentNode->transaction.getID() == id)
+    while(currentNode != NULL){
+            if(currentNode->transaction.getID() == id)
+                break;
         currentNode=currentNode->next;
+    }
     return currentNode;
-}
-
-string TransactionsCoordinator::getCurrentDate(){
-    time_t rawtime;
-    struct tm * timeinfo;
-    char buffer[80];
-
-    time(&rawtime);
-    timeinfo = localtime(&rawtime);
-
-    strftime(buffer, 80, "%m/%d/%Y ", timeinfo);
-    string str(buffer);
-    return str;
 }
 
 TransactionNode* TransactionsCoordinator::findSpot(TransactionNode transaction)
@@ -140,17 +131,18 @@ void TransactionsCoordinator::lendBook(Member *member, Book *book)
     system("cls");
     cout << "WYPOZYCZ KSIAZKE\n\n";
 
-    string date = "";
+    string date = "", dueDate = "";
 
     TransactionNode* transactionNode = new TransactionNode();
     transactionNode->member = member;
     transactionNode->book = book;
     transactionNode->transaction.setID(transactionsDB->getLastTransactionID()+1);
-    transactionNode->transaction.setBookID(book->getID());
     transactionNode->transaction.setMemberID(member->getID());
-    date = getCurrentDate();
+    transactionNode->transaction.setBookID(book->getID());
+    date = DataManipulation::getCurrentDate();
     transactionNode->transaction.setDateBorrowed(date);
- //   transactionNode->dueDate(date + 3 mce trzeba zrobiæ)
+    dueDate = DataManipulation::getDueDate();
+    transactionNode->transaction.setDueDate(dueDate);
 
     if (transactionsDB->addTransactionToDB(transactionNode->transaction))
     {
@@ -172,6 +164,7 @@ Book* TransactionsCoordinator::registerReturn(int id)
     if(transactionNode == NULL){
         cout << "Nie udalo sie odnalezc wypozyczenia o ID "<<id<<"! \n";
     }
+    cout<<transactionNode->transaction.getID()<<endl;
     if(transactionsDB->removeTransactionFromDB(transactionNode->transaction.getID())){
         book = transactionNode->book;
         removedId = removeTransaction(transactionNode);
@@ -219,6 +212,8 @@ int TransactionsCoordinator::removeTransaction(TransactionNode* node){
 void TransactionsCoordinator::showSingleTransaction(TransactionNode* transaction)
 {
     cout <<transaction->transaction.getID()<<"|"<<
+    transaction->transaction.getDateBorrowed()<<"|"<<
+    transaction->transaction.getDueDate()<<"|"<<
     transaction->transaction.getMemberID()<<"|"<<
     transaction->member->getMemberName()<<"|"<<
     transaction->member->getMemberSurname()<<"|"<<
@@ -228,27 +223,27 @@ void TransactionsCoordinator::showSingleTransaction(TransactionNode* transaction
     transaction->book->getTitle()<<"|"<<endl;
 }
 
-bool TransactionsCoordinator::showTransactionsByMember(int memberId){
+bool TransactionsCoordinator::showTransactionsByMember(int memberId)
+{
     TransactionNode* currentTransactionNode = firstOfTransactions;
     system("cls"); bool found = false;
     cout<<"-----WYPOZYCZENIA-----\n\n";
-    if (currentTransactionNode == NULL)
+    if (currentTransactionNode == NULL){
         cout<<"Baza danych jest pusta. Dodaj wypozyczenia."<<"\n";
         cout<<"\nKliknij dowolny klawisz, aby powrocic"<<"\n";
         getch();
         return false;
-
+    }
     while(currentTransactionNode != NULL){
-        if (currentTransactionNode->member->getID() == memberId){
+        if (currentTransactionNode->transaction.getMemberID() == memberId){
             showSingleTransaction(currentTransactionNode);
+            found = true;
         }
         currentTransactionNode = currentTransactionNode->next;
     }
 
     delete currentTransactionNode;
     currentTransactionNode = NULL;
-    cout<<"\nKliknij dowolny klawisz, aby powrocic"<<"\n";
-    getch();
     return found;
 }
 

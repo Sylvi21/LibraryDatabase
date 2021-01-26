@@ -39,13 +39,14 @@ void TransactionsDB::loadTransactionsFromFile()
             singleTransaction = getSingleTransactionFromFile(dataLine);
             TransactionNode* newTransactionNode = new TransactionNode();
             newTransactionNode->transaction = singleTransaction;
+            cout<<"transaction:"<<newTransactionNode->transaction.getID()<<" "<<newTransactionNode->transaction.getMemberID()<<" "<<newTransactionNode->transaction.getBookID()<<endl<<endl;
             if (firstOfTransactions == NULL) {
                 firstOfTransactions = newTransactionNode;
                 lastOfTransactions = newTransactionNode;
                 newTransactionNode->prev = NULL;
                 newTransactionNode->next = NULL;
             } else {
-                temp = findSpot(firstOfTransactions, singleTransaction);
+                temp = findSpot(singleTransaction);
                 if(firstOfTransactions == temp){
                     newTransactionNode->next = firstOfTransactions;
                     firstOfTransactions->prev = newTransactionNode;
@@ -65,6 +66,7 @@ void TransactionsDB::loadTransactionsFromFile()
                 }
             }
             lastTransactionDataLine = dataLine;
+            cout<<"firsttransaction:"<<firstOfTransactions->transaction.getID()<<" "<<firstOfTransactions->transaction.getMemberID()<<" "<<firstOfTransactions->transaction.getBookID()<<endl<<endl;
         }
         transactionsFile.close();
     }
@@ -76,6 +78,7 @@ void TransactionsDB::loadTransactionsFromFile()
     temp = NULL;
     delete pom;
     pom = NULL;
+//cout<<"firsttransaction:"<<firstOfTransactions->transaction.getID()<<" "<<firstOfTransactions->transaction.getMemberID()<<" "<<firstOfTransactions->transaction.getBookID()<<endl<<endl;
 }
 
 int TransactionsDB::getLastTransactionID(){
@@ -86,13 +89,16 @@ int TransactionsDB::setLastTransactionID(string dataLine)
 {
     int newID = DataManipulation::extractNumber(dataLine, 1);
     lastTransactionID = newID;
+
     return lastTransactionID;
 }
 
-TransactionNode* TransactionsDB::findSpot(TransactionNode* transactions, Transaction transaction)
+TransactionNode* TransactionsDB::findSpot(Transaction transaction)
 {
+    TransactionNode* transactions = firstOfTransactions;
     while(transactions != NULL && transactions->transaction.getBookID() < transaction.getBookID())
         transactions=transactions->next;
+
     return transactions;
 }
 
@@ -116,13 +122,16 @@ Transaction TransactionsDB::getSingleTransactionFromFile(string dataLine)
                 singleTransaction.setID(stoi(subLine.c_str()));
                 break;
             case 2:
-                singleTransaction.setBookID(stoi(subLine.c_str()));
+                singleTransaction.setMemberID(stoi(subLine.c_str()));
                 break;
             case 3:
-                singleTransaction.setMemberID(stoi(subLine.c_str()));
+                singleTransaction.setBookID(stoi(subLine.c_str()));
                 break;
             case 4:
                 singleTransaction.setDateBorrowed(subLine);
+                break;
+            case 5:
+                singleTransaction.setDueDate(subLine);
                 break;
             }
             subLine="";
@@ -142,8 +151,8 @@ bool TransactionsDB::addTransactionToDB(Transaction transaction)
         transactionsDB<<transaction.getID()<<"|";
         transactionsDB<<transaction.getMemberID()<<"|";
         transactionsDB<<transaction.getBookID()<<"|";
-       // transactionsDB<<transaction.getDateBorrowed()<<"|";
-        transactionsDB<<transaction.getDateBorrowed()<<"|"<<endl;
+        transactionsDB<<transaction.getDateBorrowed()<<"|";
+        transactionsDB<<transaction.getDueDate()<<"|"<<endl;
 
         transactionsDB.close();
         lastTransactionID++;
