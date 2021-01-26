@@ -172,6 +172,7 @@ void BooksDB::loadBooksFromFile(){
     temp = NULL;
     delete pom;
     pom = NULL;
+    cout<<"firstbook:"<<firstOfBooks->book.getID()<<endl<<endl;
 }
 
 bool BooksDB::editBookInDB(Book book){

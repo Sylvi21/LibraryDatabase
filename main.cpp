@@ -21,16 +21,15 @@ int main()
     membersDB->loadMembersFromFile();
     MemberNode *frontMemberNode = membersDB->getFront();
     MemberNode *backMemberNode = membersDB->getBack();
-    membersDB->getBack();
     MembersCoordinator *members = new MembersCoordinator(frontMemberNode, backMemberNode, membersDB);
 
     TransactionsDB *transactionsDB = new TransactionsDB();
     transactionsDB->loadTransactionsFromFile();
     TransactionNode *frontTransactionNode = transactionsDB->getFront();
     TransactionNode *backTransactionNode = transactionsDB->getBack();
-    transactionsDB->getBack();
     TransactionsCoordinator *transactions = new TransactionsCoordinator(frontTransactionNode, backTransactionNode, transactionsDB);
-    transactions->aquireObjectsByID(frontMemberNode, frontBookNode);
+    if(frontTransactionNode != NULL)
+        transactions->aquireObjectsByID(frontMemberNode, frontBookNode);
 
     Library library(books, members, transactions);
     char choice;
@@ -66,6 +65,7 @@ int main()
                     default:
                         cout<< "Nie ma takiej opcji w menu. Wybierz jeszcze raz.\n";
                 }
+                break;
             }
             case '2': {
                 choice = library.showBooksMenu();

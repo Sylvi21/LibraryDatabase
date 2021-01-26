@@ -11,17 +11,17 @@ using namespace std;
 class TransactionsDB
 {
     private:
-    string transactionsFileName = "Transactions.txt";
-    int lastTransactionID;
-    TransactionNode* firstOfTransactions;
-    TransactionNode* lastOfTransactions;
+        string transactionsFileName = "Transactions.txt";
+        int lastTransactionID;
+        TransactionNode* firstOfTransactions;
+        TransactionNode* lastOfTransactions;
     public:
         TransactionsDB();
         virtual ~TransactionsDB();
         TransactionNode* getFront();
         TransactionNode* getBack();
         void loadTransactionsFromFile();
-        TransactionNode* findSpot(TransactionNode* transactions, Transaction transaction);
+        TransactionNode* findSpot(Transaction transaction);
         int getLastTransactionID();
         int setLastTransactionID(string dataLine);
         string getFilename();

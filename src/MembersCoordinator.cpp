@@ -251,7 +251,8 @@ void MembersCoordinator::addSingleMember(Member member)
     }
 }
 
-bool MembersCoordinator::editMember(){
+bool MembersCoordinator::editMember()
+{
     MemberNode* currentMemberNode = firstOfMembers;
     int searchedID;
     bool memberExists = false;
