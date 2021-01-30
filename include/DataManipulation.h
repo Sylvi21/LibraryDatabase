@@ -9,15 +9,18 @@ using namespace std;
 
 class DataManipulation
 {
+    private:
+        static int getDaysInMonth(int year, int month);
+        static bool isLeapYear(int year);
     public:
         static string loadLine();
         static char loadCharacter();
         static int loadInteger();
         static int extractNumber(string dataLine, int caseNumber);
         static int stringToInt(string stringNumber);
-        bool isLeapYear(int year);
         static string getCurrentDate();
         static string getDueDate();
+        static int getCurrentYear();
 };
 #endif // DATA_MANIPULATION_H
 

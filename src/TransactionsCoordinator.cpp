@@ -39,11 +39,6 @@ void TransactionsCoordinator::aquireObjectsByID(MemberNode *frontMemberNode, Boo
             if(tempMember->member.getID()== ID)
                 break;
             tempMember = tempMember->next;
-
-   /*     if(tempMember->next != NULL)
-            cout<<"tempMember.next = "<<tempMember->next->member.getID()<<endl;
-        if(tempMember->prev != NULL)
-            cout<<"tempMember.prev = "<<tempMember->prev->member.getID()<<endl;*/
         }
         currentNode->member = &(tempMember->member);
         cout<<"currentNode->member = "<<currentNode->member->getMemberSurname()<<endl;
@@ -57,16 +52,12 @@ void TransactionsCoordinator::aquireObjectsByID(MemberNode *frontMemberNode, Boo
             if(tempBook->book.getID() == ID)
                 break;
             tempBook = tempBook->next;
-   /*     if(tempBook->next != NULL)
-            cout<<"tempBook.next = "<<tempBook->next->book.getID()<<endl;
-        if(tempBook->prev != NULL)
-            cout<<"tempBook.prev = "<<tempBook->prev->book.getID()<<endl;*/
         }
         currentNode->book = &(tempBook->book);
         //next transaction
 
- /*       if(counter == 1)
-            firstOfTransactions = currentNode;*/
+   //     if(counter == 1)
+   //         firstOfTransactions = currentNode;
         counter ++;
         currentNode=currentNode->next;
     }
@@ -271,7 +262,6 @@ void TransactionsCoordinator::showTransactions()
 
 void TransactionsCoordinator::showOverdue()
 {
-    DataManipulation* data = dataManipulation;
     TransactionNode* currentTransactionNode = firstOfTransactions;
     system("cls");
     cout<<"-----WYPOZYCZENIA PRZETERMINOWANE-----\n\n";
@@ -280,7 +270,7 @@ void TransactionsCoordinator::showOverdue()
     else
     {
         while(currentTransactionNode != NULL){
-           if(data->getCurrentDate()>currentTransactionNode->transaction.getDueDate())
+           if(DataManipulation::getCurrentDate() > currentTransactionNode->transaction.getDueDate())
            {
                showSingleTransaction(currentTransactionNode);
                 cout<<"Wygenerowano ponaglenie do przeterminowanego wypozyczenia"<<endl;
@@ -288,13 +278,13 @@ void TransactionsCoordinator::showOverdue()
                     expired.open("expired.txt", ios::app);
                     if(expired.good()==true)
                     {
-                    expired<<"Szanowny/na "<<currentTransactionNode->member->getMemberName()<<" "<<currentTransactionNode->member->getMemberSurname()<<" z dniem "<<currentTransactionNode->transaction.getDueDate()<<" minal czas zwrotu ksiazki: "<<currentTransactionNode->book->getTitle()<<" autorstwa "<<currentTransactionNode->book->getAuthorsName()<<" "<<currentTransactionNode->book->getAuthorsSurname()<<". Prosimy o zwrot ksiazki do biblioteki w ciagu tygodnia od otrzymania ponaglenia. W przypadku braku zwrotu nalozona zostanie kara w wysokosci wartosci wypozyczonej ksiazki.\n"<<endl;
-                    expired.close();
+                        expired<<"Szanowny/na "<<currentTransactionNode->member->getMemberName()<<" "<<currentTransactionNode->member->getMemberSurname()<<" z dniem "<<currentTransactionNode->transaction.getDueDate()<<" minal czas zwrotu ksiazki: "<<currentTransactionNode->book->getTitle()<<" autorstwa "<<currentTransactionNode->book->getAuthorsName()<<" "<<currentTransactionNode->book->getAuthorsSurname()<<". Prosimy o zwrot ksiazki do biblioteki w ciagu tygodnia od otrzymania ponaglenia. W przypadku braku zwrotu nalozona zostanie kara w wysokosci wartosci wypozyczonej ksiazki.\n"<<endl;
+                        expired.close();
                     }
-    else
-    {
-        cout<<"Nie udalo sie otworzyc pliku i zapisac do niego danych.";
-    }
+                    else
+                    {
+                        cout<<"Nie udalo sie otworzyc pliku i zapisac do niego danych.";
+                    }
            }
             currentTransactionNode = currentTransactionNode->next;
         }

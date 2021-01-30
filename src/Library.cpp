@@ -93,11 +93,23 @@ void Library::lendBook()
     Book *book = &(books->getBookNode(bookId)->book);
     if (book == NULL){
         cout<<"Wystapil blad. Nie udalo sie dodac ksiazki.\n";
-        cout<<"Kliknij dowolny klawisz, aby powrocic.\n";
-        getch();
-        return;
+    } else if (book->getStatus() == "wypozyczona"){
+        cout<<"Ksiazka jest wypozyczona.\n";
+    } else if (book->getStatus() == "zarezerwowana"){
+        cout<<"Ksiazka jest zarezerwowana. Aby ja wypozyczyc wybierz 't'.\n";
+        char choice = getch();
+        if(choice == 't'){
+            transactions->lendBook(&*member, &*book);
+            cout<<"Ksiazka wypozyczona.\n";
+        }
+    } else {
+        transactions->lendBook(&*member, &*book);
+        cout<<"Ksiazka wypozyczona.\n";
     }
-    transactions->lendBook(&*member, &*book);
+
+    cout<<"Kliknij dowolny klawisz, aby powrocic.\n";
+    getch();
+    return;
 }
 
 void Library::registerReturn()
