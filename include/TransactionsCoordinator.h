@@ -19,7 +19,7 @@ class TransactionsCoordinator
         void showSingleTransaction(TransactionNode *transaction);
         void addSingleTransaction(TransactionNode *transaction);
         int removeTransaction(TransactionNode* node);
-        DataManipulation*    dataManipulation;
+
     public:
 
         TransactionsCoordinator(TransactionNode* firstOfTransactions, TransactionNode* lastOfTransactions, TransactionsDB *transactionsDB);

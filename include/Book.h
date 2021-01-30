@@ -1,6 +1,9 @@
 #ifndef BOOK_H
 #define BOOK_H
+#include "DataManipulation.h"
+#include <iostream>
 #include <string>
+#include <regex>
 
 using namespace std;
 
@@ -34,6 +37,7 @@ class Book
         void setGenre(string genre);
         string getStatus();
         void setStatus(string status);
+        bool isISBNValid(string ISBN);
 };
 
 #endif // BOOK_H

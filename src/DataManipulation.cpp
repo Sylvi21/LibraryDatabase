@@ -75,7 +75,7 @@ int DataManipulation::extractNumber(std::string dataLine, int caseNumber)
     return intNumber;
 }
 
-bool isLeapYear(int year)
+bool DataManipulation::isLeapYear(int year)
 {
     if ((year%4==0 && year%100!=0) || year%400==0)
         return true;
@@ -83,7 +83,7 @@ bool isLeapYear(int year)
         return false;
 }
 
-int getDaysInMonth(int year, int month)
+int DataManipulation::getDaysInMonth(int year, int month)
 {
     if (month == 4 || month == 6 || month == 9 || month == 11)
         return 30;
@@ -112,6 +112,8 @@ string DataManipulation::getDueDate()
     if(month + 3 > 12){
         month = month + 3 - 12;
         year += 1;
+    } else {
+        month += 3;
     }
     int day =ltm->tm_mday;
 
@@ -127,5 +129,12 @@ string DataManipulation::getDueDate()
         daysThreeMonthsFromNow = getDaysInMonth(year, month);
     }
 
-    return to_string(1900 + ltm->tm_year)+"/"+to_string(1 + ltm->tm_mon)+"/"+to_string(ltm->tm_mday);
+    return to_string(year)+"/"+to_string(month)+"/"+to_string(day);
+}
+
+int DataManipulation::getCurrentYear()
+{
+    time_t now = time(0);
+    tm *ltm = localtime(&now);
+    return 1900 + ltm->tm_year;
 }
