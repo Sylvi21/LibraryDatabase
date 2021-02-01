@@ -275,7 +275,9 @@ void TransactionsCoordinator::showOverdue()
                showSingleTransaction(currentTransactionNode);
                 cout<<"Wygenerowano ponaglenie do przeterminowanego wypozyczenia"<<endl;
                     fstream expired;
-                    expired.open("expired.txt", ios::app);
+                    string filename;
+                    filename = currentTransactionNode->member->getMemberName()+currentTransactionNode->member->getMemberSurname()+".txt";
+                    expired.open(filename, ios::app);
                     if(expired.good()==true)
                     {
                         expired<<"Szanowny/na "<<currentTransactionNode->member->getMemberName()<<" "<<currentTransactionNode->member->getMemberSurname()<<" z dniem "<<currentTransactionNode->transaction.getDueDate()<<" minal czas zwrotu ksiazki: "<<currentTransactionNode->book->getTitle()<<" autorstwa "<<currentTransactionNode->book->getAuthorsName()<<" "<<currentTransactionNode->book->getAuthorsSurname()<<". Prosimy o zwrot ksiazki do biblioteki w ciagu tygodnia od otrzymania ponaglenia. W przypadku braku zwrotu nalozona zostanie kara w wysokosci wartosci wypozyczonej ksiazki.\n"<<endl;
