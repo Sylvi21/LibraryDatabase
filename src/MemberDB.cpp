@@ -45,7 +45,11 @@ bool MembersDB::addMemberToDB(Member member)
     {
         membersDB<<member.getID()<<"|";
         membersDB<<member.getMemberName()<<"|";
-        membersDB<<member.getMemberSurname()<<"|"<<endl;
+        membersDB<<member.getMemberSurname()<<"|";
+        membersDB<<member.getMemberTown()<<"|";
+        membersDB<<member.getMemberStreet()<<"|";
+        membersDB<<member.getMemberNumber()<<"|";
+        membersDB<<member.getMemberZIP()<<"|"<<endl;
 
 
         membersDB.close();
@@ -83,6 +87,18 @@ Member MembersDB::getSingleMemberFromFile(string dataLine, int lastMemberID)
                 break;
             case 3:
                 singleMember.setMemberSurname(subLine);
+                break;
+            case 4:
+                singleMember.setMemberTown(subLine);
+                break;
+            case 5:
+                singleMember.setMemberStreet(subLine);
+                break;
+            case 6:
+                singleMember.setMemberNumber(subLine);
+                break;
+            case 7:
+                singleMember.setMemberZIP(subLine);
                 break;
             }
             subLine="";
@@ -182,6 +198,11 @@ void MembersDB::editMemberInFile(Member memberToEdit){
                 outFile<<memberToEdit.getID()<<"|";
                 outFile<<memberToEdit.getMemberName()<<"|";
                 outFile<<memberToEdit.getMemberSurname()<<"|";
+                outFile<<memberToEdit.getMemberTown()<<"|";
+                outFile<<memberToEdit.getMemberStreet()<<"|";
+                outFile<<memberToEdit.getMemberNumber()<<"|";
+                outFile<<memberToEdit.getMemberZIP()<<"|";
+
 
             }
             else outFile<<line<<endl;

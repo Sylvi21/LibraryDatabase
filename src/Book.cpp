@@ -27,10 +27,10 @@ string Book::getAuthorsName()
 
 void Book::setAuthorsName(string authorsName)
 {
-    while(authorsName.length() > 20){
+  /*  while(authorsName.length() > 20){
         cout<<"Podane imie jest za dlugie. Maksymalna ilosc znakow to 20. Podaj ponownie: "<<endl;
         authorsName = DataManipulation::loadLine();
-    }
+    }*/
     this->authorsName = authorsName;
 }
 
@@ -41,10 +41,10 @@ string Book::getAuthorsSurname()
 
 void Book::setAuthorsSurname(string authorsSurname)
 {
-    while(authorsSurname.length() > 20){
+   /* while(authorsSurname.length() > 20){
         cout<<"Podane Nazwisko jest za dlugie. Maksymalna ilosc znakow to 20. Podaj ponownie: "<<endl;
         authorsSurname = DataManipulation::loadLine();
-    }
+    }*/
     this->authorsSurname = authorsSurname;
 }
 
@@ -55,10 +55,10 @@ string Book::getTitle()
 
 void Book::setTitle(string title)
 {
-    while(title.length() > 20){
+    /*while(title.length() > 20){
         cout<<"Podane Nazwisko jest za dlugie. Maksymalna ilosc znakow to 20. Podaj ponownie: "<<endl;
         authorsName = DataManipulation::loadLine();
-    }
+    }*/
     this->title = title;
 }
 
@@ -69,10 +69,10 @@ int Book::getYearPublished()
 
 void Book::setYearPublished(int yearPublished)
 {
-    while(yearPublished < 0 && yearPublished > DataManipulation::getCurrentYear()){
+   /* while(yearPublished < 0 && yearPublished > DataManipulation::getCurrentYear()){
         cout<<"Podane Nazwisko jest za dlugie. Maksymalna ilosc znakow to 20. Podaj ponownie: "<<endl;
         yearPublished = DataManipulation::loadInteger();
-    }
+    }*/
     this->yearPublished = yearPublished;
 }
 

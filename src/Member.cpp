@@ -39,3 +39,43 @@ void Member::setMemberSurname(string memberSurname)
     this->memberSurname = memberSurname;
 }
 
+string Member::getMemberTown()
+{
+    return memberTown;
+}
+
+void Member::setMemberTown(string memberTown)
+{
+    this->memberTown = memberTown;
+}
+
+string Member::getMemberStreet()
+{
+    return memberStreet;
+}
+
+void Member::setMemberStreet(string memberStreet)
+{
+    this->memberStreet = memberStreet;
+}
+
+string Member::getMemberNumber()
+{
+    return memberNumber;
+}
+
+void Member::setMemberNumber(string memberNumber)
+{
+    this->memberNumber = memberNumber;
+}
+
+string Member::getMemberZIP()
+{
+    return memberZIP;
+}
+
+void Member::setMemberZIP(string memberZIP)
+{
+    this->memberZIP = memberZIP;
+}
+

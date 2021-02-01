@@ -25,7 +25,11 @@ MembersCoordinator::~MembersCoordinator()
 void MembersCoordinator::showSingleMember(Member member){
     cout<<member.getID()<<" "<<
     member.getMemberName()<<" "<<
-    member.getMemberSurname()<<endl;
+    member.getMemberSurname()<<" "<<
+    member.getMemberTown()<<" "<<
+    member.getMemberStreet()<<" "<<
+    member.getMemberNumber()<<" "<<
+    member.getMemberZIP()<<" "<<endl;
 }
 
 void MembersCoordinator::showMembersList(){
@@ -51,11 +55,17 @@ void MembersCoordinator::showMemberDetails(Member member){
     cout<<"Id: "<<member.getID()<<endl;
     cout<<"Imiona: "<<member.getMemberName()<<endl;
     cout<<"Nazwisko: "<<member.getMemberSurname()<<endl;
+    cout<<"Miejscowosc: "<<member.getMemberTown()<<endl;
+    cout<<"Ulica: "<<member.getMemberStreet()<<endl;
+    cout<<"Numer budynku: "<<member.getMemberNumber()<<endl;
+    cout<<"Kod pocztowy: "<<member.getMemberZIP()<<endl;
+
+
 }
 
 Member MembersCoordinator::setMemberData(){
     Member member;
-    string memberName, memberSurname;
+    string memberName, memberSurname, memberTown, memberStreet, memberNumber, memberZIP;
     member.setID(membersDB->getLastMemberID()+1);
 
     cout << "Podaj imie czytelnika: \n";
@@ -65,6 +75,22 @@ Member MembersCoordinator::setMemberData(){
     cout << "Podaj nazwisko czytelnika: \n";
     memberSurname = DataManipulation::loadLine();
     member.setMemberSurname(memberSurname);
+
+    cout << "Podaj miejscowosc: \n";
+    memberTown = DataManipulation::loadLine();
+    member.setMemberTown(memberTown);
+
+    cout << "Podaj ulice: \n";
+    memberStreet = DataManipulation::loadLine();
+    member.setMemberStreet(memberStreet);
+
+    cout << "Podaj numer budynku: \n";
+    memberNumber = DataManipulation::loadLine();
+    member.setMemberNumber(memberNumber);
+
+    cout << "Podaj kod pocztowy: \n";
+    memberZIP = DataManipulation::loadLine();
+    member.setMemberZIP(memberZIP);
 
     return member;
 }
@@ -108,6 +134,11 @@ void MembersCoordinator::searchForMember()
         cout << "1. ID\n";
         cout << "2. Imie/Imiona\n";
         cout << "3. Nazwisko\n";
+        cout << "4. Miejscowosc\n";
+        cout << "5. Ulica\n";
+        cout << "6. Numer budynku\n";
+        cout << "7. Kod pocztowy\n";
+
 
         searchChoice = DataManipulation::loadCharacter();
 
@@ -121,6 +152,18 @@ void MembersCoordinator::searchForMember()
             break;
         case '3':
             searchBySurname(DataManipulation::loadLine());
+            break;
+        case '4':
+            searchByTown(DataManipulation::loadLine());
+            break;
+        case '5':
+            searchByStreet(DataManipulation::loadLine());
+            break;
+        case '6':
+            searchByNumber(DataManipulation::loadLine());
+            break;
+        case '7':
+            searchByZIP(DataManipulation::loadLine());
             break;
         }
     }
@@ -182,6 +225,94 @@ void MembersCoordinator::searchBySurname(string surname)
     cout<<"----- CZYTELNICY O NAZWISKU:  "<<surname<<" -----\n\n";
     while(currentMemberNode != NULL){
         if(currentMemberNode->member.getMemberSurname() == surname){
+            showMemberDetails(currentMemberNode->member);
+            found = true;
+        }
+        currentMemberNode = currentMemberNode->next;
+    }
+    if(found == false){
+        cout<<"Brak pozycji."<<endl;
+    }
+    currentMemberNode = NULL;
+    delete currentMemberNode;
+    cout<<"\nKliknij dowolny klawisz, aby powrocic"<<"\n";
+    getch();
+}
+
+void MembersCoordinator::searchByTown(string town)
+{
+    MemberNode* currentMemberNode = firstOfMembers;
+    bool found = false;
+    system("cls");
+    cout<<"----- CZYTELNICY Z MIEJSCOWOSCI:  "<<town<<" -----\n\n";
+    while(currentMemberNode != NULL){
+        if(currentMemberNode->member.getMemberTown() == town){
+            showMemberDetails(currentMemberNode->member);
+            found = true;
+        }
+        currentMemberNode = currentMemberNode->next;
+    }
+    if(found == false){
+        cout<<"Brak pozycji."<<endl;
+    }
+    currentMemberNode = NULL;
+    delete currentMemberNode;
+    cout<<"\nKliknij dowolny klawisz, aby powrocic"<<"\n";
+    getch();
+}
+
+void MembersCoordinator::searchByStreet(string street)
+{
+    MemberNode* currentMemberNode = firstOfMembers;
+    bool found = false;
+    system("cls");
+    cout<<"----- CZYTELNICY Z ULICY:  "<<street<<" -----\n\n";
+    while(currentMemberNode != NULL){
+        if(currentMemberNode->member.getMemberStreet() == street){
+            showMemberDetails(currentMemberNode->member);
+            found = true;
+        }
+        currentMemberNode = currentMemberNode->next;
+    }
+    if(found == false){
+        cout<<"Brak pozycji."<<endl;
+    }
+    currentMemberNode = NULL;
+    delete currentMemberNode;
+    cout<<"\nKliknij dowolny klawisz, aby powrocic"<<"\n";
+    getch();
+}
+
+void MembersCoordinator::searchByNumber(string number)
+{
+    MemberNode* currentMemberNode = firstOfMembers;
+    bool found = false;
+    system("cls");
+    cout<<"----- CZYTELNICY Z BUDYNKU O NR:  "<<number<<" -----\n\n";
+    while(currentMemberNode != NULL){
+        if(currentMemberNode->member.getMemberNumber() == number){
+            showMemberDetails(currentMemberNode->member);
+            found = true;
+        }
+        currentMemberNode = currentMemberNode->next;
+    }
+    if(found == false){
+        cout<<"Brak pozycji."<<endl;
+    }
+    currentMemberNode = NULL;
+    delete currentMemberNode;
+    cout<<"\nKliknij dowolny klawisz, aby powrocic"<<"\n";
+    getch();
+}
+
+void MembersCoordinator::searchByZIP(string zip)
+{
+    MemberNode* currentMemberNode = firstOfMembers;
+    bool found = false;
+    system("cls");
+    cout<<"----- CZYTELNICY Z KODEM POCZTOWYM:  "<<zip<<" -----\n\n";
+    while(currentMemberNode != NULL){
+        if(currentMemberNode->member.getMemberZIP() == zip){
             showMemberDetails(currentMemberNode->member);
             found = true;
         }
@@ -279,6 +410,10 @@ bool MembersCoordinator::editMember()
                 cout<<"Wybierz dane do zmiany: \n\n";
                 cout<<"1. Imie\n";
                 cout<<"2. Nazwisko\n";
+                cout<<"3. Miejscowosc\n";
+                cout<<"4. Ulica\n";
+                cout<<"5. Numer budynku\n";
+                cout<<"6. Kod pocztowy\n";
 
                 choice = DataManipulation::loadCharacter();
 
@@ -291,6 +426,22 @@ bool MembersCoordinator::editMember()
                 case '2':
                     cout<<"Podaj nowe nazwisko: ";
                     currentMemberNode->member.setMemberSurname(DataManipulation::loadLine());
+                    break;
+                case '3':
+                    cout<<"Podaj nowa miejscowosc: ";
+                    currentMemberNode->member.setMemberTown(DataManipulation::loadLine());
+                    break;
+                case '4':
+                    cout<<"Podaj nowa ulice: ";
+                    currentMemberNode->member.setMemberStreet(DataManipulation::loadLine());
+                    break;
+                case '5':
+                    cout<<"Podaj nowy numer budynku: ";
+                    currentMemberNode->member.setMemberNumber(DataManipulation::loadLine());
+                    break;
+                case '6':
+                    cout<<"Podaj nowy kod pocztowy: ";
+                    currentMemberNode->member.setMemberZIP(DataManipulation::loadLine());
                     break;
 
                 }

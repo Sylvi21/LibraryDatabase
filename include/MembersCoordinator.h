@@ -19,6 +19,10 @@ class MembersCoordinator
         void searchByID(int ID);
         void searchByName(string name);
         void searchBySurname(string surname);
+        void searchByTown(string town);
+        void searchByStreet(string street);
+        void searchByNumber(string number);
+        void searchByZIP(string zip);
         void showSingleMember(Member member);
         void showMemberDetails(Member member);
         void deleteMember(MemberNode* node);

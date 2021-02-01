@@ -151,8 +151,11 @@
 1611251091 c:\users\huber\desktop\pp_pro\librarydatabase\include\booksstruct.h
 	"Book.h"
 
-1611251091 c:\users\huber\desktop\pp_pro\librarydatabase\include\book.h
+1612117981 c:\users\huber\desktop\pp_pro\librarydatabase\include\book.h
+	"DataManipulation.h"
+	<iostream>
 	<string>
+	<regex>
 
 1611686041 c:\users\huber\desktop\pp_pro\librarydatabase\include\booksdb.h
 	"Book.h"
@@ -161,13 +164,13 @@
 	<fstream>
 	"BooksStruct.h"
 
-1611686041 c:\users\huber\desktop\pp_pro\librarydatabase\include\datamanipulation.h
+1612117981 c:\users\huber\desktop\pp_pro\librarydatabase\include\datamanipulation.h
 	<iostream>
 	<sstream>
 	<string>
 	<ctime>
 
-1611255475 c:\users\huber\desktop\pp_pro\librarydatabase\include\memberscoordinator.h
+1612130884 c:\users\huber\desktop\pp_pro\librarydatabase\include\memberscoordinator.h
 	"MembersStruct.h"
 	"Member.h"
 	"MemberDB.h"
@@ -177,7 +180,7 @@
 1611251091 c:\users\huber\desktop\pp_pro\librarydatabase\include\membersstruct.h
 	"Member.h"
 
-1611251091 c:\users\huber\desktop\pp_pro\librarydatabase\include\member.h
+1612129606 c:\users\huber\desktop\pp_pro\librarydatabase\include\member.h
 	<string>
 
 1611686041 c:\users\huber\desktop\pp_pro\librarydatabase\include\memberdb.h
@@ -187,7 +190,7 @@
 	<iostream>
 	<fstream>
 
-1611691418 c:\users\huber\desktop\pp_pro\librarydatabase\include\transactionscoordinator.h
+1612117981 c:\users\huber\desktop\pp_pro\librarydatabase\include\transactionscoordinator.h
 	"TransactionsStruct.h"
 	"TransactionsDB.h"
 	"DataManipulation.h"
@@ -207,7 +210,7 @@
 	<iostream>
 	<fstream>
 
-1611251091 source:c:\users\huber\desktop\pp_pro\librarydatabase\src\book.cpp
+1612131063 source:c:\users\huber\desktop\pp_pro\librarydatabase\src\book.cpp
 	"Book.h"
 
 1611686041 source:c:\users\huber\desktop\pp_pro\librarydatabase\src\bookscoordinator.cpp
@@ -216,19 +219,19 @@
 1611686041 source:c:\users\huber\desktop\pp_pro\librarydatabase\src\booksdb.cpp
 	"BooksDB.h"
 
-1611686041 source:c:\users\huber\desktop\pp_pro\librarydatabase\src\datamanipulation.cpp
+1612117981 source:c:\users\huber\desktop\pp_pro\librarydatabase\src\datamanipulation.cpp
 	"DataManipulation.h"
 
-1611686041 source:c:\users\huber\desktop\pp_pro\librarydatabase\src\library.cpp
+1612117981 source:c:\users\huber\desktop\pp_pro\librarydatabase\src\library.cpp
 	"Library.h"
 
-1611251433 source:c:\users\huber\desktop\pp_pro\librarydatabase\src\member.cpp
+1612129857 source:c:\users\huber\desktop\pp_pro\librarydatabase\src\member.cpp
 	"Member.h"
 
-1611686041 source:c:\users\huber\desktop\pp_pro\librarydatabase\src\memberdb.cpp
+1612130088 source:c:\users\huber\desktop\pp_pro\librarydatabase\src\memberdb.cpp
 	"MemberDB.h"
 
-1611686041 source:c:\users\huber\desktop\pp_pro\librarydatabase\src\memberscoordinator.cpp
+1612130780 source:c:\users\huber\desktop\pp_pro\librarydatabase\src\memberscoordinator.cpp
 	"MembersCoordinator.h"
 
 1611686041 source:c:\users\huber\desktop\pp_pro\librarydatabase\src\transactionsdb.cpp
@@ -237,7 +240,7 @@
 1611686041 source:c:\users\huber\desktop\pp_pro\librarydatabase\src\transaction.cpp
 	"Transaction.h"
 
-1611691942 source:c:\users\huber\desktop\pp_pro\librarydatabase\src\transactionscoordinator.cpp
+1612117981 source:c:\users\huber\desktop\pp_pro\librarydatabase\src\transactionscoordinator.cpp
 	"TransactionsCoordinator.h"
 	"DataManipulation.h"
 	<iomanip>
