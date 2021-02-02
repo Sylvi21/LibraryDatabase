@@ -39,7 +39,7 @@ void TransactionsDB::loadTransactionsFromFile()
             singleTransaction = getSingleTransactionFromFile(dataLine);
             TransactionNode* newTransactionNode = new TransactionNode();
             newTransactionNode->transaction = singleTransaction;
-            cout<<"transaction:"<<newTransactionNode->transaction.getID()<<" "<<newTransactionNode->transaction.getMemberID()<<" "<<newTransactionNode->transaction.getBookID()<<endl<<endl;
+
             if (firstOfTransactions == NULL) {
                 firstOfTransactions = newTransactionNode;
                 lastOfTransactions = newTransactionNode;
@@ -66,7 +66,6 @@ void TransactionsDB::loadTransactionsFromFile()
                 }
             }
             lastTransactionDataLine = dataLine;
-            cout<<"firsttransaction:"<<firstOfTransactions->transaction.getID()<<" "<<firstOfTransactions->transaction.getMemberID()<<" "<<firstOfTransactions->transaction.getBookID()<<endl<<endl;
         }
         transactionsFile.close();
     }
@@ -78,7 +77,6 @@ void TransactionsDB::loadTransactionsFromFile()
     temp = NULL;
     delete pom;
     pom = NULL;
-//cout<<"firsttransaction:"<<firstOfTransactions->transaction.getID()<<" "<<firstOfTransactions->transaction.getMemberID()<<" "<<firstOfTransactions->transaction.getBookID()<<endl<<endl;
 }
 
 int TransactionsDB::getLastTransactionID(){
@@ -96,7 +94,7 @@ int TransactionsDB::setLastTransactionID(string dataLine)
 TransactionNode* TransactionsDB::findSpot(Transaction transaction)
 {
     TransactionNode* transactions = firstOfTransactions;
-    while(transactions != NULL && transactions->transaction.getBookID() < transaction.getBookID())
+    while(transactions != NULL && transactions->transaction.getID() < transaction.getID())
         transactions=transactions->next;
 
     return transactions;

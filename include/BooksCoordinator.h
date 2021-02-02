@@ -23,7 +23,6 @@ class BooksCoordinator
         void searchByGenre(string genre);
         void searchByISBN(string ISBN);
         void searchByStatus(string status);
-        void showSingleBook(Book book);
         void showBookDetails(Book book);
         void deleteBook(BookNode* node);
     public:

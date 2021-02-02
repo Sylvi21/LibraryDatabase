@@ -31,24 +31,17 @@ void TransactionsCoordinator::aquireObjectsByID(MemberNode *frontMemberNode, Boo
     while(currentNode != NULL){
         //get Member
         ID = currentNode->transaction.getMemberID();
-        cout<<"Member ID = "<<ID<<endl;
         MemberNode *tempMember = frontMemberNode;
         while(tempMember != NULL || tempMember->member.getID()!= ID){
-            cout<<"counter: "<<counter<<endl;
-            cout<<"tempMember.member = "<<tempMember->member.getID()<<endl;
             if(tempMember->member.getID()== ID)
                 break;
             tempMember = tempMember->next;
         }
         currentNode->member = &(tempMember->member);
-        cout<<"currentNode->member = "<<currentNode->member->getMemberSurname()<<endl;
         //get Book
         ID = currentNode->transaction.getBookID();
-        cout<<"Book ID = "<<ID<<endl;
         BookNode *tempBook = frontBookNode;
         while(tempBook != NULL || tempBook->book.getID() != ID){
-            cout<<"counter: "<<counter<<endl;
-            cout<<"tempBook.book = "<<tempBook->book.getID()<<endl;
             if(tempBook->book.getID() == ID)
                 break;
             tempBook = tempBook->next;
@@ -56,8 +49,8 @@ void TransactionsCoordinator::aquireObjectsByID(MemberNode *frontMemberNode, Boo
         currentNode->book = &(tempBook->book);
         //next transaction
 
-   //     if(counter == 1)
-   //         firstOfTransactions = currentNode;
+        if(counter == 1)
+            firstOfTransactions = currentNode;
         counter ++;
         currentNode=currentNode->next;
     }
@@ -68,8 +61,8 @@ TransactionNode* TransactionsCoordinator::getTransactionById(int id)
 {
     TransactionNode* currentNode = firstOfTransactions;
     while(currentNode != NULL){
-            if(currentNode->transaction.getID() == id)
-                break;
+        if(currentNode->transaction.getID() == id)
+            break;
         currentNode=currentNode->next;
     }
     return currentNode;
@@ -272,21 +265,21 @@ void TransactionsCoordinator::showOverdue()
         while(currentTransactionNode != NULL){
            if(DataManipulation::getCurrentDate() > currentTransactionNode->transaction.getDueDate())
            {
-               showSingleTransaction(currentTransactionNode);
+                showSingleTransaction(currentTransactionNode);
                 cout<<"Wygenerowano ponaglenie do przeterminowanego wypozyczenia"<<endl;
-                    fstream expired;
-                    string filename;
-                    filename = currentTransactionNode->member->getMemberName()+currentTransactionNode->member->getMemberSurname()+".txt";
-                    expired.open(filename, ios::app);
-                    if(expired.good()==true)
-                    {
-                        expired<<"Szanowny/na "<<currentTransactionNode->member->getMemberName()<<" "<<currentTransactionNode->member->getMemberSurname()<<" z dniem "<<currentTransactionNode->transaction.getDueDate()<<" minal czas zwrotu ksiazki: "<<currentTransactionNode->book->getTitle()<<" autorstwa "<<currentTransactionNode->book->getAuthorsName()<<" "<<currentTransactionNode->book->getAuthorsSurname()<<". Prosimy o zwrot ksiazki do biblioteki w ciagu tygodnia od otrzymania ponaglenia. W przypadku braku zwrotu nalozona zostanie kara w wysokosci wartosci wypozyczonej ksiazki.\n"<<endl;
-                        expired.close();
-                    }
-                    else
-                    {
-                        cout<<"Nie udalo sie otworzyc pliku i zapisac do niego danych.";
-                    }
+                fstream expired;
+                string filename;
+                filename = currentTransactionNode->member->getMemberName()+currentTransactionNode->member->getMemberSurname()+".txt";
+                expired.open(filename, ios::app);
+                if(expired.good()==true)
+                {
+                    expired<<"Szanowny/na "<<currentTransactionNode->member->getMemberName()<<" "<<currentTransactionNode->member->getMemberSurname()<<" z dniem "<<currentTransactionNode->transaction.getDueDate()<<" minal czas zwrotu ksiazki: "<<currentTransactionNode->book->getTitle()<<" autorstwa "<<currentTransactionNode->book->getAuthorsName()<<" "<<currentTransactionNode->book->getAuthorsSurname()<<". Prosimy o zwrot ksiazki do biblioteki w ciagu tygodnia od otrzymania ponaglenia. W przypadku braku zwrotu nalozona zostanie kara w wysokosci wartosci wypozyczonej ksiazki.\n"<<endl;
+                    expired.close();
+                }
+                else
+                {
+                    cout<<"Nie udalo sie otworzyc pliku i zapisac do niego danych.";
+                }
            }
             currentTransactionNode = currentTransactionNode->next;
         }

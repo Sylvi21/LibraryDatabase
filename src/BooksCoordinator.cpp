@@ -23,17 +23,6 @@ BooksCoordinator::~BooksCoordinator()
 
 }
 
-void BooksCoordinator::showSingleBook(Book book){
-    cout<<book.getID()<<" "<<
-    book.getAuthorsName()<<" "<<
-    book.getAuthorsSurname()<<" "<<
-    book.getTitle()<<" "<<
-    book.getYearPublished()<<" "<<
-    book.getISBN()<<" "<<
-    book.getGenre()<<" "<<
-    book.getStatus()<<endl;
-}
-
 void BooksCoordinator::showBooksList(){
     BookNode* currentBookNode = firstOfBooks;
     system("cls");
@@ -43,7 +32,7 @@ void BooksCoordinator::showBooksList(){
     else
     {
         while(currentBookNode != NULL){
-            showSingleBook(currentBookNode->book);
+            showBookDetails(currentBookNode->book);
             currentBookNode = currentBookNode->next;
         }
     }
@@ -57,7 +46,7 @@ void BooksCoordinator::showBookDetails(Book book){
     cout<<"Id: "<<book.getID()<<endl;
     cout<<"Imiona: "<<book.getAuthorsName()<<endl;
     cout<<"Nazwisko: "<<book.getAuthorsSurname()<<endl;
-    cout<<"Tytu³: "<<book.getTitle()<<endl;
+    cout<<"Tytul: "<<book.getTitle()<<endl;
     cout<<"Rok wydania: "<<book.getYearPublished()<<endl;
     cout<<"Numer ISBN: "<<book.getISBN()<<endl;
     cout<<"Gatunek: "<<book.getGenre()<<endl;
@@ -124,7 +113,6 @@ void BooksCoordinator::addNewBook()
 void BooksCoordinator::searchForBook()
 {
     BookNode* currentBookNode = firstOfBooks;
-    bool bookExists = false;
     char searchChoice;
     string newData;
 
@@ -150,27 +138,35 @@ void BooksCoordinator::searchForBook()
         switch(searchChoice)
         {
         case '1':
+            cout<<"Podaj ID do wyszukania:";
             searchByID(DataManipulation::loadInteger());
             break;
         case '2':
+            cout<<"Podaj imie do wyszukania:";
             searchByName(DataManipulation::loadLine());
             break;
         case '3':
+            cout<<"Podaj nazwisko do wyszukania:";
             searchBySurname(DataManipulation::loadLine());
             break;
         case '4':
+            cout<<"Podaj tytul do wyszukania:";
             searchByTitle(DataManipulation::loadLine());
             break;
         case '5':
+            cout<<"Podaj rok do wyszukania:";
             searchByYear(DataManipulation::loadInteger());
             break;
         case '6':
+            cout<<"Podaj gatunek do wyszukania:";
             searchByGenre(DataManipulation::loadLine());
             break;
         case '7':
+            cout<<"Podaj numer ISBN do wyszukania:";
             searchByISBN(DataManipulation::loadLine());
             break;
         case '8':
+            cout<<"Podaj status do wyszukania:";
             searchByStatus(DataManipulation::loadLine());
             break;
         }

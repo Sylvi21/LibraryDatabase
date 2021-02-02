@@ -3,3 +3,4 @@
 3|Piotr|Bak|
 4|Agnieszka|Nowak|
 5|Michal|Bujak|
+6|Waldemar|Wilczy|Kielce|Sciegiennego|34/2|35-394|

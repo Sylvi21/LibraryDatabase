@@ -9,19 +9,20 @@
 	"BooksCoordinator.h"
 	"Library.h"
 
-1612019052 source:g:\infromatyka - studia\semestr 3\pp\librarydatabase\src\book.cpp
+1612294469 source:g:\infromatyka - studia\semestr 3\pp\librarydatabase\src\book.cpp
 	"Book.h"
 
-1612017222 g:\infromatyka - studia\semestr 3\pp\librarydatabase\include\book.h
+1612292844 g:\infromatyka - studia\semestr 3\pp\librarydatabase\include\book.h
 	"DataManipulation.h"
 	<iostream>
 	<string>
 	<regex>
+	<ctype.h>
 
-1612006149 source:g:\infromatyka - studia\semestr 3\pp\librarydatabase\src\datamanipulation.cpp
+1612019289 source:g:\infromatyka - studia\semestr 3\pp\librarydatabase\src\datamanipulation.cpp
 	"DataManipulation.h"
 
-1612018739 g:\infromatyka - studia\semestr 3\pp\librarydatabase\include\datamanipulation.h
+1612019289 g:\infromatyka - studia\semestr 3\pp\librarydatabase\include\datamanipulation.h
 	<iostream>
 	<sstream>
 	<string>
@@ -45,19 +46,19 @@
 	<iostream>
 	"MembersStruct.h"
 
-1611603434 g:\infromatyka - studia\semestr 3\pp\librarydatabase\include\bookscoordinator.h
+1612295407 g:\infromatyka - studia\semestr 3\pp\librarydatabase\include\bookscoordinator.h
 	"BooksStruct.h"
 	"BooksDB.h"
 	"DataManipulation.h"
 	<conio.h>
 
-1612005665 source:g:\infromatyka - studia\semestr 3\pp\librarydatabase\src\library.cpp
+1612019289 source:g:\infromatyka - studia\semestr 3\pp\librarydatabase\src\library.cpp
 	"Library.h"
 
 1610893071 g:\infromatyka - studia\semestr 3\pp\librarydatabase\include\booksstruct.h
 	"Book.h"
 
-1611603434 source:g:\infromatyka - studia\semestr 3\pp\librarydatabase\src\bookscoordinator.cpp
+1612289248 source:g:\infromatyka - studia\semestr 3\pp\librarydatabase\src\bookscoordinator.cpp
 	"BooksCoordinator.h"
 
 1609174055 g:\infromatyka - studia\semestr 3\pp\librarydatabase\include\status.h
@@ -71,13 +72,15 @@
 	"BooksStruct.h"
 	"MembersStruct.h"
 
-1611300687 source:g:\infromatyka - studia\semestr 3\pp\librarydatabase\src\member.cpp
+1612291087 source:g:\infromatyka - studia\semestr 3\pp\librarydatabase\src\member.cpp
 	"Member.h"
 
-1610893071 g:\infromatyka - studia\semestr 3\pp\librarydatabase\include\member.h
+1612291203 g:\infromatyka - studia\semestr 3\pp\librarydatabase\include\member.h
+	"DataManipulation.h"
+	<iostream>
 	<string>
 
-1611300687 g:\infromatyka - studia\semestr 3\pp\librarydatabase\include\memberscoordinator.h
+1612286877 g:\infromatyka - studia\semestr 3\pp\librarydatabase\include\memberscoordinator.h
 	"MembersStruct.h"
 	"Member.h"
 	"MemberDB.h"
@@ -94,13 +97,13 @@
 	<iostream>
 	<fstream>
 
-1611685821 source:g:\infromatyka - studia\semestr 3\pp\librarydatabase\src\memberscoordinator.cpp
+1612286877 source:g:\infromatyka - studia\semestr 3\pp\librarydatabase\src\memberscoordinator.cpp
 	"MembersCoordinator.h"
 
-1611603434 source:g:\infromatyka - studia\semestr 3\pp\librarydatabase\src\memberdb.cpp
+1612286877 source:g:\infromatyka - studia\semestr 3\pp\librarydatabase\src\memberdb.cpp
 	"MemberDB.h"
 
-1611685821 source:g:\infromatyka - studia\semestr 3\pp\librarydatabase\src\transactionsdb.cpp
+1612291087 source:g:\infromatyka - studia\semestr 3\pp\librarydatabase\src\transactionsdb.cpp
 	"TransactionsDB.h"
 
 1611685821 g:\infromatyka - studia\semestr 3\pp\librarydatabase\include\transactionsdb.h
@@ -109,12 +112,12 @@
 	<iostream>
 	<fstream>
 
-1612000040 source:g:\infromatyka - studia\semestr 3\pp\librarydatabase\src\transactionscoordinator.cpp
+1612295271 source:g:\infromatyka - studia\semestr 3\pp\librarydatabase\src\transactionscoordinator.cpp
 	"TransactionsCoordinator.h"
 	"DataManipulation.h"
 	<iomanip>
 
-1611999419 g:\infromatyka - studia\semestr 3\pp\librarydatabase\include\transactionscoordinator.h
+1612019289 g:\infromatyka - studia\semestr 3\pp\librarydatabase\include\transactionscoordinator.h
 	"TransactionsStruct.h"
 	"TransactionsDB.h"
 	"DataManipulation.h"

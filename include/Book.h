@@ -4,6 +4,7 @@
 #include <iostream>
 #include <string>
 #include <regex>
+#include <ctype.h>
 
 using namespace std;
 

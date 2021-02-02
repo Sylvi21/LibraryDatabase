@@ -2,7 +2,6 @@
 
 Member::Member()
 {
-
 }
 
 Member::~Member()
@@ -26,6 +25,10 @@ string Member::getMemberName()
 
 void Member::setMemberName(string memberName)
 {
+    while(memberName.length() > 21 || memberName.length() < 3){
+        cout<<"Imie musi zawierac min. 2 i max. 20 znakow. Podaj ponownie: "<<endl;
+        memberName = DataManipulation::loadLine();
+    }
     this->memberName = memberName;
 }
 
@@ -36,6 +39,10 @@ string Member::getMemberSurname()
 
 void Member::setMemberSurname(string memberSurname)
 {
+    while(memberSurname.length() > 21 || memberSurname.length() < 3){
+        cout<<"Nazwisko musi zawierac min. 2 i max. 20 znakow. Podaj ponownie: "<<endl;
+        memberSurname = DataManipulation::loadLine();
+    }
     this->memberSurname = memberSurname;
 }
 
@@ -56,6 +63,10 @@ string Member::getMemberStreet()
 
 void Member::setMemberStreet(string memberStreet)
 {
+    while(memberStreet.length() > 21 || memberStreet.length() < 3){
+        cout<<"Nazwa ulicy musi zawierac min. 2 i max. 20 znakow. Podaj ponownie: "<<endl;
+        memberStreet = DataManipulation::loadLine();
+    }
     this->memberStreet = memberStreet;
 }
 
@@ -66,6 +77,10 @@ string Member::getMemberNumber()
 
 void Member::setMemberNumber(string memberNumber)
 {
+    while(memberNumber.length() > 6 || memberNumber.length() < 3){
+        cout<<"Nazwa ulicy musi zawierac min. 2 i max. 5 znakow. Podaj ponownie: "<<endl;
+        memberNumber = DataManipulation::loadLine();
+    }
     this->memberNumber = memberNumber;
 }
 
@@ -76,6 +91,10 @@ string Member::getMemberZIP()
 
 void Member::setMemberZIP(string memberZIP)
 {
+    while(memberZIP.length() > 6 || memberZIP.length() < 3){
+        cout<<"Nazwa ulicy musi zawierac min. 2 i max. 5 znakow. Podaj ponownie: "<<endl;
+        memberZIP = DataManipulation::loadLine();
+    }
     this->memberZIP = memberZIP;
 }
 

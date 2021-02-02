@@ -1,5 +1,6 @@
 1|Arthur Conan|Doyle|Pies Baskerville'ow|1999|powiesc detektywistyczna|83-887-94-37-X|wypozyczona|
 2|Emily|Bronte|Wichrowe Wzgorza|2004|powiesc gotycka|83-921322-0-3|wypozyczona|
 3|Winston|Groom|Forrest Gump|1986|powiesc|978-0-552-99609-9|wypozyczona|
-4|Joe|Alex|Smierc mowi w moim imieniu|83-08-02040-2|powiesc detektywistyczna|1960|wypozyczona|
+4|Joe|Alex|Smierc mowi w moim i.|1960|powiesc detektywistyczna|83-08-02040-2|wypozyczona|
 5|Adam|Mickiewicz|Pan Tadeusz|2014|Poemat|978-83-070-3341-9|dostepna|
+6|Ryszard|Nowakowski|Elem. matem. wyzszej|1998|podrecznik|83-910629-0-2|dostepna|
